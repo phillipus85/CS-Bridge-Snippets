@@ -858,18 +858,18 @@ class Canvas(tkinter.Canvas):
         # this introduces a memory leak which can be fixed by overloading delete
         self._image_gb_protection[img_obj] = image
         return img_obj
-    
+
     # ---------------------- SOUND ----------------------
 
     def load_sound(self, path):
-        return pygame.mixer.Sound(path)
-    
+        return mixer.Sound(path)
+
     def play_sound(self, sound):
         sound.play()
-    
+
     def play_music(self, path):
-        pygame.mixer.music.load(path)
-        pygame.mixer.music.play(-1)
+        mixer.music.load(path)
+        mixer.music.play(-1)
 
 
 # applying the synonym decorator
