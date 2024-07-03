@@ -39,7 +39,7 @@ def main():
         """Obtener una lista de los clics recientes y dibújalos."""
         _clicks = lienzo.obtener_nuevos_clics_mouse()
         # _tecla = lienzo.obtener_tecla_presionada()
-        print(_tecla)
+        # print(_tecla)
         # revisar los clicks del mouse para poner un circulo nuevo
         for click in _clicks:
             # obtener la posicion del click

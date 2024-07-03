@@ -7,9 +7,43 @@ File: graphics.py
 Authors: Chris Piech, Lisa Yan and Nick Troccoli
 Version Date: August 11, 2020
 
-TODO notes:
+File: graphics.py
+Authors Santiago Arteaga, aaa, bbb, ccc, ddd
+Version Date: July 3, 2021
+Notes:
+    - wrapper function synonyms between languages (i.e.: spanish and english)
+    - added new functions to the class Canvas: play audio, loop audio, stop audio, pause audio, resume audio
+    # TODO add all others functions to the class Canvas
+    - add
+
+# TODO notes:
 - support window resizing
 """
+
+
+def synonym_for(synonym_name, cls):
+    """synonym_for() is a decorator that allows you to add a synonym for a method in a class.
+
+    Args:
+        synonym_name (str): the name of the synonym to add.
+        cls (class): the class in which to add the synonym.
+    """  
+    def decorator(original_func):
+        """decorator() is the actual decorator function that adds the synonym to the class.
+
+        Args:
+            original_func (Any): the original function to add a synonym for.
+        """        
+        def wrapper(*args, **kwargs):
+            """wrapper() is the function that is called when the synonym is invoked.
+
+            Returns:
+                code: returns the original function.
+            """            
+            return original_func(*args, **kwargs)
+        setattr(cls, synonym_name, wrapper)
+        return original_func
+    return decorator
 
 
 class Canvas(tkinter.Canvas):
@@ -92,7 +126,7 @@ class Canvas(tkinter.Canvas):
         'gray73', 'gray74', 'gray75', 'gray76', 'gray77', 'gray78', 'gray79', 'gray80', 'gray81', 'gray82',
         'gray83', 'gray84', 'gray85', 'gray86', 'gray87', 'gray88', 'gray89', 'gray90', 'gray91', 'gray92',
         'gray93', 'gray94', 'gray95', 'gray97', 'gray98', 'gray99'
-]
+    ]
     """
     This is a list of names of all colors available to use for graphics on the Canvas.  This list of Tkinter colors
     was taken from https://stackoverflow.com/questions/4969543/colour-chart-for-tkinter-and-tix.
@@ -147,6 +181,7 @@ class Canvas(tkinter.Canvas):
         self.pack()
         self.update()
 
+    # @synonym_for("establecer_color_fondo_lienzo")
     def set_canvas_background_color(self, color):
         """
         Sets the background color of the canvas to the specified color string.
@@ -820,3 +855,11 @@ class Canvas(tkinter.Canvas):
         # this introduces a memory leak which can be fixed by overloading delete
         self._image_gb_protection[img_obj] = image
         return img_obj
+
+
+# applying the synonym decorator
+# Apply the decorator after the class definition
+# Canvas.draw = synonym_for('dibujar', Canvas)(Canvas.draw)
+Canvas.set_canvas_background_color = synonym_for(
+    "establecer_color_fondo_lienzo",
+    Canvas)(Canvas.set_canvas_background_color)
