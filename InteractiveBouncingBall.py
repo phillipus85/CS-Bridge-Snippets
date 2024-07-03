@@ -1,5 +1,5 @@
 ﻿"""Crear una pelota y hacerla rebotar en la pared."""
-from src.lib.graphics import Canvas as Lienzo
+from src.graphics import Canvas as Lienzo
 from time import sleep as esperar
 
 # Radio de la pelota.
