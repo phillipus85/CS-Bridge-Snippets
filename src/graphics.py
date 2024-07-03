@@ -193,7 +193,7 @@ class Canvas(tkinter.Canvas):
             color: the color (string) to make the background of the canvas.
         """
         self.config(background=color)
-
+    
     def get_canvas_width(self):
         """
         Get the width of the canvas.
@@ -878,3 +878,13 @@ class Canvas(tkinter.Canvas):
 Canvas.set_canvas_background_color = synonym_for(
     "establecer_color_fondo_lienzo",
     Canvas)(Canvas.set_canvas_background_color)
+
+Canvas.get_canvas_width = synonym_for(
+    "obtener_anchura_lienzo",
+    Canvas)(Canvas.get_canvas_width)
+
+
+Canvas.get_canvas_height = synonym_for(
+    "obtener_altura_lienzo",
+    Canvas)(Canvas.get_canvas_height)
+
