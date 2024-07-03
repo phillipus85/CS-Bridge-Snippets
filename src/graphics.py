@@ -883,8 +883,6 @@ Canvas.get_canvas_width = synonym_for(
     "obtener_anchura_lienzo",
     Canvas)(Canvas.get_canvas_width)
 
-
 Canvas.get_canvas_height = synonym_for(
     "obtener_altura_lienzo",
     Canvas)(Canvas.get_canvas_height)
-

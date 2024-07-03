@@ -33,6 +33,9 @@ def main():
     while _playing:
         # print(_n_balls_pos_txt_x, _n_balls_pos_txt_y)
         lienzo.establecer_color_fondo_lienzo("black")
+        w = lienzo.obtener_anchura_lienzo()
+        h = lienzo.obtener_altura_lienzo()
+        print(w, h)
         esperar(0.02)
         # IMPORTANTE: solo se necesita en local
         lienzo.update()
