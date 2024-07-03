@@ -94,26 +94,26 @@ def obtener_posicion_objeto(canvas, objeto):
 
 
 def verificar_colision_extremos(tx, ty, dx, dy):
-    # _tx = tx
-    # _ty = ty
-    # _dx = dx
-    # _dy = dy
+    """verificar_colision_extremos() verifica la colisión con los extremos.
+    Args:
+        tx (float): posición x del objeto.
+        ty (float): posición y del objeto.
+        dx (int): desplazamiento en x.
+        dy (int): desplazamiento en y.
+    """
     # condicion de colision
     # 1) si colisiona con el borde derecho
     if tx >= MAX_CANVAS_X - RADIO_PELOTA:
         # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
         dx = dx * -1
-
     # 2) si colisiona con el borde inferior
     if ty >= MAX_CANVAS_Y - RADIO_PELOTA:
         # ir hacia arriba, teniendo en cuenta el radio de la pelota
         dy = dy * -1
-
     # 3) si colisiona con el borde izquierdo
     if tx <= 0.0:
         # ir hacia la derecha
         dx = dx * -1
-
     # 4) si colisiona con el borde superior
     if ty <= 0.0:
         # ir hacia abajo
