@@ -185,7 +185,6 @@ class Canvas(tkinter.Canvas):
         self.pack()
         self.update()
 
-    # @synonym_for("establecer_color_fondo_lienzo")
     def set_canvas_background_color(self, color):
         """
         Sets the background color of the canvas to the specified color string.
