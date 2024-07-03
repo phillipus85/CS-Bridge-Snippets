@@ -1,5 +1,6 @@
 ﻿"""Poner círculos cuando haga clic."""
-from src.graphics import Canvas as Lienzo
+from src.graficos import Canvas as Lienzo
+# from src.graphics import Canvas as Lienzo
 # IMPORTANTE: Si se ejecuta en un entorno diferente a la terminal de python
 # from graphics import Lienzo
 
