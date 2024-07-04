@@ -901,3 +901,73 @@ Canvas.set_canvas_background_color = synonym_for(
     Canvas)(Canvas.set_canvas_background_color)
 
 
+Canvas.set_hidden = synonym_for(
+    "establecer_oculto",
+    Canvas)(Canvas.set_hidden)
+
+
+Canvas.find_overlapping = synonym_for(
+    "encontrar_superposiciones",
+    Canvas)(Canvas.find_overlapping)
+
+
+Canvas.get_random_color = synonym_for(
+    "obtener_color_aleatorio",
+    Canvas)(Canvas.get_random_color)
+
+
+Canvas.set_fill_color = synonym_for(
+    "establecer_color_relleno",
+    Canvas)(Canvas.set_fill_color)
+
+
+Canvas.set_outline_color = synonym_for(
+    "establecer_color_contorno",
+    Canvas)(Canvas.set_outline_color)
+
+
+Canvas.set_color = synonym_for(
+    "establecer_color",
+    Canvas)(Canvas.set_color)   
+
+
+Canvas.create_line = synonym_for(
+    "crear_linea",
+    Canvas)(Canvas.create_line)
+
+
+Canvas.create_rectangle = synonym_for(
+    "crear_rectangulo",
+    Canvas)(Canvas.create_rectangle)
+
+
+Canvas.create_oval = synonym_for(
+    "crear_ovalo",
+    Canvas)(Canvas.create_oval)
+
+
+Canvas.create_text = synonym_for(
+    "crear_texto",
+    Canvas)(Canvas.create_text)
+
+
+Canvas.set_text = synonym_for(
+    "establecer_texto",
+    Canvas)(Canvas.set_text)
+
+
+Canvas.set_font = synonym_for(
+    "establecer_fuente",
+    Canvas)(Canvas.set_font)
+
+
+Canvas.create_image = synonym_for(
+    "crear_imagen",
+    Canvas)(Canvas.create_image)
+
+
+Canvas.create_image_with_size = synonym_for(
+    "crear_imagen_con_tamaño",
+    Canvas)(Canvas.create_image_with_size)
+
+
