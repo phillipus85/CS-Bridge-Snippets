@@ -474,6 +474,7 @@ class Canvas(tkinter.Canvas):
         return self.coords(obj)[3] - self.coords(obj)[1]
 
     def move_to(self, obj, new_x, new_y):
+        #FIXME: mover_hacia
         """
         Same as `Canvas.moveto`.
         """
@@ -483,6 +484,7 @@ class Canvas(tkinter.Canvas):
         self.move(obj, new_x - old_x, new_y - old_y)
 
     def moveto(self, obj, x='', y=''):
+        # FIXME: moverse_hacia
         """
         Moves the specified graphical object to the specified location, which is its bounding box's
         new upper-left corner.
@@ -495,6 +497,7 @@ class Canvas(tkinter.Canvas):
         self.move_to(obj, float(x), float(y))
 
     def move(self, obj, dx, dy):
+        #FIXME: moverse
         """
         Moves the specified graphical object by the specified amounts in the x and y directions.
 
@@ -506,6 +509,7 @@ class Canvas(tkinter.Canvas):
         super(Canvas, self).move(obj, dx, dy)
 
     def set_size(self, obj, width, height):
+        #FIXME: No existe
         """
         Sets the width and height of the specified graphical object.  Cannot be used to change the size of an image.
 
@@ -521,6 +525,7 @@ class Canvas(tkinter.Canvas):
         self.coords(obj, x, y, x + width, y + height)
         
     def delete(self, obj):
+        #FIXME: eliminar
         """
         Remove the specified graphical object from the canvas.
 
@@ -888,3 +893,18 @@ Canvas.get_canvas_height = synonym_for(
     "obtener_altura_lienzo",
     Canvas)(Canvas.get_canvas_height)
 
+Canvas.delete = synonym_for(
+    "eliminar",
+    Canvas)(Canvas.delete)
+
+Canvas.move_to = synonym_for(  
+    "mover_hacia",
+    Canvas)(Canvas.move_to)
+
+Canvas.moveto = synonym_for(
+    "moverse_hacia",
+    Canvas)(Canvas.moveto)
+
+Canvas.move = synonym_for(
+    "moverse",
+    Canvas)(Canvas.move)
