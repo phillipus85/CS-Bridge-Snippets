@@ -870,3 +870,40 @@ class Canvas(tkinter.Canvas):
 Canvas.set_canvas_background_color = synonym_for(
     "establecer_color_fondo_lienzo",
     Canvas)(Canvas.set_canvas_background_color)
+
+
+Canvas.wait_for_click = synonym_for(
+    "esperar_por_clic",
+    Canvas)(Canvas.wait_for_click)
+
+
+Canvas.get_mouse_x = synonym_for(
+    "obtener_mouse_x",
+    Canvas)(Canvas.get_mouse_x)
+
+
+Canvas.get_mouse_y = synonym_for(
+    "obtener_mouse_y",
+    Canvas)(Canvas.get_mouse_y)
+
+
+Canvas.get_left_x = synonym_for(
+    "obtener_x_izq",
+    Canvas)(Canvas.get_left_x)
+
+
+Canvas.get_top_y = synonym_for(
+    "obtener_y_sup",
+    Canvas)(Canvas.get_top_y)
+
+
+Canvas.get_width = synonym_for(
+    "obtener_ancho",
+    Canvas)(Canvas.get_width)
+
+
+Canvas.get_height = synonym_for(
+    "obtener_altura",
+    Canvas)(Canvas.get_height)
+
+
