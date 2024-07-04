@@ -31,19 +31,19 @@ def synonym_for(synonym_name, cls):
     Args:
         synonym_name (str): the name of the synonym to add.
         cls (class): the class in which to add the synonym.
-    """  
+    """
     def decorator(original_func):
         """decorator() is the actual decorator function that adds the synonym to the class.
 
         Args:
             original_func (Any): the original function to add a synonym for.
-        """        
+        """
         def wrapper(*args, **kwargs):
             """wrapper() is the function that is called when the synonym is invoked.
 
             Returns:
                 code: returns the original function.
-            """            
+            """
             return original_func(*args, **kwargs)
         setattr(cls, synonym_name, wrapper)
         return original_func
@@ -633,8 +633,9 @@ class Canvas(tkinter.Canvas):
         """
         try:
             self.itemconfig(obj, outline=outline_color)
-        except tkinter.TclError as e:
-            raise tkinter.TclError("You can't set the outline color on this object")
+        except tkinter.TclError as err:
+            raise err
+            # raise tkinter.TclError("You can't set the outline color on this object")
 
     def set_color(self, obj, color):
         """
@@ -886,7 +887,7 @@ class Canvas(tkinter.Canvas):
     def play_sound(self, sound):
         sound.play()
 
-    def play_music(self, path):
+    def play_sound_loop(self, path):
         mixer.music.load(path)
         mixer.music.play(-1)
 
