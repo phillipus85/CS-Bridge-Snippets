@@ -224,6 +224,8 @@ class Canvas(tkinter.Canvas):
 
     def set_canvas_size(self, width, height):
         """
+        #FIXME: No existe en el IDE
+
         Sets the size of the canvas and its containing window to the specified width and height.
 
         Args:
@@ -237,6 +239,8 @@ class Canvas(tkinter.Canvas):
 
     def set_on_mouse_pressed(self, callback):
         """
+        #FIXME: establecer_mouse_presionado
+        
         Set the specified function to be called whenever the mouse is pressed.  If this function is called
         multiple times, only the last specified function is called when the mouse is pressed.
 
@@ -249,6 +253,8 @@ class Canvas(tkinter.Canvas):
 
     def set_on_mouse_released(self, callback):
         """
+        #FIXME: No existe en el IDE
+
         Set the specified function to be called whenever the mouse is released.  If this function is called
         multiple times, only the last specified function is called when the mouse is released.
 
@@ -261,6 +267,8 @@ class Canvas(tkinter.Canvas):
 
     def set_on_key_pressed(self, callback):
         """
+        #FIXME: No existe en el IDE
+
         Set the specified function to be called whenever a keyboard key is pressed.  If this function is called
         multiple times, only the last specified function is called when a key is pressed.
 
@@ -273,6 +281,8 @@ class Canvas(tkinter.Canvas):
 
     def get_new_mouse_clicks(self):
         """
+        FIXME: obtener_nuevos_clics_mouse
+
         Returns a list of all mouse clicks that have occurred since the last call to this method or any registered
         mouse handler.
 
@@ -287,6 +297,8 @@ class Canvas(tkinter.Canvas):
 
     def get_new_key_presses(self):
         """
+        FIXME: obtener_nuevos_clics_teclado
+
         Returns a list of all key presses that have occurred since the last call to this method or any registered
         key handler.
 
@@ -927,3 +939,18 @@ Canvas.get_width = synonym_for(
 Canvas.get_height = synonym_for(
     "obtener_altura",
     Canvas)(Canvas.get_height)
+
+
+Canvas.set_on_mouse_pressed = synonym_for(
+    "establecer_mouse_presionado",
+    Canvas)(Canvas.set_on_mouse_pressed)
+
+
+Canvas.get_new_mouse_clicks = synonym_for(
+    "obtener_nuevos_clics_mouse",
+    Canvas)(Canvas.get_new_mouse_clicks)
+
+
+Canvas.get_new_key_presses = synonym_for(
+    "obtener_nuevos_clics_teclado",
+    Canvas)(Canvas.get_new_key_presses)
