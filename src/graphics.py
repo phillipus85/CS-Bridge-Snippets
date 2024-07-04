@@ -832,6 +832,9 @@ class Canvas(tkinter.Canvas):
                 specified size.
         """
         return self.__create_image_with_optional_size(x, y, file_path, width=width, height=height, **kwargs)
+    
+    def no_hace_nada(nada:None):
+        pass
 
     def __create_image_with_optional_size(self, x, y, file_path, width=None, height=None, **kwargs):
         """
