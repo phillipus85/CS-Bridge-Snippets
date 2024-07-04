@@ -372,6 +372,7 @@ class Canvas(tkinter.Canvas):
         """
         return self.mouse_on_canvas
 
+    #FIXME: esperar_por_clic()
     def wait_for_click(self):
         """
         Waits until a mouse click occurs, and then returns.
@@ -383,6 +384,7 @@ class Canvas(tkinter.Canvas):
         self.currently_waiting_for_click = False
         self.wait_for_click_click_happened = False
 
+    # FIXME: obtener_mouse_x()
     def get_mouse_x(self):
         """
         Returns the mouse's current X location on the canvas.
@@ -398,6 +400,7 @@ class Canvas(tkinter.Canvas):
         """
         return self.winfo_pointerx() - self.winfo_rootx()
 
+    # FIXME: obtener_mouse_y()
     def get_mouse_y(self):
         """
         Returns the mouse's current Y location on the canvas.
@@ -415,6 +418,7 @@ class Canvas(tkinter.Canvas):
 
     """ GRAPHICAL OBJECT MANIPULATION """
 
+    # FIXME: obtener_x_izq(obj)
     def get_left_x(self, obj):
         """
         Returns the leftmost x coordinate of the specified graphical object.
@@ -430,6 +434,7 @@ class Canvas(tkinter.Canvas):
         else:
             return self.coords(obj)[0] - self.get_width(obj) / 2
 
+    # FIXME: obtener_y_sup(obj)
     def get_top_y(self, obj):
         """
         Returns the topmost y coordinate of the specified graphical object.
@@ -445,6 +450,7 @@ class Canvas(tkinter.Canvas):
         else:
             return self.coords(obj)[1] - self.get_height(obj) / 2
 
+    # FIXME: obtener_ancho(obj)
     def get_width(self, obj):
         """
         Returns the width of the specified graphical object.
@@ -458,7 +464,8 @@ class Canvas(tkinter.Canvas):
         if len(self.coords(obj)) == 2: # two-dimensional coords
             return self.bbox(obj)[2] - self.bbox(obj)[0]
         return self.coords(obj)[2] - self.coords(obj)[0]
-
+    
+    # FIXME: obtener_altura(obj)
     def get_height(self, obj):
         """
         Returns the height of the specified graphical object.
@@ -887,3 +894,36 @@ Canvas.get_canvas_height = synonym_for(
     "obtener_altura_lienzo",
     Canvas)(Canvas.get_canvas_height)
 
+Canvas.wait_for_click = synonym_for(
+    "esperar_por_clic",
+    Canvas)(Canvas.wait_for_click)
+
+
+Canvas.get_mouse_x = synonym_for(
+    "obtener_mouse_x",
+    Canvas)(Canvas.get_mouse_x)
+
+
+Canvas.get_mouse_y = synonym_for(
+    "obtener_mouse_y",
+    Canvas)(Canvas.get_mouse_y)
+
+
+Canvas.get_left_x = synonym_for(
+    "obtener_x_izq",
+    Canvas)(Canvas.get_left_x)
+
+
+Canvas.get_top_y = synonym_for(
+    "obtener_y_sup",
+    Canvas)(Canvas.get_top_y)
+
+
+Canvas.get_width = synonym_for(
+    "obtener_ancho",
+    Canvas)(Canvas.get_width)
+
+
+Canvas.get_height = synonym_for(
+    "obtener_altura",
+    Canvas)(Canvas.get_height)
