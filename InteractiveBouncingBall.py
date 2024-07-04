@@ -6,7 +6,7 @@ from time import sleep as esperar
 RADIO_PELOTA = 20
 
 # Pausa entre los fotogramas, en segundos.
-PAUSA = 0.02
+PAUSA = 0.05
 
 # La velocidad de la pelota en la dirección x.
 VELOCIDAD_PELOTA_X = 5
@@ -85,8 +85,8 @@ def obtener_posicion_objeto(canvas, objeto):
     Returns:
         tuple: una tupla con la posición del objeto.
     """
-    _tx = canvas.obtener_x_izquierda(objeto)
-    _ty = canvas.obtener_top_y(objeto)
+    _tx = canvas.obtener_x_izq(objeto)
+    _ty = canvas.obtener_y_sup(objeto)
     # IMPORTANTE: en local los nombres de las funciones son diferentes
     # _tx = canvas.obtener_x_izq(objeto)
     # _ty = canvas.obtener_y_sup(objeto)
@@ -187,6 +187,7 @@ def main():
         # actualizar el lienzo
         # IMPORTANTE: solo se necesita en local
         lienzo.update()
+    lienzo.mainloop()
 
 
 if __name__ == '__main__':

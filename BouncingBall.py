@@ -41,17 +41,18 @@ def main():
                                 fill=_colour)
     # condicion para continuar el juego
     _playing = True
-    crash = False
+
     # definir la velocidad inicial de la pelota
     _dx = VELOCIDAD_PELOTA_X
     _dy = VELOCIDAD_PELOTA_Y
     # ciclo de juego
-    while _playing and not crash:
+    while _playing:
         # invoco la funcion moverse del lienzo
         lienzo.move(pelota, _dx, _dy)
         # recupero la posicion de la pelota del lienzo
         _tx = lienzo.get_left_x(pelota)
         _ty = lienzo.get_top_y(pelota)
+        print(f"posicion x: {_tx}, posicion y: {_ty}")
         # IMPORTANTE: en local los nombres de las funciones son diferentes
         # _tx = lienzo.obtener_x_izq(pelota)
         # _ty = lienzo.obtener_y_sup(pelota)
@@ -59,31 +60,33 @@ def main():
         esperar(PAUSA)
         # condicion de colision
         # 1) si colisiona con el borde derecho
-        if _tx >= MAX_CANVAS_X - RADIO_PELOTA:
+        if _tx > MAX_CANVAS_X - RADIO_PELOTA:
             # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
             _dx = _dx * -1
             # crash = True
 
         # 2) si colisiona con el borde inferior
-        if _ty >= MAX_CANVAS_Y - RADIO_PELOTA:
+        if _ty > MAX_CANVAS_Y - RADIO_PELOTA:
             # ir hacia arriba, teniendo en cuenta el radio de la pelota
             _dy = _dy * -1
             # crash = True
 
         # 3) si colisiona con el borde izquierdo
-        if _tx <= 0.0:
+        if _tx < 0.0:
             # ir hacia la derecha
             _dx = _dx * -1
             # crash = True
 
         # 4) si colisiona con el borde superior
-        if _ty <= 0.0:
+        if _ty < 0.0:
             # ir hacia abajo
             _dy = _dy * -1
             # crash = True
         # actualizar el lienzo
         # IMPORTANTE: solo se necesita en local
         lienzo.update()
+    # cerrar el lienzo
+    lienzo.mainloop()
 
 
 if __name__ == '__main__':
