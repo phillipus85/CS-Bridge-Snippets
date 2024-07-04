@@ -377,6 +377,7 @@ class Canvas(tkinter.Canvas):
 
     def mouse_is_on_canvas(self):
         """
+        # No esta en el IDE
         Returns whether or not the mouse is currently on the canvas.
 
         Returns:
@@ -555,6 +556,7 @@ class Canvas(tkinter.Canvas):
 
     def set_hidden(self, obj, hidden):
         """
+        #FIXME: establecer_oculto
         Sets the given graphical object to be either hidden or visible on the canvas.
 
         Args:
@@ -565,6 +567,8 @@ class Canvas(tkinter.Canvas):
 
     def find_element_at(self, x, y):
         """
+        #FIXME: NO EXISTE
+
         Finds the topmost element overlapping this location.
 
         Args:
@@ -589,6 +593,8 @@ class Canvas(tkinter.Canvas):
         
     def find_overlapping(self, x1, y1, x2, y2):
         """
+        #FIXME: encontrar_superposiciones
+
         Get a list of graphical objects on the canvas that overlap with the specified bounding box.
 
         Args:
@@ -604,6 +610,7 @@ class Canvas(tkinter.Canvas):
 
     def get_random_color(self):
         """
+        #FIXME: obtener_color_aleatorio
         Returns a randomly-selected color.
 
         Returns:
@@ -613,6 +620,8 @@ class Canvas(tkinter.Canvas):
 
     def set_fill_color(self, obj, fill_color):
         """
+        #FIXME: establecer_color_relleno
+
         Sets the fill color of the specified graphical object.  Cannot be used to change the fill color
         of non-fillable objects such as images - throws a tkinter.TclError.
 
@@ -627,7 +636,10 @@ class Canvas(tkinter.Canvas):
             raise tkinter.TclError("You can't set the fill color on this object")
 
     def set_outline_color(self, obj, outline_color):
+
         """
+        #FIXME: establecer_color_contorno
+
         Sets the outline color of the specified graphical object.  Cannot be used to change the outline color
         of non-outlined objects such as images or text  - throws a tkinter.TclError.
 
@@ -643,7 +655,10 @@ class Canvas(tkinter.Canvas):
             # raise tkinter.TclError("You can't set the outline color on this object")
 
     def set_color(self, obj, color):
+
         """
+        #FIXME: establecer_color 
+
         Sets the fill and outline color of the specified graphical object.  If the object doesn't
         have one or more of a fill or outline color, setting of that color is ignored.
 
@@ -664,6 +679,8 @@ class Canvas(tkinter.Canvas):
 
     def set_outline_width(self, obj, width):
         """
+        #FIXME: NO EXISTE
+
         Sets the thickness of the outline of the specified graphical object.  Cannot be used on objects
         that are not outline-able, such as images or text.
 
@@ -675,6 +692,8 @@ class Canvas(tkinter.Canvas):
 
     def create_line(self, x1, y1, x2, y2, *args, **kwargs):
         """
+        #FIXME: crear_linea
+
         Creates and returns a line graphical object on the screen from the specified point to the specified point.
         The line is drawn black.
 
@@ -693,6 +712,8 @@ class Canvas(tkinter.Canvas):
 
     def create_rectangle(self, x1, y1, x2, y2, *args, **kwargs):
         """
+        #FIXME: crear_rectangulo
+
         Creates and returns a rectangle graphical object on the screen with its top-left corner at the first coordinate
         and its bottom-right corner at the second coordinate.  The rect is drawn unfilled with a black outline.
 
@@ -710,6 +731,8 @@ class Canvas(tkinter.Canvas):
 
     def create_oval(self, x1, y1, x2, y2, **kwargs):
         """
+        #FIXME: crear_ovalo
+
         Creates and returns an oval graphical object on the screen contained within the bounding box whose top left
         corner is the first coordinate, and whose bottom right corner is the second coordinate.  The oval is drawn
         unfilled with a black outline.
@@ -728,6 +751,7 @@ class Canvas(tkinter.Canvas):
 
     def create_text(self, x, y, text, **kwargs):
         """
+        #FIXME: crear_texto
         Creates and returns a text graphical object on the screen at the specified location with the specified text.
         The specified x and y location is for the center of the text.  The text will be in size 13 font.
 
@@ -744,6 +768,7 @@ class Canvas(tkinter.Canvas):
 
     def set_text(self, obj, text):
         """
+        #FIXME: establecer_texto
         Sets the text displayed by the given text object.  Cannot be used on any non-text graphical object.
 
         Args:
@@ -754,6 +779,7 @@ class Canvas(tkinter.Canvas):
 
     def get_text(self, obj):
         """
+        #FIXME: NO EXISTE
         Returns the text displayed by the given text object.  Cannot be used on any non-text graphical object.
 
         Args:
@@ -766,6 +792,8 @@ class Canvas(tkinter.Canvas):
 
     def set_font(self, obj, font, size):
         """
+        #FIXME: establecer_fuente
+
         Sets the font and size for the text displayed by the given text object.  Cannot be used on any non-text
         graphical object.
 
@@ -778,6 +806,7 @@ class Canvas(tkinter.Canvas):
 
     def raise_to_front(self, obj):
         """
+        #FIXME: NO EXISTE
         Sends the given object to the very front of all the other objects on the canvas.
 
         Args:
@@ -787,6 +816,7 @@ class Canvas(tkinter.Canvas):
 
     def raise_in_front_of(self, obj, above):
         """
+        #FIXME: NO EXISTE
         Sets the first object to be directly in front of the second object in Z-ordering on the canvas.  In other words,
         the first object will now appear in front of the second object and all objects behind the second object,
         but behind all objects that the second object is also behind.
@@ -799,6 +829,7 @@ class Canvas(tkinter.Canvas):
 
     def lower_to_back(self, obj):
         """
+        #FIXME: NO EXISTE
         Sends the given object to be behind all the other objects on the canvas
 
         Args:
@@ -808,6 +839,7 @@ class Canvas(tkinter.Canvas):
 
     def lower_behind(self, obj, behind):
         """
+        #FIXME: NO EXISTE
         Sets the first object to be directly behind the second object in Z-ordering on the canvas.  In other words,
         the first object will now appear directly behind the second object and all objects in front of the
         second object, but in front of all objects that the second object is also in front of.
@@ -820,6 +852,8 @@ class Canvas(tkinter.Canvas):
 
     def create_image(self, x, y, file_path, **kwargs):
         """
+        #FIXME: crear_imagen
+
         Creates an image with the specified filename at the specified position on the canvas.  The image
         will be the same size as the image file loaded in.
 
@@ -836,6 +870,8 @@ class Canvas(tkinter.Canvas):
 
     def create_image_with_size(self, x, y, width, height, file_path, **kwargs):
         """
+        #FIXME: crear_imagen_con_tamaño
+
         Creates an image with the specified filename at the specified position on the canvas, and resized
         to the specified width and height.
 
@@ -916,50 +952,42 @@ Canvas.wait_for_click = synonym_for(
     "esperar_por_clic",
     Canvas)(Canvas.wait_for_click)
 
-
 Canvas.get_mouse_x = synonym_for(
     "obtener_mouse_x",
     Canvas)(Canvas.get_mouse_x)
-
 
 Canvas.get_mouse_y = synonym_for(
     "obtener_mouse_y",
     Canvas)(Canvas.get_mouse_y)
 
-
 Canvas.get_left_x = synonym_for(
     "obtener_x_izq",
     Canvas)(Canvas.get_left_x)
-
 
 Canvas.get_top_y = synonym_for(
     "obtener_y_sup",
     Canvas)(Canvas.get_top_y)
 
-
 Canvas.get_width = synonym_for(
     "obtener_ancho",
     Canvas)(Canvas.get_width)
-
 
 Canvas.get_height = synonym_for(
     "obtener_altura",
     Canvas)(Canvas.get_height)
 
-
 Canvas.set_on_mouse_pressed = synonym_for(
     "establecer_mouse_presionado",
     Canvas)(Canvas.set_on_mouse_pressed)
-
 
 Canvas.get_new_mouse_clicks = synonym_for(
     "obtener_nuevos_clics_mouse",
     Canvas)(Canvas.get_new_mouse_clicks)
 
-
 Canvas.get_new_key_presses = synonym_for(
     "obtener_nuevos_clics_teclado",
     Canvas)(Canvas.get_new_key_presses)
+
 Canvas.delete = synonym_for(
     "eliminar",
     Canvas)(Canvas.delete)
@@ -975,3 +1003,59 @@ Canvas.moveto = synonym_for(
 Canvas.move = synonym_for(
     "moverse",
     Canvas)(Canvas.move)
+
+Canvas.set_hidden = synonym_for(
+    "establecer_oculto",
+    Canvas)(Canvas.set_hidden)
+
+Canvas.find_overlapping = synonym_for(
+    "encontrar_superposiciones",
+    Canvas)(Canvas.find_overlapping)
+
+Canvas.get_random_color = synonym_for(
+    "obtener_color_aleatorio",
+    Canvas)(Canvas.get_random_color)
+
+Canvas.set_fill_color = synonym_for(
+    "establecer_color_relleno",
+    Canvas)(Canvas.set_fill_color)
+
+Canvas.set_outline_color = synonym_for(
+    "establecer_color_contorno",
+    Canvas)(Canvas.set_outline_color)
+
+Canvas.set_color = synonym_for(
+    "establecer_color",
+    Canvas)(Canvas.set_color)
+
+Canvas.create_line = synonym_for(
+    "crear_linea",
+    Canvas)(Canvas.create_line)
+
+Canvas.create_rectangle = synonym_for(
+    "crear_rectangulo",
+    Canvas)(Canvas.create_rectangle)
+
+Canvas.create_oval = synonym_for(
+    "crear_ovalo",
+    Canvas)(Canvas.create_oval)
+
+Canvas.create_text = synonym_for(
+    "crear_texto",
+    Canvas)(Canvas.create_text)
+
+Canvas.set_text = synonym_for(
+    "establecer_texto",
+    Canvas)(Canvas.set_text)
+
+Canvas.set_font = synonym_for(
+    "establecer_fuente",
+    Canvas)(Canvas.set_font)
+
+Canvas.create_image = synonym_for(
+    "crear_imagen",
+    Canvas)(Canvas.create_image)
+
+Canvas.create_image_with_size = synonym_for(
+    "crear_imagen_con_tamaño",
+    Canvas)(Canvas.create_image_with_size)
