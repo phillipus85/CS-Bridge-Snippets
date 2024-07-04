@@ -487,7 +487,7 @@ class Canvas(tkinter.Canvas):
         if len(self.coords(obj)) == 2:      # two-dimensional coords
             return self.bbox(obj)[2] - self.bbox(obj)[0]
         return self.coords(obj)[2] - self.coords(obj)[0]
-    
+
     def get_height(self, obj):
         """
         Returns the height of the specified graphical object.
