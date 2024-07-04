@@ -15,15 +15,17 @@ File: graphics.py
 Authors Santiago Arteaga, aaa, bbb, ccc, ddd
 Version Date: July 3, 2021
 Notes:
-    - wrapper function synonyms between languages (i.e.: spanish and english)
-    - added new functions to the class Canvas: play audio, loop audio, stop audio, pause audio, resume audio
-    # TODO add all others functions to the class Canvas
-    - add
+    - wrapper function synonyms between languages (i.e.: spanish and english).
+    - added new functions to the class Canvas for audio load, playback and loop.
+    - added new functions to the class Canvas to rotate images.
 
 # TODO notes:
-- support window resizing
+    - support window resizing.
+    - integrate pygame lifecycle with tkinter.
+    - complete the pygame audio functions.
 """
 
+# TODO can go on init?, close when the program ends
 pygame.init()
 
 
@@ -70,68 +72,68 @@ class Canvas(tkinter.Canvas):
     """The default text shown in the canvas window titlebar is 'Canvas'."""
 
     COLORS = [
-        'snow', 'ghost white', 'white smoke', 'gainsboro', 'floral white', 'old lace', 'linen', 'antique white',
-        'papaya whip', 'blanched almond', 'bisque', 'peach puff', 'navajo white', 'lemon chiffon', 'mint cream',
-        'azure', 'alice blue', 'lavender', 'lavender blush', 'misty rose', 'dark slate gray', 'dim gray',
-        'slate gray', 'light slate gray', 'gray', 'light grey', 'midnight blue', 'navy', 'cornflower blue',
-        'dark slate blue', 'slate blue', 'medium slate blue', 'light slate blue', 'medium blue', 'royal blue',
-        'blue', 'dodger blue', 'deep sky blue', 'sky blue', 'light sky blue', 'steel blue', 'light steel blue',
-        'light blue', 'powder blue', 'pale turquoise', 'dark turquoise', 'medium turquoise', 'turquoise', 'cyan',
-        'light cyan', 'cadet blue', 'medium aquamarine', 'aquamarine', 'dark green', 'dark olive green',
-        'dark sea green', 'sea green', 'medium sea green', 'light sea green', 'pale green', 'spring green',
-        'lawn green', 'medium spring green', 'green yellow', 'lime green', 'yellow green', 'forest green',
-        'olive drab', 'dark khaki', 'khaki', 'pale goldenrod', 'light goldenrod yellow', 'light yellow', 'yellow',
-        'gold', 'light goldenrod', 'goldenrod', 'dark goldenrod', 'rosy brown', 'indian red', 'saddle brown',
-        'sandy brown', 'dark salmon', 'salmon', 'light salmon', 'orange', 'dark orange', 'coral', 'light coral',
-        'tomato', 'orange red', 'red', 'hot pink', 'deep pink', 'pink', 'light pink', 'pale violet red', 'maroon',
-        'medium violet red', 'violet red', 'medium orchid', 'dark orchid', 'dark violet', 'blue violet', 'purple',
-        'medium purple', 'thistle', 'snow2', 'snow3', 'snow4', 'seashell2', 'seashell3', 'seashell4',
-        'AntiqueWhite1', 'AntiqueWhite2', 'AntiqueWhite3', 'AntiqueWhite4', 'bisque2', 'bisque3', 'bisque4',
-        'PeachPuff2', 'PeachPuff3', 'PeachPuff4', 'NavajoWhite2', 'NavajoWhite3', 'NavajoWhite4', 'LemonChiffon2',
-        'LemonChiffon3', 'LemonChiffon4', 'cornsilk2', 'cornsilk3', 'cornsilk4', 'ivory2', 'ivory3', 'ivory4',
-        'honeydew2', 'honeydew3', 'honeydew4', 'LavenderBlush2', 'LavenderBlush3', 'LavenderBlush4', 'MistyRose2',
-        'MistyRose3', 'MistyRose4', 'azure2', 'azure3', 'azure4', 'SlateBlue1', 'SlateBlue2', 'SlateBlue3',
-        'SlateBlue4', 'RoyalBlue1', 'RoyalBlue2', 'RoyalBlue3', 'RoyalBlue4', 'blue2', 'blue4', 'DodgerBlue2',
-        'DodgerBlue3', 'DodgerBlue4', 'SteelBlue1', 'SteelBlue2', 'SteelBlue3', 'SteelBlue4', 'DeepSkyBlue2',
-        'DeepSkyBlue3', 'DeepSkyBlue4', 'SkyBlue1', 'SkyBlue2', 'SkyBlue3', 'SkyBlue4', 'LightSkyBlue1',
-        'LightSkyBlue2', 'LightSkyBlue3', 'LightSkyBlue4', 'SlateGray1', 'SlateGray2', 'SlateGray3', 'SlateGray4',
-        'LightSteelBlue1', 'LightSteelBlue2', 'LightSteelBlue3', 'LightSteelBlue4', 'LightBlue1', 'LightBlue2',
-        'LightBlue3', 'LightBlue4', 'LightCyan2', 'LightCyan3', 'LightCyan4', 'PaleTurquoise1', 'PaleTurquoise2',
-        'PaleTurquoise3', 'PaleTurquoise4', 'CadetBlue1', 'CadetBlue2', 'CadetBlue3', 'CadetBlue4', 'turquoise1',
-        'turquoise2', 'turquoise3', 'turquoise4', 'cyan2', 'cyan3', 'cyan4', 'DarkSlateGray1', 'DarkSlateGray2',
-        'DarkSlateGray3', 'DarkSlateGray4', 'aquamarine2', 'aquamarine4', 'DarkSeaGreen1', 'DarkSeaGreen2',
-        'DarkSeaGreen3', 'DarkSeaGreen4', 'SeaGreen1', 'SeaGreen2', 'SeaGreen3', 'PaleGreen1', 'PaleGreen2',
-        'PaleGreen3', 'PaleGreen4', 'SpringGreen2', 'SpringGreen3', 'SpringGreen4', 'green2', 'green3', 'green4',
-        'chartreuse2', 'chartreuse3', 'chartreuse4', 'OliveDrab1', 'OliveDrab2', 'OliveDrab4', 'DarkOliveGreen1',
-        'DarkOliveGreen2', 'DarkOliveGreen3', 'DarkOliveGreen4', 'khaki1', 'khaki2', 'khaki3', 'khaki4',
-        'LightGoldenrod1', 'LightGoldenrod2', 'LightGoldenrod3', 'LightGoldenrod4', 'LightYellow2',
-        'LightYellow3', 'LightYellow4', 'yellow2', 'yellow3', 'yellow4', 'gold2', 'gold3', 'gold4', 'goldenrod1',
-        'goldenrod2', 'goldenrod3', 'goldenrod4', 'DarkGoldenrod1', 'DarkGoldenrod2', 'DarkGoldenrod3',
-        'DarkGoldenrod4', 'RosyBrown1', 'RosyBrown2', 'RosyBrown3', 'RosyBrown4', 'IndianRed1', 'IndianRed2',
-        'IndianRed3', 'IndianRed4', 'sienna1', 'sienna2', 'sienna3', 'sienna4', 'burlywood1', 'burlywood2',
-        'burlywood3', 'burlywood4', 'wheat1', 'wheat2', 'wheat3', 'wheat4', 'tan1', 'tan2', 'tan4', 'chocolate1',
-        'chocolate2', 'chocolate3', 'firebrick1', 'firebrick2', 'firebrick3', 'firebrick4', 'brown1', 'brown2',
-        'brown3', 'brown4', 'salmon1', 'salmon2', 'salmon3', 'salmon4', 'LightSalmon2', 'LightSalmon3',
-        'LightSalmon4', 'orange2', 'orange3', 'orange4', 'DarkOrange1', 'DarkOrange2', 'DarkOrange3',
-        'DarkOrange4', 'coral1', 'coral2', 'coral3', 'coral4', 'tomato2', 'tomato3', 'tomato4', 'OrangeRed2',
-        'OrangeRed3', 'OrangeRed4', 'red2', 'red3', 'red4', 'DeepPink2', 'DeepPink3', 'DeepPink4', 'HotPink1',
-        'HotPink2', 'HotPink3', 'HotPink4', 'pink1', 'pink2', 'pink3', 'pink4', 'LightPink1', 'LightPink2',
-        'LightPink3', 'LightPink4', 'PaleVioletRed1', 'PaleVioletRed2', 'PaleVioletRed3', 'PaleVioletRed4',
-        'maroon1', 'maroon2', 'maroon3', 'maroon4', 'VioletRed1', 'VioletRed2', 'VioletRed3', 'VioletRed4',
-        'magenta2', 'magenta3', 'magenta4', 'orchid1', 'orchid2', 'orchid3', 'orchid4', 'plum1', 'plum2', 'plum3',
-        'plum4', 'MediumOrchid1', 'MediumOrchid2', 'MediumOrchid3', 'MediumOrchid4', 'DarkOrchid1', 'DarkOrchid2',
-        'DarkOrchid3', 'DarkOrchid4', 'purple1', 'purple2', 'purple3', 'purple4', 'MediumPurple1',
-        'MediumPurple2', 'MediumPurple3', 'MediumPurple4', 'thistle1', 'thistle2', 'thistle3', 'thistle4',
-        'gray1', 'gray2', 'gray3', 'gray4', 'gray5', 'gray6', 'gray7', 'gray8', 'gray9', 'gray10', 'gray11',
-        'gray12', 'gray13', 'gray14', 'gray15', 'gray16', 'gray17', 'gray18', 'gray19', 'gray20', 'gray21',
-        'gray22', 'gray23', 'gray24', 'gray25', 'gray26', 'gray27', 'gray28', 'gray29', 'gray30', 'gray31',
-        'gray32', 'gray33', 'gray34', 'gray35', 'gray36', 'gray37', 'gray38', 'gray39', 'gray40', 'gray42',
-        'gray43', 'gray44', 'gray45', 'gray46', 'gray47', 'gray48', 'gray49', 'gray50', 'gray51', 'gray52',
-        'gray53', 'gray54', 'gray55', 'gray56', 'gray57', 'gray58', 'gray59', 'gray60', 'gray61', 'gray62',
-        'gray63', 'gray64', 'gray65', 'gray66', 'gray67', 'gray68', 'gray69', 'gray70', 'gray71', 'gray72',
-        'gray73', 'gray74', 'gray75', 'gray76', 'gray77', 'gray78', 'gray79', 'gray80', 'gray81', 'gray82',
-        'gray83', 'gray84', 'gray85', 'gray86', 'gray87', 'gray88', 'gray89', 'gray90', 'gray91', 'gray92',
-        'gray93', 'gray94', 'gray95', 'gray97', 'gray98', 'gray99'
+        "snow", "ghost white", "white smoke", "gainsboro", "floral white", "old lace", "linen", "antique white",
+        "papaya whip", "blanched almond", "bisque", "peach puff", "navajo white", "lemon chiffon", "mint cream",
+        "azure", "alice blue", "lavender", "lavender blush", "misty rose", "dark slate gray", "dim gray",
+        "slate gray", "light slate gray", "gray", "light grey", "midnight blue", "navy", "cornflower blue",
+        "dark slate blue", "slate blue", "medium slate blue", "light slate blue", "medium blue", "royal blue",
+        "blue", "dodger blue", "deep sky blue", "sky blue", "light sky blue", "steel blue", "light steel blue",
+        "light blue", "powder blue", "pale turquoise", "dark turquoise", "medium turquoise", "turquoise", "cyan",
+        "light cyan", "cadet blue", "medium aquamarine", "aquamarine", "dark green", "dark olive green",
+        "dark sea green", "sea green", "medium sea green", "light sea green", "pale green", "spring green",
+        "lawn green", "medium spring green", "green yellow", "lime green", "yellow green", "forest green",
+        "olive drab", "dark khaki", "khaki", "pale goldenrod", "light goldenrod yellow", "light yellow", "yellow",
+        "gold", "light goldenrod", "goldenrod", "dark goldenrod", "rosy brown", "indian red", "saddle brown",
+        "sandy brown", "dark salmon", "salmon", "light salmon", "orange", "dark orange", "coral", "light coral",
+        "tomato", "orange red", "red", "hot pink", "deep pink", "pink", "light pink", "pale violet red", "maroon",
+        "medium violet red", "violet red", "medium orchid", "dark orchid", "dark violet", "blue violet", "purple",
+        "medium purple", "thistle", "snow2", "snow3", "snow4", "seashell2", "seashell3", "seashell4",
+        "AntiqueWhite1", "AntiqueWhite2", "AntiqueWhite3", "AntiqueWhite4", "bisque2", "bisque3", "bisque4",
+        "PeachPuff2", "PeachPuff3", "PeachPuff4", "NavajoWhite2", "NavajoWhite3", "NavajoWhite4", "LemonChiffon2",
+        "LemonChiffon3", "LemonChiffon4", "cornsilk2", "cornsilk3", "cornsilk4", "ivory2", "ivory3", "ivory4",
+        "honeydew2", "honeydew3", "honeydew4", "LavenderBlush2", "LavenderBlush3", "LavenderBlush4", "MistyRose2",
+        "MistyRose3", "MistyRose4", "azure2", "azure3", "azure4", "SlateBlue1", "SlateBlue2", "SlateBlue3",
+        "SlateBlue4", "RoyalBlue1", "RoyalBlue2", "RoyalBlue3", "RoyalBlue4", "blue2", "blue4", "DodgerBlue2",
+        "DodgerBlue3", "DodgerBlue4", "SteelBlue1", "SteelBlue2", "SteelBlue3", "SteelBlue4", "DeepSkyBlue2",
+        "DeepSkyBlue3", "DeepSkyBlue4", "SkyBlue1", "SkyBlue2", "SkyBlue3", "SkyBlue4", "LightSkyBlue1",
+        "LightSkyBlue2", "LightSkyBlue3", "LightSkyBlue4", "SlateGray1", "SlateGray2", "SlateGray3", "SlateGray4",
+        "LightSteelBlue1", "LightSteelBlue2", "LightSteelBlue3", "LightSteelBlue4", "LightBlue1", "LightBlue2",
+        "LightBlue3", "LightBlue4", "LightCyan2", "LightCyan3", "LightCyan4", "PaleTurquoise1", "PaleTurquoise2",
+        "PaleTurquoise3", "PaleTurquoise4", "CadetBlue1", "CadetBlue2", "CadetBlue3", "CadetBlue4", "turquoise1",
+        "turquoise2", "turquoise3", "turquoise4", "cyan2", "cyan3", "cyan4", "DarkSlateGray1", "DarkSlateGray2",
+        "DarkSlateGray3", "DarkSlateGray4", "aquamarine2", "aquamarine4", "DarkSeaGreen1", "DarkSeaGreen2",
+        "DarkSeaGreen3", "DarkSeaGreen4", "SeaGreen1", "SeaGreen2", "SeaGreen3", "PaleGreen1", "PaleGreen2",
+        "PaleGreen3", "PaleGreen4", "SpringGreen2", "SpringGreen3", "SpringGreen4", "green2", "green3", "green4",
+        "chartreuse2", "chartreuse3", "chartreuse4", "OliveDrab1", "OliveDrab2", "OliveDrab4", "DarkOliveGreen1",
+        "DarkOliveGreen2", "DarkOliveGreen3", "DarkOliveGreen4", "khaki1", "khaki2", "khaki3", "khaki4",
+        "LightGoldenrod1", "LightGoldenrod2", "LightGoldenrod3", "LightGoldenrod4", "LightYellow2",
+        "LightYellow3", "LightYellow4", "yellow2", "yellow3", "yellow4", "gold2", "gold3", "gold4", "goldenrod1",
+        "goldenrod2", "goldenrod3", "goldenrod4", "DarkGoldenrod1", "DarkGoldenrod2", "DarkGoldenrod3",
+        "DarkGoldenrod4", "RosyBrown1", "RosyBrown2", "RosyBrown3", "RosyBrown4", "IndianRed1", "IndianRed2",
+        "IndianRed3", "IndianRed4", "sienna1", "sienna2", "sienna3", "sienna4", "burlywood1", "burlywood2",
+        "burlywood3", "burlywood4", "wheat1", "wheat2", "wheat3", "wheat4", "tan1", "tan2", "tan4", "chocolate1",
+        "chocolate2", "chocolate3", "firebrick1", "firebrick2", "firebrick3", "firebrick4", "brown1", "brown2",
+        "brown3", "brown4", "salmon1", "salmon2", "salmon3", "salmon4", "LightSalmon2", "LightSalmon3",
+        "LightSalmon4", "orange2", "orange3", "orange4", "DarkOrange1", "DarkOrange2", "DarkOrange3",
+        "DarkOrange4", "coral1", "coral2", "coral3", "coral4", "tomato2", "tomato3", "tomato4", "OrangeRed2",
+        "OrangeRed3", "OrangeRed4", "red2", "red3", "red4", "DeepPink2", "DeepPink3", "DeepPink4", "HotPink1",
+        "HotPink2", "HotPink3", "HotPink4", "pink1", "pink2", "pink3", "pink4", "LightPink1", "LightPink2",
+        "LightPink3", "LightPink4", "PaleVioletRed1", "PaleVioletRed2", "PaleVioletRed3", "PaleVioletRed4",
+        "maroon1", "maroon2", "maroon3", "maroon4", "VioletRed1", "VioletRed2", "VioletRed3", "VioletRed4",
+        "magenta2", "magenta3", "magenta4", "orchid1", "orchid2", "orchid3", "orchid4", "plum1", "plum2", "plum3",
+        "plum4", "MediumOrchid1", "MediumOrchid2", "MediumOrchid3", "MediumOrchid4", "DarkOrchid1", "DarkOrchid2",
+        "DarkOrchid3", "DarkOrchid4", "purple1", "purple2", "purple3", "purple4", "MediumPurple1",
+        "MediumPurple2", "MediumPurple3", "MediumPurple4", "thistle1", "thistle2", "thistle3", "thistle4",
+        "gray1", "gray2", "gray3", "gray4", "gray5", "gray6", "gray7", "gray8", "gray9", "gray10", "gray11",
+        "gray12", "gray13", "gray14", "gray15", "gray16", "gray17", "gray18", "gray19", "gray20", "gray21",
+        "gray22", "gray23", "gray24", "gray25", "gray26", "gray27", "gray28", "gray29", "gray30", "gray31",
+        "gray32", "gray33", "gray34", "gray35", "gray36", "gray37", "gray38", "gray39", "gray40", "gray42",
+        "gray43", "gray44", "gray45", "gray46", "gray47", "gray48", "gray49", "gray50", "gray51", "gray52",
+        "gray53", "gray54", "gray55", "gray56", "gray57", "gray58", "gray59", "gray60", "gray61", "gray62",
+        "gray63", "gray64", "gray65", "gray66", "gray67", "gray68", "gray69", "gray70", "gray71", "gray72",
+        "gray73", "gray74", "gray75", "gray76", "gray77", "gray78", "gray79", "gray80", "gray81", "gray82",
+        "gray83", "gray84", "gray85", "gray86", "gray87", "gray88", "gray89", "gray90", "gray91", "gray92",
+        "gray93", "gray94", "gray95", "gray97", "gray98", "gray99"
     ]
     """
     This is a list of names of all colors available to use for graphics on the Canvas.  This list of Tkinter colors
@@ -154,7 +156,11 @@ class Canvas(tkinter.Canvas):
         self.main_window.title(self.DEFAULT_TITLE)
 
         # call the tkinter Canvas constructor
-        super().__init__(self.main_window, width=width, height=height, bd=0, highlightthickness=0)
+        super().__init__(self.main_window,
+                         width=width,
+                         height=height,
+                         bd=0,
+                         highlightthickness=0)
 
         # Optional callbacks the client can specify to be called on each event
         self.on_mouse_pressed = None
@@ -194,8 +200,9 @@ class Canvas(tkinter.Canvas):
         Args:
             color: the color (string) to make the background of the canvas.
         """
+        # NOTE spa translation -> establecer_color_fondo_lienzo
         self.config(background=color)
-    
+
     def get_canvas_width(self):
         """
         Get the width of the canvas.
@@ -203,7 +210,7 @@ class Canvas(tkinter.Canvas):
         Returns:
             the current width of the canvas.
         """
-
+        # NOTE spa translation -> obtener_anchura_lienzo
         return self.winfo_width()
 
     def get_canvas_height(self):
@@ -213,6 +220,7 @@ class Canvas(tkinter.Canvas):
         Returns:
             the current height of the canvas.
         """
+        # NOTE spa translation -> obtener_altura_lienzo
         return self.winfo_height()
 
     def set_canvas_title(self, title):
@@ -222,18 +230,18 @@ class Canvas(tkinter.Canvas):
         Args:
             title: the text to display in the title bar
         """
+        # NOTE spa translation -> establecer_titulo_lienzo
         self.main_window.title(title)
 
     def set_canvas_size(self, width, height):
         """
-        #FIXME: No existe en el IDE
-
         Sets the size of the canvas and its containing window to the specified width and height.
 
         Args:
             width: the width to set for the canvas and containing window
             height: the height to set for the canvas and containing window
         """
+        # NOTE spa translation, NEW -> establecer_tamaño_lienzo
         self.main_window.geometry("{}x{}".format(width, height))
         self.config(width=width, height=height)
 
@@ -241,8 +249,6 @@ class Canvas(tkinter.Canvas):
 
     def set_on_mouse_pressed(self, callback):
         """
-        #FIXME: establecer_mouse_presionado
-        
         Set the specified function to be called whenever the mouse is pressed.  If this function is called
         multiple times, only the last specified function is called when the mouse is pressed.
 
@@ -251,12 +257,11 @@ class Canvas(tkinter.Canvas):
                 are the x and y coordinates (in that order) of the mouse press that just occurred.  E.g. func(x, y).  If
                 this parameter is None, no function will be called when the mouse is pressed.
         """
+        # NOTE: spa translation -> establecer_mouse_presionado
         self.on_mouse_pressed = callback
 
     def set_on_mouse_released(self, callback):
         """
-        #FIXME: No existe en el IDE
-
         Set the specified function to be called whenever the mouse is released.  If this function is called
         multiple times, only the last specified function is called when the mouse is released.
 
@@ -265,12 +270,11 @@ class Canvas(tkinter.Canvas):
                 are the x and y coordinates (in that order) of the mouse release that just occurred.  E.g. func(x, y).
                 If this parameter is None, no function will be called when the mouse is released.
         """
+        # NOTE spa translation, NEW -> establecer_mouse_libre
         self.on_mouse_released = callback
 
     def set_on_key_pressed(self, callback):
         """
-        #FIXME: No existe en el IDE
-
         Set the specified function to be called whenever a keyboard key is pressed.  If this function is called
         multiple times, only the last specified function is called when a key is pressed.
 
@@ -279,12 +283,11 @@ class Canvas(tkinter.Canvas):
                 is the text name of the key that was just pressed (e.g. 'a' for the a key, 'b' for the b key, etc).
                 E.g. func(key_char).  If this parameter is None, no function will be called when a key is pressed.
         """
+        # NOTE spa translation, NEW -> establecer_tecla_presionada
         self.on_key_pressed = callback
 
     def get_new_mouse_clicks(self):
         """
-        FIXME: obtener_nuevos_clics_mouse
-
         Returns a list of all mouse clicks that have occurred since the last call to this method or any registered
         mouse handler.
 
@@ -293,14 +296,13 @@ class Canvas(tkinter.Canvas):
                 mouse handler.  Each mouse click contains x and y properties for the click location, e.g.
                 clicks = canvas.get_new_mouse_clicks(); print(clicks[0].x).
         """
+        # NOTE spa translation -> obtener_nuevos_clics_mouse
         presses = self.mouse_presses
         self.mouse_presses = []
         return presses
 
     def get_new_key_presses(self):
         """
-        FIXME: obtener_nuevos_clics_teclado
-
         Returns a list of all key presses that have occurred since the last call to this method or any registered
         key handler.
 
@@ -309,6 +311,7 @@ class Canvas(tkinter.Canvas):
                 key handler.  Each key press contains a keysym property for the key pressed, e.g.
                 presses = canvas.get_new_key_presses(); print(presses[0].keysym).
         """
+        # NOTE spa translation -> obtener_nuevos_clics_teclado
         presses = self.key_presses
         self.key_presses = []
         return presses
@@ -323,6 +326,7 @@ class Canvas(tkinter.Canvas):
             event: an object representing the mouse press that just occurred.  Assumed to have x and y properties
                 containing the x and y coordinates for this mouse press.
         """
+        # NOTE: does not need translation
         if not self.currently_waiting_for_click and self.on_mouse_pressed:
             self.on_mouse_pressed(event.x, event.y)
         elif not self.currently_waiting_for_click:
@@ -338,7 +342,7 @@ class Canvas(tkinter.Canvas):
             event: an object representing the mouse release that just occurred.  Assumed to have x and y properties
                 containing the x and y coordinates for this mouse release.
         """
-
+        # NOTE: does not need translation
         # Do this all in one go to avoid setting click happened to True,
         # then having wait for click set currently waiting to false, then we go
         if self.currently_waiting_for_click:
@@ -358,6 +362,7 @@ class Canvas(tkinter.Canvas):
             event: an object representing the key press that just occurred.  Assumed to have a keysym property
                 containing the name of this key press.
         """
+        # NOTE: does not need translation
         if self.on_key_pressed:
             self.on_key_pressed(event.keysym)
         else:
@@ -368,6 +373,7 @@ class Canvas(tkinter.Canvas):
         Called every time the mouse enters the canvas.  Updates the internal state to record that
         the mouse is currently on the canvas.
         """
+        # NOTE: does not need translation
         self.mouse_on_canvas = True
 
     def __mouse_exited(self):
@@ -375,6 +381,7 @@ class Canvas(tkinter.Canvas):
         Called every time the mouse exits the canvas.  Updates the internal state to record that
         the mouse is currently not on the canvas.
         """
+        # NOTE: does not need translation
         self.mouse_on_canvas = False
 
     def mouse_is_on_canvas(self):
@@ -385,13 +392,14 @@ class Canvas(tkinter.Canvas):
         Returns:
             True if the mouse is currently on the canvas, or False otherwise.
         """
+        # NOTE spa translation, NEW -> raton_en_lienzo
         return self.mouse_on_canvas
 
-    #FIXME: esperar_por_clic()
     def wait_for_click(self):
         """
         Waits until a mouse click occurs, and then returns.
         """
+        # NOTE spa translation -> esperar_por_clic
         self.currently_waiting_for_click = True
         self.wait_for_click_click_happened = False
         while not self.wait_for_click_click_happened:
@@ -399,7 +407,6 @@ class Canvas(tkinter.Canvas):
         self.currently_waiting_for_click = False
         self.wait_for_click_click_happened = False
 
-    # FIXME: obtener_mouse_x()
     def get_mouse_x(self):
         """
         Returns the mouse's current X location on the canvas.
@@ -413,9 +420,9 @@ class Canvas(tkinter.Canvas):
         Since move takes into account relative position to window,
         we adjust this mouse_x to be relative position to window.
         """
+        # NOTE spa translation -> obtener_mouse_x
         return self.winfo_pointerx() - self.winfo_rootx()
 
-    # FIXME: obtener_mouse_y()
     def get_mouse_y(self):
         """
         Returns the mouse's current Y location on the canvas.
@@ -429,11 +436,11 @@ class Canvas(tkinter.Canvas):
         Since move takes into account relative position to window,
         we adjust this mouse_y to be relative position to window.
         """
+        # NOTE spa translation -> obtener_mouse_y
         return self.winfo_pointery() - self.winfo_rooty()
 
     """ GRAPHICAL OBJECT MANIPULATION """
 
-    # FIXME: obtener_x_izq(obj)
     def get_left_x(self, obj):
         """
         Returns the leftmost x coordinate of the specified graphical object.
@@ -444,12 +451,12 @@ class Canvas(tkinter.Canvas):
         Returns:
             the leftmost x coordinate of the specified graphical object.
         """
+        # NOTE spa translation -> obtener_x_izq
         if self.type(obj) != "text":
             return self.coords(obj)[0]
         else:
             return self.coords(obj)[0] - self.get_width(obj) / 2
 
-    # FIXME: obtener_y_sup(obj)
     def get_top_y(self, obj):
         """
         Returns the topmost y coordinate of the specified graphical object.
@@ -460,12 +467,12 @@ class Canvas(tkinter.Canvas):
         Returns:
             the topmost y coordinate of the specified graphical object.
         """
+        # NOTE spa translation -> obtener_y_sup
         if self.type(obj) != "text":
             return self.coords(obj)[1]
         else:
             return self.coords(obj)[1] - self.get_height(obj) / 2
 
-    # FIXME: obtener_ancho(obj)
     def get_width(self, obj):
         """
         Returns the width of the specified graphical object.
@@ -476,11 +483,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the width of the specified graphical object.
         """
-        if len(self.coords(obj)) == 2: # two-dimensional coords
+        # NOTE spa translation -> obtener_ancho
+        if len(self.coords(obj)) == 2:      # two-dimensional coords
             return self.bbox(obj)[2] - self.bbox(obj)[0]
         return self.coords(obj)[2] - self.coords(obj)[0]
     
-    # FIXME: obtener_altura(obj)
     def get_height(self, obj):
         """
         Returns the height of the specified graphical object.
@@ -491,22 +498,22 @@ class Canvas(tkinter.Canvas):
         Returns:
             the height of the specified graphical object.
         """
-        if len(self.coords(obj)) == 2: # two-dimensional coords
+        # NOTE spa translation -> obtener_altura
+        if len(self.coords(obj)) == 2:      # two-dimensional coords
             return self.bbox(obj)[3] - self.bbox(obj)[1]
         return self.coords(obj)[3] - self.coords(obj)[1]
 
     def move_to(self, obj, new_x, new_y):
-        #FIXME: mover_hacia
         """
         Same as `Canvas.moveto`.
         """
+        # NOTE spa translation -> mover_hacia
         # Note: Implements manually due to inconsistencies on some machines of bbox vs. coord.
         old_x = self.get_left_x(obj)
         old_y = self.get_top_y(obj)
         self.move(obj, new_x - old_x, new_y - old_y)
 
-    def moveto(self, obj, x='', y=''):
-        # FIXME: moverse_hacia
+    def moveto(self, obj, x="", y=""):
         """
         Moves the specified graphical object to the specified location, which is its bounding box's
         new upper-left corner.
@@ -516,10 +523,10 @@ class Canvas(tkinter.Canvas):
             x: the new x coordinate of the upper-left corner for the object
             y: the new y coordinate of the upper-left corner for the object
         """
+        # NOTE spa translation -> moverse_hacia
         self.move_to(obj, float(x), float(y))
 
     def move(self, obj, dx, dy):
-        #FIXME: moverse
         """
         Moves the specified graphical object by the specified amounts in the x and y directions.
 
@@ -528,10 +535,10 @@ class Canvas(tkinter.Canvas):
             dx: the amount by which to change the object's x position
             dy: the amount by which to change the object's y position
         """
+        # NOTE spa translation -> moverse
         super(Canvas, self).move(obj, dx, dy)
 
     def set_size(self, obj, width, height):
-        #FIXME: No existe
         """
         Sets the width and height of the specified graphical object.  Cannot be used to change the size of an image.
 
@@ -540,37 +547,36 @@ class Canvas(tkinter.Canvas):
             width: the new width for the object
             height: the new height for the object
         """
+        # NOTE spa translation, NEW -> establecer_tamaño
         if self.type(obj) == "image":
             assert False, "Image size cannot be changed after creating the image"
         x = self.get_left_x(obj)
         y = self.get_top_y(obj)
         self.coords(obj, x, y, x + width, y + height)
-        
+
     def delete(self, obj):
-        #FIXME: eliminar
         """
         Remove the specified graphical object from the canvas.
 
         Args:
             obj: the graphical object to remove from the canvas
         """
+        # NOTE spa translation -> eliminar
         super(Canvas, self).delete(obj)
 
     def set_hidden(self, obj, hidden):
         """
-        #FIXME: establecer_oculto
         Sets the given graphical object to be either hidden or visible on the canvas.
 
         Args:
             obj: the graphical object to make hidden or visible on the canvas.
             hidden: True if the object should be hidden, False if the object should be visible.
         """
-        self.itemconfig(obj, state='hidden' if hidden else 'normal')
+        # NOTE spa translation -> establecer_oculto
+        self.itemconfig(obj, state="hidden" if hidden else "normal")
 
     def find_element_at(self, x, y):
         """
-        #FIXME: NO EXISTE
-
         Finds the topmost element overlapping this location.
 
         Args:
@@ -580,8 +586,8 @@ class Canvas(tkinter.Canvas):
         Returns:
             the top-most graphical object on the canvas at this location (None otherwise)
         """
+        # NOTE spa translation, NEW -> encontrar_elemento_en
         closest = self.find_closest(x, y)
-
         closest_left_x = self.get_left_x(closest)
         closest_right_x = closest_left_x + self.get_width(closest)
         closest_top_y = self.get_top_y(closest)
@@ -590,13 +596,10 @@ class Canvas(tkinter.Canvas):
         # If this object entirely contains this point, then return it.  Otherwise, there is no object here.
         if closest_left_x <= x <= closest_right_x and closest_top_y <= y <= closest_bottom_y:
             return closest
-
         return None
-        
+
     def find_overlapping(self, x1, y1, x2, y2):
         """
-        #FIXME: encontrar_superposiciones
-
         Get a list of graphical objects on the canvas that overlap with the specified bounding box.
 
         Args:
@@ -608,22 +611,21 @@ class Canvas(tkinter.Canvas):
         Returns:
             a list of graphical objects on the canvas that overlap with this bounding box.
         """
+        # NOTE spa translation -> encontrar_superposiciones
         return super(Canvas, self).find_overlapping(x1, y1, x2, y2)
 
     def get_random_color(self):
         """
-        #FIXME: obtener_color_aleatorio
         Returns a randomly-selected color.
 
         Returns:
             A randomly-selected color, as a string.
         """
+        # NOTE spa translation -> obtener_color_aleatorio
         return random.choice(self.COLORS)
 
     def set_fill_color(self, obj, fill_color):
         """
-        #FIXME: establecer_color_relleno
-
         Sets the fill color of the specified graphical object.  Cannot be used to change the fill color
         of non-fillable objects such as images - throws a tkinter.TclError.
 
@@ -632,16 +634,14 @@ class Canvas(tkinter.Canvas):
             fill_color: the color to set the fill color to be, as a string.  If this is the empty string,
                 the object will be set to be not filled.
         """
+        # NOTE spa translation -> establecer_color_relleno
         try:
             self.itemconfig(obj, fill=fill_color)
         except tkinter.TclError:
             raise tkinter.TclError("You can't set the fill color on this object")
 
     def set_outline_color(self, obj, outline_color):
-
         """
-        #FIXME: establecer_color_contorno
-
         Sets the outline color of the specified graphical object.  Cannot be used to change the outline color
         of non-outlined objects such as images or text  - throws a tkinter.TclError.
 
@@ -650,17 +650,15 @@ class Canvas(tkinter.Canvas):
             outline_color: the color to set the outline color to be, as a string.  If this is the empty string,
                 the object will be set to not have an outline.
         """
+        # NOTE spa translation -> establecer_color_contorno
         try:
             self.itemconfig(obj, outline=outline_color)
-        except tkinter.TclError as err:
-            raise err
-            # raise tkinter.TclError("You can't set the outline color on this object")
+        except tkinter.TclError:
+            # raise err
+            raise tkinter.TclError("You can't set the outline color on this object")
 
     def set_color(self, obj, color):
-
         """
-        #FIXME: establecer_color 
-
         Sets the fill and outline color of the specified graphical object.  If the object doesn't
         have one or more of a fill or outline color, setting of that color is ignored.
 
@@ -669,6 +667,7 @@ class Canvas(tkinter.Canvas):
             color: the color to set the fill and outline colors to be, as a string.  If this is the empty string,
                 the object will be set to be not filled and not outlined.
         """
+        # NOTE spa translation -> establecer_color
         try:
             self.set_fill_color(obj, color)
         except tkinter.TclError:
@@ -681,8 +680,6 @@ class Canvas(tkinter.Canvas):
 
     def set_outline_width(self, obj, width):
         """
-        #FIXME: NO EXISTE
-
         Sets the thickness of the outline of the specified graphical object.  Cannot be used on objects
         that are not outline-able, such as images or text.
 
@@ -690,12 +687,11 @@ class Canvas(tkinter.Canvas):
             obj: the object for which to set the outline width
             width: the width to set the outline to be.
         """
+        # NOTE spa translation, NEW -> establecer_ancho_contorno
         self.itemconfig(obj, width=width)
 
     def create_line(self, x1, y1, x2, y2, *args, **kwargs):
         """
-        #FIXME: crear_linea
-
         Creates and returns a line graphical object on the screen from the specified point to the specified point.
         The line is drawn black.
 
@@ -710,12 +706,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical line object between the two specified points.
         """
+        # NOTE spa translation -> crear_linea
         return super(Canvas, self).create_line(x1, y1, x2, y2, *args, **kwargs)
 
     def create_rectangle(self, x1, y1, x2, y2, *args, **kwargs):
         """
-        #FIXME: crear_rectangulo
-
         Creates and returns a rectangle graphical object on the screen with its top-left corner at the first coordinate
         and its bottom-right corner at the second coordinate.  The rect is drawn unfilled with a black outline.
 
@@ -729,12 +724,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical rectangle object at the specified location.
         """
+        # NOTE spa translation -> crear_rectangulo
         return super(Canvas, self).create_rectangle(x1, y1, x2, y2, **kwargs)
 
     def create_oval(self, x1, y1, x2, y2, **kwargs):
         """
-        #FIXME: crear_ovalo
-
         Creates and returns an oval graphical object on the screen contained within the bounding box whose top left
         corner is the first coordinate, and whose bottom right corner is the second coordinate.  The oval is drawn
         unfilled with a black outline.
@@ -749,11 +743,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical oval object at the specified location.
         """
+        # NOTE spa translation ->crear_ovalo
         return super(Canvas, self).create_oval(x1, y1, x2, y2, **kwargs)
 
     def create_text(self, x, y, text, **kwargs):
         """
-        #FIXME: crear_texto
         Creates and returns a text graphical object on the screen at the specified location with the specified text.
         The specified x and y location is for the center of the text.  The text will be in size 13 font.
 
@@ -766,22 +760,22 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical text object that is displaying the specified text at the specified location.
         """
+        # NOTE spa translation ->crear_texto
         return super().create_text(x, y, text=text, **kwargs)
 
     def set_text(self, obj, text):
         """
-        #FIXME: establecer_texto
         Sets the text displayed by the given text object.  Cannot be used on any non-text graphical object.
 
         Args:
             obj: the text object for which to set the displayed text
             text: the new text for this graphical object to display
         """
+        # NOTE spa translation ->establecer_texto
         self.itemconfig(obj, text=text)
 
     def get_text(self, obj):
         """
-        #FIXME: NO EXISTE
         Returns the text displayed by the given text object.  Cannot be used on any non-text graphical object.
 
         Args:
@@ -790,12 +784,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the text currently displayed by this graphical object.
         """
-        return self.itemcget(obj, 'text')
+        # NOTE spa translation, NEW -> obtener_texto
+        return self.itemcget(obj, "text")
 
     def set_font(self, obj, font, size):
         """
-        #FIXME: establecer_fuente
-
         Sets the font and size for the text displayed by the given text object.  Cannot be used on any non-text
         graphical object.
 
@@ -804,21 +797,21 @@ class Canvas(tkinter.Canvas):
             font: the name of the font, as a string
             size: the size of the font
         """
+        # NOTE spa translation -> establecer_fuente
         self.itemconfig(obj, font=(font, size))
 
     def raise_to_front(self, obj):
         """
-        #FIXME: NO EXISTE
         Sends the given object to the very front of all the other objects on the canvas.
 
         Args:
             obj: the object to bring to the front of the objects on the canvas
         """
-        self.raise_in_front_of(obj, 'all')
+        # NOTE spa translation, NEW -> sostener_al_frente
+        self.raise_in_front_of(obj, "all")
 
     def raise_in_front_of(self, obj, above):
         """
-        #FIXME: NO EXISTE
         Sets the first object to be directly in front of the second object in Z-ordering on the canvas.  In other words,
         the first object will now appear in front of the second object and all objects behind the second object,
         but behind all objects that the second object is also behind.
@@ -827,21 +820,21 @@ class Canvas(tkinter.Canvas):
             obj: the object to put in front of the second object
             above: the object to put the first object directly in front of
         """
+        # NOTE spa translation , NEW -> sostener_al_frente_de
         self.tag_raise(obj, above)
 
     def lower_to_back(self, obj):
         """
-        #FIXME: NO EXISTE
         Sends the given object to be behind all the other objects on the canvas
 
         Args:
             obj: the object to put behind all other objects on the canvas
         """
-        self.lower_behind(obj, 'all')
+        # NOTE spa translation, NEW -> poner_al_fondo
+        self.lower_behind(obj, "all")
 
     def lower_behind(self, obj, behind):
         """
-        #FIXME: NO EXISTE
         Sets the first object to be directly behind the second object in Z-ordering on the canvas.  In other words,
         the first object will now appear directly behind the second object and all objects in front of the
         second object, but in front of all objects that the second object is also in front of.
@@ -850,12 +843,11 @@ class Canvas(tkinter.Canvas):
             obj: the object to put in front of the second object
             behind: the object to put the first object directly behind
         """
+        # NOTE spa translation ->poner_detras_de
         self.tag_lower(obj, behind)
 
     def create_image(self, x, y, file_path, **kwargs):
         """
-        #FIXME: crear_imagen
-
         Creates an image with the specified filename at the specified position on the canvas.  The image
         will be the same size as the image file loaded in.
 
@@ -868,12 +860,11 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical image object that is displaying the specified image at the specified location.
         """
+        # NOTE spa translation ->crear_imagen
         return self.__create_image_with_optional_size(x, y, file_path, **kwargs)
 
     def create_image_with_size(self, x, y, width, height, file_path, **kwargs):
         """
-        #FIXME: crear_imagen_con_tamaño
-
         Creates an image with the specified filename at the specified position on the canvas, and resized
         to the specified width and height.
 
@@ -889,9 +880,18 @@ class Canvas(tkinter.Canvas):
             the graphical image object that is displaying the specified image at the specified location with the
                 specified size.
         """
-        return self.__create_image_with_optional_size(x, y, file_path, width=width, height=height, **kwargs)
+        # NOTE spa translation ->crear_imagen_con_tamaño
+        return self.__create_image_with_optional_size(x,
+                                                      y, file_path, width=width, height=height,
+                                                      **kwargs)
 
-    def __create_image_with_optional_size(self, x, y, file_path, width=None, height=None, **kwargs):
+    def __create_image_with_optional_size(self,
+                                          x,
+                                          y,
+                                          file_path,
+                                          width=None,
+                                          height=None,
+                                          **kwargs):
         """
         Creates an image with the specified filename at the specified position on the canvas.
         Optionally specify the width and height to resize the image.
@@ -921,15 +921,16 @@ class Canvas(tkinter.Canvas):
         return img_obj
 
     def rotate_image(self, obj, angle):
-        """rotate_image _summary_
+        """rotate_image rotates an image by a specified angle.
 
         Args:
-            obj (_type_): _description_
-            angle (_type_): _description_
+            obj (int): object id of the image to rotate.
+            angle (int): angle in degrees to rotate the image.
 
         Returns:
-            _type_: _description_
+            int: object id of the rotated image.
         """
+        # NOTE new function, not in the original
         image = self._image_gb_protection[obj]
         image = image.rotate(angle)
         # image = ImageTk.PhotoImage(image)
@@ -939,29 +940,29 @@ class Canvas(tkinter.Canvas):
     # ---------------------- SOUND ----------------------
 
     def load_sound(self, path):
-        """load_sound _summary_
+        """load_sound loads a sound file from the specified path.
 
         Args:
-            path (_type_): _description_
+            path (str): path to the sound file (only for pygame supported files).
 
         Returns:
-            _type_: _description_
+            Sound: pygame.mixer.Sound object with the sound file loaded.
         """
         return mixer.Sound(path)
 
     def play_sound(self, sound):
-        """play_sound _summary_
+        """play_sound reproduces a sound.
 
         Args:
-            sound (_type_): _description_
+            sound (Sound): pygame.mixer.Sound object to play.
         """
         sound.play()
 
     def play_sound_loop(self, path):
-        """play_sound_loop _summary_
+        """play_sound_loop reproduces in constant loop a sound file from the specified path.
 
         Args:
-            path (_type_): _description_
+            path (str): path to the sound file (only for pygame supported files).
         """
         mixer.music.load(path)
         mixer.music.play(-1)
@@ -981,6 +982,38 @@ Canvas.get_canvas_width = synonym_for(
 Canvas.get_canvas_height = synonym_for(
     "obtener_altura_lienzo",
     Canvas)(Canvas.get_canvas_height)
+
+Canvas.set_canvas_title = synonym_for(
+    "establecer_titulo_lienzo",
+    Canvas)(Canvas.set_canvas_title)
+
+Canvas.set_canvas_size = synonym_for(
+    "establecer_tamaño_lienzo",
+    Canvas)(Canvas.set_canvas_size)
+
+Canvas.set_on_mouse_pressed = synonym_for(
+    "establecer_mouse_presionado",
+    Canvas)(Canvas.set_on_mouse_pressed)
+
+Canvas.set_on_mouse_released = synonym_for(
+    "establecer_mouse_libre",
+    Canvas)(Canvas.set_on_mouse_released)
+
+Canvas.set_on_key_pressed = synonym_for(
+    "establecer_tecla_presionada",
+    Canvas)(Canvas.set_on_key_pressed)
+
+Canvas.get_new_mouse_clicks = synonym_for(
+    "obtener_nuevos_clics_mouse",
+    Canvas)(Canvas.get_new_mouse_clicks)
+
+Canvas.get_new_key_presses = synonym_for(
+    "obtener_nuevos_clics_teclado",
+    Canvas)(Canvas.get_new_key_presses)
+
+Canvas.mouse_is_on_canvas = synonym_for(
+    "raton_en_lienzo",
+    Canvas)(Canvas.mouse_is_on_canvas)
 
 Canvas.wait_for_click = synonym_for(
     "esperar_por_clic",
@@ -1010,22 +1043,6 @@ Canvas.get_height = synonym_for(
     "obtener_altura",
     Canvas)(Canvas.get_height)
 
-Canvas.set_on_mouse_pressed = synonym_for(
-    "establecer_mouse_presionado",
-    Canvas)(Canvas.set_on_mouse_pressed)
-
-Canvas.get_new_mouse_clicks = synonym_for(
-    "obtener_nuevos_clics_mouse",
-    Canvas)(Canvas.get_new_mouse_clicks)
-
-Canvas.get_new_key_presses = synonym_for(
-    "obtener_nuevos_clics_teclado",
-    Canvas)(Canvas.get_new_key_presses)
-
-Canvas.delete = synonym_for(
-    "eliminar",
-    Canvas)(Canvas.delete)
-
 Canvas.move_to = synonym_for(
     "mover_hacia",
     Canvas)(Canvas.move_to)
@@ -1038,9 +1055,21 @@ Canvas.move = synonym_for(
     "moverse",
     Canvas)(Canvas.move)
 
+Canvas.set_size = synonym_for(
+    "establecer_tamaño",
+    Canvas)(Canvas.set_size)
+
+Canvas.delete = synonym_for(
+    "eliminar",
+    Canvas)(Canvas.delete)
+
 Canvas.set_hidden = synonym_for(
     "establecer_oculto",
     Canvas)(Canvas.set_hidden)
+
+Canvas.find_element_at = synonym_for(
+    "encontrar_elemento_en",
+    Canvas)(Canvas.find_element_at)
 
 Canvas.find_overlapping = synonym_for(
     "encontrar_superposiciones",
@@ -1062,6 +1091,10 @@ Canvas.set_color = synonym_for(
     "establecer_color",
     Canvas)(Canvas.set_color)
 
+Canvas.set_outline_width = synonym_for(
+    "establecer_ancho_contorno",
+    Canvas)(Canvas.set_outline_width)
+
 Canvas.create_line = synonym_for(
     "crear_linea",
     Canvas)(Canvas.create_line)
@@ -1082,9 +1115,29 @@ Canvas.set_text = synonym_for(
     "establecer_texto",
     Canvas)(Canvas.set_text)
 
+Canvas.get_text = synonym_for(
+    "obtener_texto",
+    Canvas)(Canvas.get_text)
+
 Canvas.set_font = synonym_for(
     "establecer_fuente",
     Canvas)(Canvas.set_font)
+
+Canvas.raise_to_front = synonym_for(
+    "sostener_al_frente",
+    Canvas)(Canvas.raise_to_front)
+
+Canvas.raise_in_front_of = synonym_for(
+    "sostener_al_frente_de",
+    Canvas)(Canvas.raise_in_front_of)
+
+Canvas.lower_to_back = synonym_for(
+    "poner_al_fondo",
+    Canvas)(Canvas.lower_to_back)
+
+Canvas.lower_behind = synonym_for(
+    "poner_detras_de",
+    Canvas)(Canvas.lower_behind)
 
 Canvas.create_image = synonym_for(
     "crear_imagen",
