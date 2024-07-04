@@ -3,6 +3,8 @@ import tkinter
 import tkinter.font
 import pygame
 from pygame import mixer
+from PIL import ImageTk
+from PIL import Image
 
 """
 File: graphics.py
@@ -905,8 +907,6 @@ class Canvas(tkinter.Canvas):
         Returns:
             the graphical image object that is displaying the specified image at the specified location.
         """
-        from PIL import ImageTk
-        from PIL import Image
         image = Image.open(file_path)
 
         # Resize the image if another width and height is specified
@@ -920,15 +920,49 @@ class Canvas(tkinter.Canvas):
         self._image_gb_protection[img_obj] = image
         return img_obj
 
+    def rotate_image(self, obj, angle):
+        """rotate_image _summary_
+
+        Args:
+            obj (_type_): _description_
+            angle (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        image = self._image_gb_protection[obj]
+        image = image.rotate(angle)
+        # image = ImageTk.PhotoImage(image)
+        self._image_gb_protection[obj] = image
+        return obj
+
     # ---------------------- SOUND ----------------------
 
     def load_sound(self, path):
+        """load_sound _summary_
+
+        Args:
+            path (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         return mixer.Sound(path)
 
     def play_sound(self, sound):
+        """play_sound _summary_
+
+        Args:
+            sound (_type_): _description_
+        """
         sound.play()
 
     def play_sound_loop(self, path):
+        """play_sound_loop _summary_
+
+        Args:
+            path (_type_): _description_
+        """
         mixer.music.load(path)
         mixer.music.play(-1)
 
