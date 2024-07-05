@@ -1185,3 +1185,7 @@ Canvas.create_image = synonym_for(
 Canvas.create_image_with_size = synonym_for(
     "crear_imagen_con_tamaño",
     Canvas)(Canvas.create_image_with_size)
+
+Canvas.rotate_image = synonym_for(
+    "rotar_imagen",
+    Canvas)(Canvas.rotate_image)
