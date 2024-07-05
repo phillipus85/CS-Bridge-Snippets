@@ -167,6 +167,9 @@ class Canvas(tkinter.Canvas):
         self.on_mouse_released = None
         self.on_key_pressed = None
 
+        # tracks the last click that happened
+        self.last_click_event = None  # Initialize with None to indicate no clicks yet
+
         # Tracks whether the mouse is currently on top of the canvas
         self.mouse_on_canvas = False
 
@@ -183,11 +186,18 @@ class Canvas(tkinter.Canvas):
 
         # bind events
         self.focus_set()
-        self.bind("<Button-1>", lambda event: self.__mouse_pressed(event))
-        self.bind("<ButtonRelease-1>", lambda event: self.__mouse_released(event))
-        self.bind("<Key>", lambda event: self.__key_pressed(event))
-        self.bind("<Enter>", lambda event: self.__mouse_entered())
-        self.bind("<Leave>", lambda event: self.__mouse_exited())
+        self.bind("<Button-1>",
+                  lambda event: self.__mouse_pressed(event))
+        # Bind left mouse click
+        self.bind("<Button-1>", lambda event: self.__record_click(event))
+        self.bind("<ButtonRelease-1>",
+                  lambda event: self.__mouse_released(event))
+        self.bind("<Key>",
+                  lambda event: self.__key_pressed(event))
+        self.bind("<Enter>",
+                  lambda event: self.__mouse_entered())
+        self.bind("<Leave>",
+                  lambda event: self.__mouse_exited())
 
         self._image_gb_protection = {}
         self.pack()
@@ -300,6 +310,19 @@ class Canvas(tkinter.Canvas):
         presses = self.mouse_presses
         self.mouse_presses = []
         return presses
+
+    def __record_click(self, event):
+        """Handler function to record the position of a mouse click."""
+        self.last_click_event = event  # Store the entire event
+
+    def get_last_mouse_click(self):
+        """Return the position of the last mouse click or None if no clicks."""
+        if self.last_click_event is not None:
+            last = self.last_click_event
+            self.last_click_event = None
+            return last
+        else:
+            return None
 
     def get_new_key_presses(self):
         """
@@ -563,6 +586,13 @@ class Canvas(tkinter.Canvas):
         """
         # NOTE spa translation -> eliminar
         super(Canvas, self).delete(obj)
+
+    def delete_all(self):
+        """
+        Remove all graphical objects from the canvas.
+        """
+        # NOTE spa translation, NEW -> eliminar_todo
+        super(Canvas, self).delete("all")
 
     def set_hidden(self, obj, hidden):
         """
@@ -1003,6 +1033,10 @@ Canvas.set_on_key_pressed = synonym_for(
     "establecer_tecla_presionada",
     Canvas)(Canvas.set_on_key_pressed)
 
+Canvas.get_last_mouse_click = synonym_for(
+    "obtener_ultimo_clic_mouse",
+    Canvas)(Canvas.get_last_mouse_click)
+
 Canvas.get_new_mouse_clicks = synonym_for(
     "obtener_nuevos_clics_mouse",
     Canvas)(Canvas.get_new_mouse_clicks)
@@ -1062,6 +1096,11 @@ Canvas.set_size = synonym_for(
 Canvas.delete = synonym_for(
     "eliminar",
     Canvas)(Canvas.delete)
+
+Canvas.delete_all = synonym_for(
+    "eliminar_todo",
+    Canvas)(Canvas.delete_all)
+
 
 Canvas.set_hidden = synonym_for(
     "establecer_oculto",
