@@ -168,7 +168,7 @@ def mover_paleta(lienzo, paleta):
 
 def encontrar_colisiones(lienzo, pelota):
     x_izq = lienzo.obtener_x_izq(pelota)
-    y_sup = lienzo.obtener_y_sup(pelota)
+    y_sup = lienzo.obtener_y_sup(pelota)p
     colisiones = lienzo.encontrar_superposiciones(x_izq,
                                                   y_sup,
                                                   x_izq + 2 * RADIO_PELOTA,

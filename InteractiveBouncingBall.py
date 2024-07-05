@@ -149,9 +149,10 @@ def main():
     _dy = VELOCIDAD_PELOTA_Y
     # ciclo de juego
     while _playing:
-
+        print("Jugando...")
         # obtener los clicks del mouse
         _clicks = detectar_clicks(lienzo)
+        print(_clicks)
         # ciclo para dibujar las pelotas con los clicks del mouse
         for click in _clicks:
             # print(click)
@@ -167,7 +168,7 @@ def main():
             # mueve la pelota
             _dx, _dy = vel
             mover_objeto(lienzo, pelota, _dx, _dy)
-            lienzo.moverse(pelota, _dx, _dy)
+            # lienzo.moverse(pelota, _dx, _dy)
             # recupera la posicion de la pelota del lienzo
             _tx, _ty = obtener_posicion_objeto(lienzo, pelota)
             # verifica colision con los extremos del lienzo

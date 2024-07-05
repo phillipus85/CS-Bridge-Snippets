@@ -186,10 +186,9 @@ class Canvas(tkinter.Canvas):
 
         # bind events
         self.focus_set()
-        self.bind("<Button-1>",
-                  lambda event: self.__mouse_pressed(event))
+        self.bind("<Button-1>", lambda event: self.__mouse_pressed(event))
         # Bind left mouse click
-        self.bind("<Button-1>", lambda event: self.__record_click(event))
+        # self.bind("<Button-1>", lambda event: self.__record_click(event))
         self.bind("<ButtonRelease-1>",
                   lambda event: self.__mouse_released(event))
         self.bind("<Key>",
@@ -317,9 +316,10 @@ class Canvas(tkinter.Canvas):
 
     def get_last_mouse_click(self):
         """Return the position of the last mouse click or None if no clicks."""
-        if self.last_click_event is not None:
-            last = self.last_click_event
-            self.last_click_event = None
+        pressed = self.get_new_mouse_clicks()
+        last = None
+        if len(pressed) > 0:
+            last = pressed[-1]
             return last
         else:
             return None
