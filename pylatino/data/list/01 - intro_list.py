@@ -180,8 +180,6 @@ def main():
         print("\tEn la repisa está:", repisa[i])
         i -= 1
 
-
-
     # repisa.append("Ficciones, Jorge Luis Borges")
     # repisa.append("Rayuela, Julio Cortázar")
     # repisa.append("Delirio, Laura Restrepo")
