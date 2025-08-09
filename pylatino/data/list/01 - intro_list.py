@@ -88,18 +88,18 @@ def main():
     nuevo_libro = "El túnel, Ernesto Sabato"
     repisa.append(nuevo_libro)
     repisa.append(nuevo_libro)
-    print("Después de agregar un libro:", repisa)
+    print("Después de agregar un libro:\n", repisa)
 
     # opción 2, insert, posición específica
     nuevo_libro = "La hojarasca, Gabriel García Márquez"
     indice = 1
     repisa.insert(indice, nuevo_libro)
-    print("Después de agregar un libro en posición", indice, ":", repisa)
+    print("Después de agregar un libro en posición", indice, ":\n", repisa)
 
     # eliminar un libro
     # opción 1, pop, última posición
     libro = repisa.pop()
-    print("Después de eliminar un libro:", repisa)
+    print("Después de eliminar un libro:\n", repisa)
     print("Libro eliminado:", libro)
 
     # opción 2, remove, por valor
@@ -108,7 +108,7 @@ def main():
     # que pasa si no es exactamente igual
     # libro = "ficciones, Jorge Luis Borges"
     libro = repisa.remove(titulo)
-    print("Después de eliminar un libro:", repisa)
+    print("Después de eliminar un libro:\n", repisa)
     print("Libro eliminado:", titulo, "\n")
 
     # TODO ESCENA 4: relacionar con otros comandos python
@@ -117,6 +117,12 @@ def main():
     libro = "Delirio, Laura Restrepo"
     esta = (libro in repisa)
     # utilizar condicionales if/else
+    # alternativas codigo
+    # if libro in repisa:
+    # if esta is True:
+    # if esta is not False:
+    # if libro in repisa is True:
+    # if libro in repisa is not False
     if esta:
         print("El libro ", libro, "está en la repisa.")
     else:
