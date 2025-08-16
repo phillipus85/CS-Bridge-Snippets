@@ -3,12 +3,12 @@ Este modulo es el codigo guia para los conceptos de lista de pylatino 2025.
 
 RESUMEN DEL MÓDULO
     Este módulo es una introducción a las listas en Python e incluye:
-        - ESCENA 1: Definir listas, vacias y con elementos.
-        - ESCENA 2: Acceder a elementos de una lista.
-        - ESCENA 3: Agregar y eliminar elementos de una lista.
-        - ESCENA 4: Modificar elementos de una lista.
-        - ESCENA 5: Relacionar con otros comandos python.
-        - ESCENA 6: Recorrer elementos de una lista.
+        - PARTE 1: Definir listas, vacias y con elementos.
+        - PARTE 2: Acceder a elementos de una lista.
+        - PARTE 3: Agregar y eliminar elementos de una lista.
+        - PARTE 4: Modificar elementos de una lista.
+        - PARTE 5: Relacionar con otros comandos python.
+        - PARTE 6: Recorrer elementos de una lista.
 NOTAS:
     - No hay elementos duplicados en una lista.
     - Las listas son mutables, lo que significa que se pueden modificar después de su creación.
@@ -29,7 +29,7 @@ def main():
     """
     print("===== Introducción a listas =====")
 
-    # TODO ESCENA 1: Definir listas, vacias y con elementos.
+    # TODO PARTE 1: Definir listas, vacias y con elementos.
     # definir lista vacia
     print("--- Definición de listas ---\n")
     repisa = []
@@ -66,7 +66,7 @@ def main():
     #     "Laura Restrepo",
     # ]
 
-    # TODO ESCENA 2: Acceder a elementos de una lista.
+    # TODO PARTE 2: Acceder a elementos de una lista.
     print("--- Acceder a elementos de una lista ---")
     # acceso a elementos segun su posicion
     # primer elemento
@@ -80,7 +80,7 @@ def main():
     ultimo_libro = repisa[len(repisa) - 1]
     print("Último libro (opción 2):", ultimo_libro, "\n")
 
-    # TODO ESCENA 3: Agregar y eliminar elementos de una lista.
+    # TODO PARTE 3: Agregar y eliminar elementos de una lista.
     print("--- Agregar y eliminar elementos de una lista ---")
 
     # agregar un libro
@@ -111,7 +111,7 @@ def main():
     print("Después de eliminar un libro:\n", repisa)
     print("Libro eliminado:", titulo, "\n")
 
-    # TODO ESCENA 4: relacionar con otros comandos python
+    # TODO PARTE 4: relacionar con otros comandos python
     # uso de condicionales
     # revisar si un elemento esta en la lista con in
     libro = "Delirio, Laura Restrepo"
@@ -128,7 +128,7 @@ def main():
     else:
         print("El libro no está en la repisa.")
 
-    # TODO ESCENA 5: Modificar elementos de una lista.
+    # TODO PARTE 5: Modificar elementos de una lista.
     print("\n--- Modificar elementos de una lista ---")
     libro_viejo = repisa[0]
     libro_nuevo = "Cien años de soledad, Gabriel García Márquez"
@@ -138,7 +138,7 @@ def main():
     print(libro_viejo in repisa)
     print(repisa)
 
-    # TODO ESCENA 6: Recorrer elementos de una lista.
+    # TODO PARTE 6: Recorrer elementos de una lista.
     print("--- Recorrer elementos de una lista ---")
     # opción 1, usando el iterador for
     print("\nRecorriendo con iterador for (opción 1):")
