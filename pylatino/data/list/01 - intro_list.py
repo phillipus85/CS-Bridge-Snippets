@@ -193,3 +193,5 @@ if __name__ == '__main__':
     """main es la funcion principal del programa
     """
     main()
+    print("============================================================")
+    print("Fin de la introducción a listas.")
