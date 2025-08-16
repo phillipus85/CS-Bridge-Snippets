@@ -3,12 +3,12 @@ Este modulo es el codigo guia para conceptos avanzados de listas de pylatino 202
 
 RESUMEN DEL MÓDULO
     Este módulo cubre funciones y técnicas avanzadas para trabajar con listas en Python:
-        - PARTE 1: Funciones de alto nivel (zip, map, filter)
-        - PARTE 2: Funciones de verificación (any, all)
-        - PARTE 3: Comprensión de listas
-        - PARTE 4: Listas bidimensionales (matrices)
-        - PARTE 5: Ordenamiento y búsqueda
-        - PARTE 6: Copias de listas y referencia
+        - PARTE 1: Funciones de alto nivel (zip, map, filter).
+        - PARTE 2: Funciones de verificación (any, all).
+        - PARTE 3: Comprensión de listas.
+        - PARTE 4: Listas bidimensionales (matrices).
+        - PARTE 5: Ordenamiento y búsqueda.
+        - PARTE 6: Copias de listas y referencia.
 NOTAS:
     - Este módulo extiende los conceptos básicos presentados en "01 - intro_list.py"
     - Se continúa usando el ejemplo de libros latinoamericanos
@@ -18,14 +18,6 @@ NOTAS:
 from copy import deepcopy
 
 # definicion de funciones especificas
-
-
-def formatear_libro(libro):
-    """Formatea un libro para mostrar título y autor separados"""
-    partes = libro.split(", ")
-    if len(partes) == 2:
-        return f"'{partes[0]}' por {partes[1]}"
-    return libro
 
 
 def busqueda_binaria(lista, elemento):
@@ -103,17 +95,17 @@ def main():
     # map() - mapear/relacionar elementos de una lista a otra
     print("\n--- Usando map() para transformar elementos: ---")
 
-    # Definir una función que combina título y autor
+    # Paso 1: definir una función que combina título y autor
     def combinar_titulo_autor(titulo, autor):
         """Función que combina un título y un autor"""
         texto = titulo + ", " + autor
         return texto
         # return f"{titulo}, {autor}"
 
-    # map() aplica la función a elementos de titulos y autores
+    # Paso 2: map() aplica la función a elementos de titulos y autores
     libros_completos = list(map(combinar_titulo_autor, titulos, autores))
 
-    # Imprimir cada libro de la lista resultante
+    # Paso 3: imprimir cada libro de la lista resultante
     for libro in libros_completos:
         print("\tTítulo y autor:", libro)
 
@@ -200,7 +192,7 @@ def main():
 
     # Comprensión con múltiples condiciones
     # Usando una comprensión de listas para verificar
-    hay_libro_reciente = any(an > limite for an in anhos)
+    hay_libro_reciente = any([an > limite for an in anhos])
     # imprimiendo el resultado
     texto = "¿Hay algún libro publicado después del:"
     texto += str(limite) + "?:"
@@ -208,7 +200,7 @@ def main():
     print("\t", texto)
 
     # Usando una comprensión de listas para verificar
-    todos_siglo_xx = all(an < limite for an in anhos)
+    todos_siglo_xx = all(an > limite for an in anhos)
     print("\t¿Todos los libros son del siglo XX?:", todos_siglo_xx)
 
     # TODO PARTE 4: Listas bidimensionales (matrices)
@@ -262,12 +254,12 @@ def main():
         texto = str(an) + ": " + titulo
         print("\t", texto)
 
-    # 5) Orden por país y luego por título (orden natural de tuplas)
-    por_pais_titulo = sorted(zip(paises, titulos))
-    print("\tPor país y título:")
-    for pais, titulo in por_pais_titulo:
-        texto = titulo + " (" + pais + ")"
-        print("\t", texto)
+    # # 5) Orden por país y luego por título (orden natural de tuplas)
+    # por_pais_titulo = sorted(zip(paises, titulos))
+    # print("\tPor país y título:")
+    # for pais, titulo in por_pais_titulo:
+    #     texto = titulo + " (" + pais + ")"
+    #     print("\t", texto)
 
     # Búsqueda binaria
     # FIXME no transcribir
