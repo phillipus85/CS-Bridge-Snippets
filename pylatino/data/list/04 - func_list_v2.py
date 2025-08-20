@@ -3,12 +3,9 @@ Este modulo es el codigo guia para los conceptos de lista de pylatino 2025.
 
 RESUMEN DEL MÓDULO
     Este módulo es una introducción a las listas en Python e incluye:
-        - PARTE 1: Definir listas, vacias y con elementos.
-        - PARTE 2: Acceder a elementos de una lista.
-        - PARTE 3: Agregar y eliminar elementos de una lista.
-        - PARTE 4: Modificar elementos de una lista.
-        - PARTE 5: Relacionar con otros comandos python.
-        - PARTE 6: Recorrer elementos de una lista.
+        - PARTE 1: Definir listas con elementos.
+        - PARTE 2: Relacionar con otros comandos python.
+        - PARTE 3: Recorrer elementos de una lista.
 NOTAS:
     - No hay elementos duplicados en una lista.
     - Las listas son mutables, lo que significa que se pueden modificar después de su creación.
