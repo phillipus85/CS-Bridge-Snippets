@@ -136,8 +136,8 @@ def main():
     # opción 2, pop con índice
     print("\n+ Utilizando .pop(idx): +")
     print("\tRepisa:", repisa)
-    # coincide con: Aura, Carlos Fuentes
     libro = repisa.pop(3)
+    # coincide con: Aura, Carlos Fuentes
     print("\tLibro eliminado:", libro)
     print("\tRepisa después de eliminar un libro:", repisa)
 
@@ -146,7 +146,6 @@ def main():
     # eliminar un libro por su nombre
     titulo = "Ficciones, Jorge Luis Borges"
     # que pasa si no es exactamente igual
-    # titulo = "ficciones, Jorge Luis Borges"
     libro = repisa.remove(titulo)
     print("Después de eliminar un libro:\n", repisa)
     print("Libro eliminado:", titulo, "\n")
@@ -157,10 +156,10 @@ def main():
 
     # modificar un libro
     libro_viejo = repisa[0]
-    print("\tLibro viejo:", libro_viejo)
     libro_nuevo = "Cien años de soledad, Gabriel García Márquez"
-    print("\tLibro nuevo:", libro_nuevo)
     repisa[0] = libro_nuevo
+    print("\tLibro viejo:", libro_viejo)
+    print("\tLibro nuevo:", libro_nuevo)
     print("\tRemplazo el 'libro viejo'??", repisa[0] == libro_nuevo)
     print("\tRepisa después de modificar un libro:", repisa)
 
@@ -169,3 +168,5 @@ if __name__ == '__main__':
     """main es la funcion principal del programa
     """
     main()
+    print("============================================================")
+    print("Fin de la introducción a listas.")
