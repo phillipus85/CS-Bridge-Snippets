@@ -146,6 +146,8 @@ def main():
     for detalle in biblioteca.values():
         print("\tvalor (detalle)", detalle)
 
+    # TODO explicar tuplas antes de explicar .items()
+
     # Iterar sobre items (llave, valor)
     print("\n* Recorriendo items (titulo, detalle):")
     for titulo, detalle in biblioteca.items():

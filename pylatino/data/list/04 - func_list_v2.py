@@ -25,7 +25,7 @@ NOTAS:
 def main():
     """main es la funcion principal del programa
     """
-    print("===== Recorridos de listas =====")
+    print("========== Recorridos de listas ==========")
 
     # TODO PARTE 1: Definir lista con elementos.
     print("\n--- PARTE 1: Definiendo listas con elementos. ---")
@@ -35,16 +35,17 @@ def main():
         "Ficciones, Jorge Luis Borges",
         "Aura, Carlos Fuentes",
         "Delirio, Laura Restrepo",
+        # "Cien años de soledad, Gabriel García Márquez"
         "El túnel, Ernesto Sabato",
         "La hojarasca, Gabriel García Márquez",
-        "Cien años de soledad, Gabriel García Márquez"
     ]
 
     # creando lista con elementos con list()
     sinonimo = list(repisa)
     # verificar que ambas listas son iguales
-    print("\trepisa':", repisa, "'sinonimo':", sinonimo)
+    print("\t'repisa':", repisa, "'sinonimo':", sinonimo)
     print("\tSon listas iguales y con elementos?", repisa == sinonimo)
+    print("\tSon la misma variable?", repisa is sinonimo)
 
     # TODO PARTE 2: relacionar con otros comandos python
     print("\n--- PARTE 2: Relacionar con otros comandos python ---")
@@ -121,14 +122,17 @@ def main():
     libro_prestar = "Cien años de soledad, Gabriel García Márquez"
 
     i = 0
-    while i < len(repisa):
+    prestado = False
+    while i < len(repisa) and prestado is False:
         if repisa[i] == libro_importante:
             repisa[i] = repisa[i].upper()
         if repisa[i] == libro_prestar:
-            prestado = repisa[i]
-            print("\t\tLibro prestado:", prestado)
+            libro_prestado = repisa[i]
+            print("\t\tLibro prestado:", libro_prestado)
             repisa.pop(i)
+            prestado = True
         i += 1
+    print("\n\tcontador i:", i, "largo repisa:", len(repisa))
 
     # revisar cambios
     print("\n\tRepisa:", repisa)
