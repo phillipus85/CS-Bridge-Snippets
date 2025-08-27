@@ -33,9 +33,9 @@ def main():
     repisa = [
         "Rayuela, Julio Cortázar",
         "Ficciones, Jorge Luis Borges",
+        # "Cien años de soledad, Gabriel García Márquez",
         "Aura, Carlos Fuentes",
         "Delirio, Laura Restrepo",
-        # "Cien años de soledad, Gabriel García Márquez"
         "El túnel, Ernesto Sabato",
         "La hojarasca, Gabriel García Márquez",
     ]
