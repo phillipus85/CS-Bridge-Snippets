@@ -142,3 +142,5 @@ if __name__ == '__main__':
     """main es la funcion principal del programa
     """
     main()
+    repisa = []
+    print(repisa)
