@@ -122,7 +122,7 @@ def main():
         if len(libros) > 0:
             promedio_letras = total_letras / len(libros)
         return promedio_letras
-
+    # calcular promedio de letras
     promedio_letras = calcular_promedio_letras(repisa)
     print("\tPromedio de letras por libro:", promedio_letras)
 
@@ -134,11 +134,11 @@ def main():
         libro = libro.upper()
         repisa[i] = libro
         print("\t\tEn la repisa está:", repisa[i])
-        # # alternativa 1
-        # libro = repisa[i]
-        # repisa[i] = libro.upper()
-        # # alternativa 2
-        # repisa[i] = repisa[i].upper()
+        # alternativa 1
+        libro = repisa[i]
+        repisa[i] = libro.upper()
+        # alternativa 2
+        repisa[i] = repisa[i].upper()
 
     # revisar cambios
     print("\n\tRepisa modificada:", repisa)
@@ -154,9 +154,9 @@ def main():
             libro = libro.upper()
             libros[i] = libro
         return libros
-
-    # revisar cambios
+    # resaltar todos los libros
     repisa = resaltar_repisa(repisa)
+    # revisar cambios
     print("\n\tRepisa modificada:", repisa)
 
     # reseteando cambios
@@ -215,6 +215,7 @@ def main():
             i += 1
         return libros
 
+    # resaltar libro importante y prestar libro
     repisa = resaltar_libro_importante(repisa, libro_importante)
     repisa = prestar_libro(repisa, libro_prestar)
     # revisar cambios
@@ -226,4 +227,4 @@ if __name__ == '__main__':
     """
     main()
     print("============================================================")
-    print("Fin de la introducción a diccionarios.")
+    print("Fin de la practica de funciones en listas.")
