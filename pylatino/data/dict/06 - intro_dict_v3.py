@@ -87,7 +87,6 @@ def main():
     # 2.1 Acceso directo por llave (rápido)
     titulo = "Rayuela"
     autor = repisa[titulo]
-
     print("\tAutor de 'Rayuela':", autor)
 
     # 2.2 Modificación directa
@@ -138,7 +137,7 @@ def main():
     # 4.1 recuperar llave/autor
     titulo = "Ficciones"
     autor = repisa.get(titulo)
-    print("\tAutor de 'Ficciones':", autor)
+    print("\tEl autor de:", titulo, "es:", autor)
 
     # recuperar llave/autor inexistente
     autor = repisa.get("La Vorágine")
