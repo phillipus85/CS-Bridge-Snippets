@@ -3,9 +3,10 @@ Este modulo es el codigo guia para los conceptos de diccionario de pylatino 2025
 
 RESUMEN DEL MÓDULO
     Este módulo introduce los diccionarios en Python e incluye:
-        - PARTE 1: Concepto llave-valor, crear diccionarios.
-        - PARTE 2: Propiedades y vistas: len, keys, values, items.
+        - PARTE 1: Retomando el concepto llave-valor, crear diccionarios.
+        - PARTE 2: Propiedades y vistas: keys, values, items.
         - PARTE 3: Iterar sobre diccionarios (keys, values, items).
+        - PARTE 4: Crear diccionarios a partir de listas.
 
 
 NOTAS:

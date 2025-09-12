@@ -5,7 +5,8 @@ RESUMEN DEL MÓDULO
     Este módulo introduce los diccionarios en Python e incluye:
         - PARTE 1: Concepto llave-valor, crear diccionarios y sinonimos.
         - PARTE 2: Acceso directo por llave + modificación directa.
-        - PARTE 3: Funciones básicas: get, update, pop.
+        - PARTE 3: uso del comando IN y LEN para prevenir errores.
+        - PARTE 4: Funciones básicas: get, update, pop.
 
 NOTAS:
     - Un diccionario almacena pares (llave, valor).
@@ -31,7 +32,7 @@ def main():
     anhos = [1963, 1944, 1962, 2004]
     paises = ["Argentina", "Argentina", "México", "Colombia"]
 
-    # TODO PARTE 1: concepto de llave- valor, acceso directo
+    # TODO PARTE 1: concepto de llave-valor, acceso directo
     print("\n--- PARTE 1: Llave-valor, acceso y modificación ---")
 
     # Diccionario simple: {titulo: autor}
