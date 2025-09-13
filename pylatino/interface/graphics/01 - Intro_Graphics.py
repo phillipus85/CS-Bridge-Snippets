@@ -1,31 +1,29 @@
 ﻿"""
-Este modulo es el codigo guia para los conceptos de graficos de pylatino 2025.
+Este tutorial es el codigo guia para los conceptos de graficos de pylatino 2025.
 
-3.	Graphics:
-    1.	Centrar figuras (geometría)
-        i. Encontrar el centro en el canvas/lienzo.
-        ii. Introducir formas cuadrado y círculos (¿poliedros hay?) Dejemos por el momento cuadrados y círculos
-    1.	Colores y formas (retratar a Karel)
-        i. Entender como configurar colores, texto, y otras personalizaciones.
-    1.	Edición (cambiar colores y formas)
-        i. Entender cómo se reconfiguran colores DESPUÉS de crear las formas
-
-
-
-RESUMEN DEL MÓDULO
-    Este módulo es una introducción a los gráficos en Python e incluye:
-        - PARTE 1: Crear un lienzo.
-        - PARTE 2: Dibujar formas básicas (círculos y cuadrados).
-        - PARTE 3: Agregar elementos al lienzo.
-        - PARTE 4: Modificar elementos del lienzo.
-        - PARTE 5: Eliminar elementos del lienzo.
-        - PARTE 6: Pintar a karel.
+RESUMEN DEL TUTORIAL:
+    Este módulo es una introducción a los gráficos de Stanford en Python e incluye:
+        - PARTE 1: Crear un lienzo (Funcion Lienzo()).
+        - PARTE 2: Dibujar formas básicas (círculos y cuadrados) en el lienzo (funciones crear_ovalo() y crear_rectangulo()).
+        - PARTE 3: Aplicar geometria (Centrar elementos en el lienzo).
+        - PARTE 4: Modificar elementos, cambio de posicion (funcion mover())
+        - PARTE 5: Modificar y Eliminar elementos, cambio de color y borrar (funcion establecer_color_relleno() y eliminar())
+        - PARTE 6: Retratar a karel para aplicar los conceptos aprendidos.
 
 NOTAS:
-    - No hay elementos duplicados en un lienzo.
-    - Los lienzos son mutables, lo que significa que se pueden modificar después de su creación.
-    - Los lienzos pueden contener elementos de diferentes tipos.
-    - Ejemplo basado en libros latinoamericanos.
+    - Principios de dibujo y diseño a usar:
+        - Uso de formas
+        - Manejo de colores
+        - Composición
+        - Movimiento
+
+    - Las partes del tutorial estan relacionadas con los principios de dibujo y diseño:
+        PARTE 1, PARTE 2 y PARTE 3 estan relacionadas con el uso de formas, manejo de colores y composicion.
+        PARTE 4 y PARTE 5 estan relacionadas con el manejo de colores, composicion y movimiento.
+        PARTE 6 esta relacionada con todos los principios de dibujo y diseño: USO DE FORMAS, MANEJO DE COLORES, COMPOSICION y MOVIMIENTO.
+
+    - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
+    - El codigo esta comentado para facilitar la comprension de los conceptos.
 """
 
 # importaciones necesarias
@@ -57,39 +55,43 @@ def main():
     """main ejecuta el programa principal
     """
     # Crear el lienzo
-    # TODO parte 1: Crear un lienzo.
+    # TODO PARTE 1: Crear un lienzo.
     cuadro = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
 
-    # TODO parte 2: Dibujar formas basicas (circulos y cuadrados).
+    # TODO PARTE 2: Dibujar formas basicas (circulos y cuadrados).
     # definir la posicion inicial del circulo
     # posicionar la forma en el centro del lienzo
     _pos_forma_x = ANCHO_MAX_X // 2
-    # - RADIO_CIRCULO // 2
     _pos_forma_y = ALTO_MAX_Y // 2
-    # - RADIO_CIRCULO // 2
 
-    # TODO parte 3: Agregar elementos al lienzo.
+    # TODO PARTE 3: Aplicar geometria (centrar elementos en el lienzo).
+    # centrar el circulo en el lienzo
+    # _pos_forma_x = ANCHO_MAX_X // 2 - RADIO_CIRCULO // 2
+    # _pos_forma_y = ALTO_MAX_Y // 2 - RADIO_CIRCULO // 2
+
     # definir el cuadrado (caja)
     # cuadrado = cuadro.crear_rectangulo(_pos_forma_x,
-    cuadrado = cuadro.create_rectangle(_pos_forma_x,
-                                       _pos_forma_y,
+    cuadrado = cuadro.create_rectangle(_pos_forma_x,  # - LADO_CUADRADO // 2,
+                                       _pos_forma_y,  # - LADO_CUADRADO // 2,
                                        _pos_forma_x + LADO_CUADRADO,
                                        _pos_forma_y + LADO_CUADRADO,
                                        color="red")
 
     # definir el circulo (pelota)
     # circulo = cuadro.create_oval(_pos_forma_x,
-    circulo = cuadro.create_oval(_pos_forma_x,
-                                 _pos_forma_y,
+    circulo = cuadro.create_oval(_pos_forma_x,  # - RADIO_CIRCULO // 2,
+                                 _pos_forma_y,  # - RADIO_CIRCULO // 2,
                                  _pos_forma_x + RADIO_CIRCULO,
                                  _pos_forma_y + RADIO_CIRCULO,
                                  color="blue")
 
-    # TODO parte 4: Modificar elementos del lienzo.
+    # TODO PARTE 4: Modificar elementos del lienzo.
     # cambiar el color del circulo
     cuadro.establecer_color_relleno(circulo, "green")
+    cuadro.establecer_color_contorno(circulo, "red")
     # cambiar el color del cuadrado
     cuadro.establecer_color_relleno(cuadrado, "yellow")
+    cuadro.establecer_color_contorno(cuadrado, "red")
     # cambiar la posicion del circulo
     cuadro.mover(circulo, -RADIO_CIRCULO // 2, -RADIO_CIRCULO // 2)
     # cambiar la posicion del cuadrado
@@ -99,7 +101,7 @@ def main():
     # cuadro.eliminar(circulo)
     cuadro.eliminar(cuadrado)
 
-    # TODO parte 6: Pintar a karel.
+    # TODO parte 6: retratar a karel.
     # Definir dimensiones del cuerpo de Karel
     ancho_cuerpo = 80  # ancho del cuerpo
     alto_cuerpo = 110  # alto del cuerpo (más alto que ancho)
@@ -200,7 +202,7 @@ def main():
     ]
 
     for forma in figuras:
-        cuadro.establecer_color_relleno(forma, cuadro.get_random_color())
+        # cuadro.set_fill_color(forma, cuadro.get_random_color())
         print(forma)
         # cuadro.establecer_color_borde(forma, "black")
 
