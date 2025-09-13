@@ -10,7 +10,7 @@ from time import sleep as esperar
 RADIO_PELOTA = 40
 
 # Pausa entre los fotogramas, en segundos.
-PAUSA = 1 / 60
+PAUSA = 1 / 30
 
 # La velocidad de la pelota en la dirección x.
 VELOCIDAD_PELOTA_X = 5
@@ -27,20 +27,21 @@ def main():
     """main ejecuta el programa principal
     """
     # Crear el lienzo
-    lienzo = Lienzo(MAX_CANVAS_X, MAX_CANVAS_Y)
+    arena = Lienzo(MAX_CANVAS_X, MAX_CANVAS_Y)
     # posicionar la pelota en el centro del lienzo
     _poss_ball_x = MAX_CANVAS_X // 2
     _poss_ball_y = MAX_CANVAS_Y // 2
     # color de la pelota
     _colour = "blue"
+    _colour = arena.get_random_color()
     # crear la pelota con posicion, radio y color
     # IMPORTANTE: en local el color es con fill, en WEB IDE es una propiedad
-    pelota = lienzo.create_oval(_poss_ball_x,
-                                _poss_ball_y,
-                                _poss_ball_x + RADIO_PELOTA,
-                                _poss_ball_y + RADIO_PELOTA,
-                                # _colour)
-                                color=_colour)
+    pelota = arena.create_oval(_poss_ball_x,
+                               _poss_ball_y,
+                               _poss_ball_x + RADIO_PELOTA,
+                               _poss_ball_y + RADIO_PELOTA,
+                               # _colour)
+                               color=_colour)
     # condicion para continuar el juego
     _playing = True
 
@@ -50,14 +51,14 @@ def main():
     # ciclo de juego
     while _playing:
         # invoco la funcion moverse del lienzo
-        lienzo.move(pelota, _dx, _dy)
+        arena.move(pelota, _dx, _dy)
         # recupero la posicion de la pelota del lienzo
-        _tx = lienzo.get_left_x(pelota)
-        _ty = lienzo.get_top_y(pelota)
+        _tx = arena.get_left_x(pelota)
+        _ty = arena.get_top_y(pelota)
         print(f"posicion x: {_tx}, posicion y: {_ty}")
         # IMPORTANTE: en local los nombres de las funciones son diferentes
-        # _tx = lienzo.obtener_x_izq(pelota)
-        # _ty = lienzo.obtener_y_sup(pelota)
+        # _tx = arena.obtener_x_izq(pelota)
+        # _ty = arena.obtener_y_sup(pelota)
         # pausa entre fotogramas
         esperar(PAUSA)
         # condicion de colision

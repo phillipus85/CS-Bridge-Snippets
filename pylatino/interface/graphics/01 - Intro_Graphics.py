@@ -1,14 +1,14 @@
 ﻿"""
-Este tutorial es el codigo guia para los conceptos de graficos de pylatino 2025.
+Este tutorial es el código guía para los conceptos de gráficos de Pylatino 2025.
 
 RESUMEN DEL TUTORIAL:
     Este módulo es una introducción a los gráficos de Stanford en Python e incluye:
-        - PARTE 1: Crear un lienzo (Funcion Lienzo()).
+        - PARTE 1: Crear un lienzo (Función Lienzo()).
         - PARTE 2: Dibujar formas básicas (círculos y cuadrados) en el lienzo (funciones crear_ovalo() y crear_rectangulo()).
-        - PARTE 3: Aplicar geometria (Centrar elementos en el lienzo).
-        - PARTE 4: Modificar elementos, cambio de posicion (funcion mover())
-        - PARTE 5: Modificar y Eliminar elementos, cambio de color y borrar (funcion establecer_color_relleno() y eliminar())
-        - PARTE 6: Retratar a karel para aplicar los conceptos aprendidos.
+        - PARTE 3: Aplicar geometría (Centrar elementos en el lienzo).
+        - PARTE 4: Modificar elementos, cambio de posición (función mover())
+        - PARTE 5: Modificar y Eliminar elementos, cambio de color y borrar (función establecer_color_relleno() y eliminar())
+        - PARTE 6: aplicar el SLEEP entre cambios para observar las modificaciones
 
 NOTAS:
     - Principios de dibujo y diseño a usar:
@@ -17,13 +17,12 @@ NOTAS:
         - Composición
         - Movimiento
 
-    - Las partes del tutorial estan relacionadas con los principios de dibujo y diseño:
-        PARTE 1, PARTE 2 y PARTE 3 estan relacionadas con el uso de formas, manejo de colores y composicion.
-        PARTE 4 y PARTE 5 estan relacionadas con el manejo de colores, composicion y movimiento.
-        PARTE 6 esta relacionada con todos los principios de dibujo y diseño: USO DE FORMAS, MANEJO DE COLORES, COMPOSICION y MOVIMIENTO.
+    - Las partes del tutorial están relacionadas con los principios de dibujo y diseño:
+        PARTE 1, PARTE 2 y PARTE 3 están relacionadas con el uso de formas, manejo de colores y composición.
+        PARTE 4, PARTE 5 y PARTE 6 están relacionadas con el manejo de colores, composición y movimiento.
 
-    - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
-    - El codigo esta comentado para facilitar la comprension de los conceptos.
+    - Retratar a Karel es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
+    - El código está comentado para facilitar la comprensión de los conceptos.
 """
 
 # importaciones necesarias
@@ -31,25 +30,25 @@ from stanfordpy.graphics import Lienzo
 # from src.graphics import Canvas as Lienzo
 # from stanfordpy.graphics import Canvas as Lienzo
 
-# IMPORTANTE: Si se ejecuta en un entorno diferente a la terminal de python
+# IMPORTANTE: Si se ejecuta en un entorno diferente a la terminal de Python
 # from graphics import Lienzo
-# from time import sleep as esperar
+from time import sleep as esperar
 
-# definicion de funciones y variables especificas
+# definición de funciones y variables especificas
 
-# Radio de la circulo (pelota)
-RADIO_CIRCULO = 90
+# Diámetro de la circulo (pelota)
+DIAMETRO_CIRCULO = 90
 
 # Lado del cuadrado (caja)
 LADO_CUADRADO = 100
 
-# dimeniones del lienzo
+# dimensiones del lienzo
 # ANCHO y ALTO del lienzo
 ANCHO_MAX_X = 400
 ALTO_MAX_Y = 400
 
+# definición de la función principal
 
-# definicion de la funcion principal
 
 def main():
     """main ejecuta el programa principal
@@ -58,159 +57,57 @@ def main():
     # TODO PARTE 1: Crear un lienzo.
     cuadro = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
 
-    # TODO PARTE 2: Dibujar formas basicas (circulos y cuadrados).
-    # definir la posicion inicial del circulo
-    # posicionar la forma en el centro del lienzo
-    _pos_forma_x = ANCHO_MAX_X // 2
-    _pos_forma_y = ALTO_MAX_Y // 2
+    # TODO PARTE 2: Dibujar formas básicas (círculos y cuadrados).
+    # definir la posición inicial del punto superior izquierdo.
+    pos_forma_x = ANCHO_MAX_X // 2
+    pos_forma_y = ALTO_MAX_Y // 2
 
-    # TODO PARTE 3: Aplicar geometria (centrar elementos en el lienzo).
+    # TODO PARTE 3: Aplicar geometría (centrar elementos en el lienzo).
     # centrar el circulo en el lienzo
-    # _pos_forma_x = ANCHO_MAX_X // 2 - RADIO_CIRCULO // 2
-    # _pos_forma_y = ALTO_MAX_Y // 2 - RADIO_CIRCULO // 2
+    # pos_forma_x = ANCHO_MAX_X // 2 - DIAMETRO_CIRCULO // 2
+    # pos_forma_y = ALTO_MAX_Y // 2 - DIAMETRO_CIRCULO // 2
 
     # definir el cuadrado (caja)
-    # cuadrado = cuadro.crear_rectangulo(_pos_forma_x,
-    cuadrado = cuadro.create_rectangle(_pos_forma_x,  # - LADO_CUADRADO // 2,
-                                       _pos_forma_y,  # - LADO_CUADRADO // 2,
-                                       _pos_forma_x + LADO_CUADRADO,
-                                       _pos_forma_y + LADO_CUADRADO,
-                                       color="red")
+    caja = cuadro.create_rectangle(pos_forma_x,  # - LADO_CUADRADO // 2,
+                                   pos_forma_y,  # - LADO_CUADRADO // 2,
+                                   pos_forma_x + LADO_CUADRADO,
+                                   pos_forma_y + LADO_CUADRADO,
+                                   color="rojo")
 
     # definir el circulo (pelota)
-    # circulo = cuadro.create_oval(_pos_forma_x,
-    circulo = cuadro.create_oval(_pos_forma_x,  # - RADIO_CIRCULO // 2,
-                                 _pos_forma_y,  # - RADIO_CIRCULO // 2,
-                                 _pos_forma_x + RADIO_CIRCULO,
-                                 _pos_forma_y + RADIO_CIRCULO,
-                                 color="blue")
+    pelota = cuadro.create_oval(pos_forma_x,  # - DIAMETRO_CIRCULO // 2,
+                                pos_forma_y,  # - DIAMETRO_CIRCULO // 2,
+                                pos_forma_x + DIAMETRO_CIRCULO,
+                                pos_forma_y + DIAMETRO_CIRCULO,
+                                color="azul")
+    esperar(1)
+    # TODO PARTE 4: Modificar la posición de formas del lienzo.
+    # cambiar la posición del circulo
+    cuadro.mover(pelota, -DIAMETRO_CIRCULO // 2, -DIAMETRO_CIRCULO // 2)
+    esperar(1)
+    # cambiar la posición del cuadrado
+    cuadro.mover(caja, -LADO_CUADRADO // 2, -LADO_CUADRADO // 2)
 
-    # TODO PARTE 4: Modificar elementos del lienzo.
+    # TODO PARTE 5: Modificar propiedades y eliminar formas del lienzo.
     # cambiar el color del circulo
-    cuadro.establecer_color_relleno(circulo, "green")
-    cuadro.establecer_color_contorno(circulo, "red")
+    esperar(1)
+    cuadro.establecer_color_relleno(pelota, "verde")
+    cuadro.establecer_color_contorno(pelota, "rojo")
+
     # cambiar el color del cuadrado
-    cuadro.establecer_color_relleno(cuadrado, "yellow")
-    cuadro.establecer_color_contorno(cuadrado, "red")
-    # cambiar la posicion del circulo
-    cuadro.mover(circulo, -RADIO_CIRCULO // 2, -RADIO_CIRCULO // 2)
-    # cambiar la posicion del cuadrado
-    cuadro.mover(cuadrado, -LADO_CUADRADO // 2, -LADO_CUADRADO // 2)
+    esperar(1)
+    cuadro.establecer_color_relleno(caja, "amarillo")
+    cuadro.establecer_color_contorno(caja, "rojo")
 
-    # TODO parte 5: Eliminar elementos del lienzo.
-    # cuadro.eliminar(circulo)
-    cuadro.eliminar(cuadrado)
+    esperar(1)  # esperar 1 segundo antes de eliminar
+    cuadro.eliminar(pelota)
 
-    # TODO parte 6: retratar a karel.
-    # Definir dimensiones del cuerpo de Karel
-    ancho_cuerpo = 80  # ancho del cuerpo
-    alto_cuerpo = 110  # alto del cuerpo (más alto que ancho)
-
-    # Calcular posición para centrar el cuerpo
-    pos_x_cuerpo = (ANCHO_MAX_X - ancho_cuerpo) // 2
-    # Ajustado para dejar espacio para las piernas
-    pos_y_cuerpo = (ALTO_MAX_Y - alto_cuerpo - 40) // 2
-
-    # pintar el cuerpo de karel con un rectangulo blanco y bordes negros
-    cuerpo_karel = cuadro.create_rectangle(pos_x_cuerpo,
-                                           pos_y_cuerpo,
-                                           pos_x_cuerpo + ancho_cuerpo,
-                                           pos_y_cuerpo + alto_cuerpo,
-                                           color="white",
-                                           outline="black")
-
-    # Dimensiones de la pantalla
-    ancho_pantalla = 40  # ancho de la pantalla
-    alto_pantalla = 55   # alto de la pantalla
-
-    # Calcular posición para centrar la pantalla en el cuerpo
-    pos_x_pantalla = pos_x_cuerpo + (ancho_cuerpo - ancho_pantalla) // 2
-    pos_y_pantalla = pos_y_cuerpo + 15  # Un poco debajo del borde superior
-
-    # pintar la pantalla de karel con un rectangulo blanco y borde negro
-    pantalla_karel = cuadro.create_rectangle(pos_x_pantalla - 5,
-                                             pos_y_pantalla,
-                                             pos_x_pantalla + ancho_pantalla - 5,
-                                             pos_y_pantalla + alto_pantalla,
-                                             color="white",
-                                             outline="black")
-
-    # pintar el floppy disk de karel con un rectangulo negro y borde gris
-    floppy_karel = cuadro.create_rectangle(pos_x_pantalla + 10,
-                                           pos_y_pantalla + 70,
-                                           pos_x_pantalla + 45,
-                                           pos_y_pantalla + 75,
-                                           color="black",
-                                           outline="black")
-
-    # Dimensiones de las piernas y pies
-    ancho_pierna = 10
-    alto_pierna = 10
-    ancho_pie = 30
-    alto_pie = 10
-
-    # Calcular posiciones para la pierna izquierda
-    pos_x_pierna_izq = pos_x_cuerpo + ancho_pantalla * 4 // 5
-    pos_y_pierna_izq = pos_y_cuerpo + alto_cuerpo
-
-    # pintar pierna izquierda de karel con un rectangulo
-    pierna_izquierda = cuadro.create_rectangle(pos_x_pierna_izq,
-                                               pos_y_pierna_izq,
-                                               pos_x_pierna_izq + ancho_pierna,
-                                               pos_y_pierna_izq + alto_pierna,
-                                               color="black",
-                                               outline="black")
-
-    # pintar pie izquierdo de karel con un rectangulo
-    pie_izquierdo = cuadro.create_rectangle(pos_x_pierna_izq,
-                                            pos_y_pierna_izq + alto_pierna,
-                                            pos_x_pierna_izq + ancho_pie,
-                                            pos_y_pierna_izq + alto_pierna + alto_pie,
-                                            color="black",
-                                            outline="black")
-
-    # Calcular posiciones para la pierna derecha
-    # Sale del lado izquierdo del cuerpo
-    pos_x_pierna_der = pos_x_cuerpo - alto_pierna
-    pos_y_pierna_der = pos_y_cuerpo + alto_cuerpo * 2 // 3
-
-    # pintar pierna derecha de karel con un rectangulo
-    pierna_derecha = cuadro.create_rectangle(pos_x_pierna_der,
-                                             pos_y_pierna_der,
-                                             pos_x_pierna_der + ancho_pierna,
-                                             pos_y_pierna_der + alto_pierna,
-                                             color="black",
-                                             outline="black")
-    print(pos_x_pierna_der, pos_y_pierna_der)
-    print(pos_x_pierna_der + ancho_pierna, pos_y_pierna_der + alto_pierna,)
-    # pintar pie derecho de karel con un rectangulo
-    pie_derecho = cuadro.create_rectangle(pos_x_pierna_der,
-                                          pos_y_pierna_der,
-                                          pos_x_pierna_der - ancho_pierna,
-                                          pos_y_pierna_der + ancho_pie,
-                                          color="black",
-                                          outline="black")
-
-    figuras = [
-        cuerpo_karel,
-        pantalla_karel,
-        floppy_karel,
-        pierna_izquierda,
-        pie_izquierdo,
-        pierna_derecha,
-        pie_derecho
-    ]
-
-    for forma in figuras:
-        # cuadro.set_fill_color(forma, cuadro.get_random_color())
-        print(forma)
-        # cuadro.establecer_color_borde(forma, "black")
-
-    # cerrar el lienzo
-    cuadro.mainloop()
+    # TODO PARTE 6: aplicar el sleep entre cambios para observar las modificaciones
+    esperar(1)  # esperar 1 segundo antes de eliminar
+    cuadro.eliminar(caja)
 
 
 if __name__ == '__main__':
-    """main es la funcion principal del programa
+    """main es la función principal del programa
     """
     main()
