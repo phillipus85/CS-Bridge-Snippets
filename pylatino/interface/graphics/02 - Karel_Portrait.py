@@ -13,6 +13,7 @@ NOTAS:
         - Manejo de colores
         - Composición
         - Movimiento
+    - retomar el concepto de despomposicion, pintar por partes, conectar/retomar funciones.
     - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
     - El codigo esta comentado para facilitar la comprension de los conceptos.
 """
@@ -144,7 +145,7 @@ def main():
     ]
 
     for forma in figuras:
-        # cuadro.set_fill_color(forma, cuadro.get_random_color())
+        cuadro.set_fill_color(forma, cuadro.get_random_color())
         print(forma)
         # cuadro.establecer_color_borde(forma, "black")
 
