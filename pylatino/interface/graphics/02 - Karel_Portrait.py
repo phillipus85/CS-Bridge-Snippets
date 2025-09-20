@@ -39,36 +39,49 @@ ALTO_MAX_Y = 400
 
 
 # definicion de funciones para dibujar las partes de karel
-def dibujar_cuerpo_karel(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_cuerpo_karel dibuja el cuerpo de karel en el lienzo
+def dibujar_cuerpo(lienzo, pos_x, pos_y, ancho, alto):
+    """dibujar_cuerpo dibuja el cuerpo de karel en el lienzo
     """
     # pintar el cuerpo de karel con un rectangulo
-    pass
+    cuerpo = lienzo.create_rectangle(pos_x,
+                                     pos_y,
+                                     pos_x + ancho,
+                                     pos_y + alto,
+                                     color="white",
+                                     outline="black")
+    return cuerpo
 
 
-def dibujar_pantalla_karel(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_pantalla_karel dibuja la pantalla de karel en el lienzo
+def dibujar_pantalla(lienzo, pos_x, pos_y, ancho, alto):
+    """dibujar_pantalla dibuja la pantalla de karel en el lienzo
     """
     # pintar la pantalla de karel con un rectangulo
-    pass
+    # pintar la pantalla de karel con un rectangulo blanco y borde negro
+    pantalla = lienzo.create_rectangle(pos_x - 5,
+                                       pos_y - 5,
+                                       pos_x + ancho - 5,
+                                       pos_y + alto - 5,
+                                       color="grey",
+                                       outline="black")
+    return pantalla
 
 
-def dibujar_floppy_karel(lienzo, pos_x, pos_y):
-    """dibujar_floppy_karel dibuja el floppy de karel en el lienzo
+def dibujar_floppy(lienzo, pos_x, pos_y, ancho, alto):
+    """dibujar_floppy dibuja el floppy de karel en el lienzo
     """
     # pintar el floppy disk de karel con un rectangulo
     pass
 
 
-def dibujar_pierna_izquierda_karel(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_pierna_izquierda_karel dibuja la pierna y el pie izquierda de karel en el lienzo
+def dibujar_pierna_izquierda(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_pierna_izquierda dibuja la pierna y el pie izquierda de karel en el lienzo
     """
     # pintar pierna izquierda de karel con un rectangulo
     pass
 
 
-def dibujar_pierna_derecha_karel(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_pierna_derecha_karel dibuja la pierna y el pie derecha de karel en el lienzo
+def dibujar_pierna_derecha(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_pierna_derecha dibuja la pierna y el pie derecha de karel en el lienzo
     """
     # pintar pierna derecha de karel con un rectangulo
     pass
