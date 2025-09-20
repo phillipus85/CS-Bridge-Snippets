@@ -5,7 +5,10 @@ RESUMEN DEL TUTORIAL:
     Este tutorial es la integracion de todos los conceptos gráficos de Stanford en Python para pylatino 2025 donde retrataremos a karel con formas y colores basicos.
     Incluye:
         - PARTE 1: Crear un lienzo (Funcion Lienzo()).
-        - PARTE 2:
+        - PARTE 2: Planear el dibujo de karel (descomposicion, pintar por partes, conectar/retomar funciones).
+        - PARTE 3: Dibujar formas basicas (rectangulos y cuadrados) en el lienzo (funciones crear_ovalo() y crear_rectangulo()).
+        - PARTE 4: Aplicar geometria (Centrar elementos en el lienzo).
+        - PARTE 5: Modificar elementos, cambio de color (funcion establecer_color_relleno())
 
 NOTAS:
     - Principios de dibujo y diseño a usar:
@@ -33,6 +36,42 @@ from stanfordpy.graphics import Lienzo
 # ANCHO y ALTO del lienzo
 ANCHO_MAX_X = 400
 ALTO_MAX_Y = 400
+
+
+# definicion de funciones para dibujar las partes de karel
+def dibujar_cuerpo_karel(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_cuerpo_karel dibuja el cuerpo de karel en el lienzo
+    """
+    # pintar el cuerpo de karel con un rectangulo
+    pass
+
+
+def dibujar_pantalla_karel(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_pantalla_karel dibuja la pantalla de karel en el lienzo
+    """
+    # pintar la pantalla de karel con un rectangulo
+    pass
+
+
+def dibujar_floppy_karel(lienzo, pos_x, pos_y):
+    """dibujar_floppy_karel dibuja el floppy de karel en el lienzo
+    """
+    # pintar el floppy disk de karel con un rectangulo
+    pass
+
+
+def dibujar_pierna_izquierda_karel(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_pierna_izquierda_karel dibuja la pierna y el pie izquierda de karel en el lienzo
+    """
+    # pintar pierna izquierda de karel con un rectangulo
+    pass
+
+
+def dibujar_pierna_derecha_karel(lienzo, ancho, alto, pos_x, pos_y):
+    """dibujar_pierna_derecha_karel dibuja la pierna y el pie derecha de karel en el lienzo
+    """
+    # pintar pierna derecha de karel con un rectangulo
+    pass
 
 
 # definicion de la funcion principal
@@ -75,7 +114,7 @@ def main():
                                              pos_y_pantalla,
                                              pos_x_pantalla + ancho_pantalla - 5,
                                              pos_y_pantalla + alto_pantalla,
-                                             color="white",
+                                             color="grey",
                                              outline="black")
 
     # pintar el floppy disk de karel con un rectangulo negro y borde gris
@@ -145,9 +184,9 @@ def main():
     ]
 
     for forma in figuras:
-        cuadro.set_fill_color(forma, cuadro.get_random_color())
+        # cuadro.set_fill_color(forma, cuadro.get_random_color())
         print(forma)
-        # cuadro.establecer_color_borde(forma, "black")
+        # cuadro.set_outline_color(forma, cuadro.get_random_color())
 
     # cerrar el lienzo
     cuadro.mainloop()
