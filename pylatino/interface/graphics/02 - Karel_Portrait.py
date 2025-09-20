@@ -5,8 +5,8 @@ RESUMEN DEL TUTORIAL:
     Este tutorial es la integracion de todos los conceptos gráficos de Stanford en Python para pylatino 2025 donde retrataremos a karel con formas y colores basicos.
     Incluye:
         - PARTE 1: Crear un lienzo (Funcion Lienzo()).
-        - PARTE 2: Planear el dibujo de karel (descomposicion, pintar por partes, conectar/retomar funciones).
-        - PARTE 3: Dibujar formas basicas (rectangulos y cuadrados) en el lienzo (funciones crear_ovalo() y crear_rectangulo()).
+        - PARTE 2: Planear el dibujo de karel (descomposicion, dibujar por partes, conectar/retomar funciones).
+        - PARTE 3: Dibujar formas basicas de karel (rectangulos y cuadrados) en el lienzo (y crear_rectangulo()).
         - PARTE 4: Aplicar geometria (Centrar elementos en el lienzo).
         - PARTE 5: Modificar elementos, cambio de color (funcion establecer_color_relleno())
 
@@ -16,7 +16,7 @@ NOTAS:
         - Manejo de colores
         - Composición
         - Movimiento
-    - retomar el concepto de despomposicion, pintar por partes, conectar/retomar funciones.
+    - retomar el concepto de despomposicion, dibujar por partes, conectar/retomar funciones.
     - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
     - El codigo esta comentado para facilitar la comprension de los conceptos.
 """
@@ -38,53 +38,96 @@ ANCHO_MAX_X = 400
 ALTO_MAX_Y = 400
 
 
-# definicion de funciones para dibujar las partes de karel
-def dibujar_cuerpo(lienzo, pos_x, pos_y, ancho, alto):
-    """dibujar_cuerpo dibuja el cuerpo de karel en el lienzo
+# definicion de funciones para retratar a karel por partes
+def pintar_cuerpo(lienzo, p_x, p_y, largo, alto):
+    """pintar_cuerpo dibuja el cuerpo de karel en el lienzo.
     """
-    # pintar el cuerpo de karel con un rectangulo
-    cuerpo = lienzo.create_rectangle(pos_x,
-                                     pos_y,
-                                     pos_x + ancho,
-                                     pos_y + alto,
+    # dibujar el cuerpo de karel con un rectangulo
+    cuerpo = lienzo.create_rectangle(p_x,
+                                     p_y,
+                                     p_x + largo,
+                                     p_y + alto,
                                      color="white",
                                      outline="black")
     return cuerpo
 
 
-def dibujar_pantalla(lienzo, pos_x, pos_y, ancho, alto):
-    """dibujar_pantalla dibuja la pantalla de karel en el lienzo
+def pintar_pantalla(lienzo, p_x, p_y, largo, alto):
+    """pintar_pantalla dibuja la pantalla de karel en el lienzo.
     """
-    # pintar la pantalla de karel con un rectangulo
-    # pintar la pantalla de karel con un rectangulo blanco y borde negro
-    pantalla = lienzo.create_rectangle(pos_x - 5,
-                                       pos_y - 5,
-                                       pos_x + ancho - 5,
-                                       pos_y + alto - 5,
-                                       color="grey",
+    # dibujar la pantalla de karel con un rectangulo
+    pantalla = lienzo.create_rectangle(p_x - 5,
+                                       p_y - 5,
+                                       p_x + largo - 5,
+                                       p_y + alto - 5,
+                                       color="white",
                                        outline="black")
     return pantalla
 
 
-def dibujar_floppy(lienzo, pos_x, pos_y, ancho, alto):
-    """dibujar_floppy dibuja el floppy de karel en el lienzo
+def pintar_floppy(lienzo, p_x, p_y, largo, alto):
+    """pintar_floppy dibuja el floppy de karel en el lienzo.
     """
-    # pintar el floppy disk de karel con un rectangulo
-    pass
+    # dibujar el floppy disk de karel con un rectangulo
+    floppy = lienzo.create_rectangle(p_x + 10,
+                                     p_y + 70,
+                                     p_x + 10 + largo,
+                                     p_y + 70 + alto,
+                                     color="black",
+                                     outline="black")
+    return floppy
 
 
-def dibujar_pierna_izquierda(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_pierna_izquierda dibuja la pierna y el pie izquierda de karel en el lienzo
+def pintar_pierna_izquierda(lienzo, p_x, p_y, l_pierna, a_pierna):
+    """pintar_pierna_izquierda dibuja la pierna izquierda de karel en el lienzo.
     """
-    # pintar pierna izquierda de karel con un rectangulo
-    pass
+    # dibujar pierna izquierda de karel con un rectangulo
+    pierna = lienzo.create_rectangle(p_x,
+                                     p_y,
+                                     p_x + l_pierna,
+                                     p_y + a_pierna,
+                                     color="black",
+                                     outline="black")
+    return pierna
 
 
-def dibujar_pierna_derecha(lienzo, ancho, alto, pos_x, pos_y):
-    """dibujar_pierna_derecha dibuja la pierna y el pie derecha de karel en el lienzo
+def pintar_pie_izquierdo(lienzo, p_x, p_y, a_pierna, l_pie, a_pie):
+    """pintar_pie_izquierdo dibuja el pie izquierdo de karel en el lienzo.
     """
-    # pintar pierna derecha de karel con un rectangulo
-    pass
+    # dibujar pie izquierdo de karel con un rectangulo
+    pie = lienzo.create_rectangle(p_x,
+                                  p_y + a_pierna,
+                                  p_x + l_pie,
+                                  p_y + a_pierna + a_pie,
+                                  color="black",
+                                  outline="black")
+    return pie
+
+
+def pintar_pierna_derecha(lienzo, p_x, p_y, l_pierna, a_pierna):
+    """pintar_pierna_derecha dibuja la pierna derecha de karel en el lienzo.
+    """
+    # dibujar pierna derecha de karel con un rectangulo
+    pierna = lienzo.create_rectangle(p_x,
+                                     p_y,
+                                     p_x + l_pierna,
+                                     p_y + a_pierna,
+                                     color="black",
+                                     outline="black")
+    return pierna
+
+
+def pintar_pie_derecho(lienzo, p_x, p_y, l_pierna, l_pie):
+    """pintar_pie_derecho dibuja el pie derecho de karel en el lienzo.
+    """
+    # dibujar pie derecho de karel con un rectangulo
+    pie = lienzo.create_rectangle(p_x,
+                                  p_y,
+                                  p_x - l_pierna,
+                                  p_y + l_pie,
+                                  color="black",
+                                  outline="black")
+    return pie
 
 
 # definicion de la funcion principal
@@ -92,11 +135,20 @@ def dibujar_pierna_derecha(lienzo, ancho, alto, pos_x, pos_y):
 def main():
     """main ejecuta el programa principal
     """
+    # TODO: PARTE 1: Crear el lienzo
     # Crear el lienzo
-    # TODO PARTE 1: Crear un lienzo.
     cuadro = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
 
-    # TODO PARTE 2: dibujar cuerpo de karel con rectangulos y cuadrados
+    # TODO: PARTE 2: Planear el dibujo de karel, recordar descomposicion y conectar con funciones
+    # Descomponer el dibujo en partes:
+    #   1. Cuerpo
+    #   2. Pantalla
+    #   3. Floppy disk
+    #   4. Pierna izquierda
+    #   5. Pie izquierdo
+    #   6. Pierna derecha
+    #   7. Pie derecho
+
     # Definir dimensiones del cuerpo de Karel
     ancho_cuerpo = 80  # ancho del cuerpo
     alto_cuerpo = 110  # alto del cuerpo (más alto que ancho)
@@ -106,13 +158,14 @@ def main():
     # Ajustado para dejar espacio para las piernas
     pos_y_cuerpo = (ALTO_MAX_Y - alto_cuerpo - 40) // 2
 
-    # pintar el cuerpo de karel con un rectangulo blanco y bordes negros
-    cuerpo_karel = cuadro.create_rectangle(pos_x_cuerpo,
-                                           pos_y_cuerpo,
-                                           pos_x_cuerpo + ancho_cuerpo,
-                                           pos_y_cuerpo + alto_cuerpo,
-                                           color="white",
-                                           outline="black")
+    # TODO: PARTE 3: Dibujar formas basicas en el lienzo
+    # TODO: PARTE 4: Aplicar geometria (centrar elementos en el lienzo)
+    # dibujar el cuerpo de karel con un rectangulo blanco y bordes negros
+    cuerpo_karel = pintar_cuerpo(cuadro,
+                                 pos_x_cuerpo,
+                                 pos_y_cuerpo,
+                                 ancho_cuerpo,
+                                 alto_cuerpo)
 
     # Dimensiones de la pantalla
     ancho_pantalla = 40  # ancho de la pantalla
@@ -122,21 +175,23 @@ def main():
     pos_x_pantalla = pos_x_cuerpo + (ancho_cuerpo - ancho_pantalla) // 2
     pos_y_pantalla = pos_y_cuerpo + 15  # Un poco debajo del borde superior
 
-    # pintar la pantalla de karel con un rectangulo blanco y borde negro
-    pantalla_karel = cuadro.create_rectangle(pos_x_pantalla - 5,
-                                             pos_y_pantalla,
-                                             pos_x_pantalla + ancho_pantalla - 5,
-                                             pos_y_pantalla + alto_pantalla,
-                                             color="grey",
-                                             outline="black")
+    # dibujar la pantalla de karel con un rectangulo blanco y borde negro
+    pantalla_karel = pintar_pantalla(cuadro,
+                                     pos_x_pantalla,
+                                     pos_y_pantalla,
+                                     ancho_pantalla,
+                                     alto_pantalla)
 
-    # pintar el floppy disk de karel con un rectangulo negro y borde gris
-    floppy_karel = cuadro.create_rectangle(pos_x_pantalla + 10,
-                                           pos_y_pantalla + 70,
-                                           pos_x_pantalla + 45,
-                                           pos_y_pantalla + 75,
-                                           color="black",
-                                           outline="black")
+    # dimensiones del floppy disk
+    ancho_floppy = 35
+    alto_floppy = 5
+
+    # dibujar el floppy disk de karel con un rectangulo negro y borde gris
+    floppy_karel = pintar_floppy(cuadro,
+                                 pos_x_pantalla,
+                                 pos_y_pantalla,
+                                 ancho_floppy,
+                                 alto_floppy)
 
     # Dimensiones de las piernas y pies
     ancho_pierna = 10
@@ -148,58 +203,49 @@ def main():
     pos_x_pierna_izq = pos_x_cuerpo + ancho_pantalla * 4 // 5
     pos_y_pierna_izq = pos_y_cuerpo + alto_cuerpo
 
-    # pintar pierna izquierda de karel con un rectangulo
-    pierna_izquierda = cuadro.create_rectangle(pos_x_pierna_izq,
+    # dibujar pierna izquierda de karel con un rectangulo
+    pierna_izquierda = pintar_pierna_izquierda(cuadro,
+                                               pos_x_pierna_izq,
                                                pos_y_pierna_izq,
-                                               pos_x_pierna_izq + ancho_pierna,
-                                               pos_y_pierna_izq + alto_pierna,
-                                               color="black",
-                                               outline="black")
+                                               ancho_pierna,
+                                               alto_pierna)
 
-    # pintar pie izquierdo de karel con un rectangulo
-    pie_izquierdo = cuadro.create_rectangle(pos_x_pierna_izq,
-                                            pos_y_pierna_izq + alto_pierna,
-                                            pos_x_pierna_izq + ancho_pie,
-                                            pos_y_pierna_izq + alto_pierna + alto_pie,
-                                            color="black",
-                                            outline="black")
+    # dibujar pie izquierdo de karel con un rectangulo
+    pie_izquierdo = pintar_pie_izquierdo(cuadro,
+                                         pos_x_pierna_izq,
+                                         pos_y_pierna_izq,
+                                         alto_pierna,
+                                         ancho_pie,
+                                         alto_pie)
 
     # Calcular posiciones para la pierna derecha
     # Sale del lado izquierdo del cuerpo
     pos_x_pierna_der = pos_x_cuerpo - alto_pierna
     pos_y_pierna_der = pos_y_cuerpo + alto_cuerpo * 2 // 3
 
-    # pintar pierna derecha de karel con un rectangulo
-    pierna_derecha = cuadro.create_rectangle(pos_x_pierna_der,
-                                             pos_y_pierna_der,
-                                             pos_x_pierna_der + ancho_pierna,
-                                             pos_y_pierna_der + alto_pierna,
-                                             color="black",
-                                             outline="black")
-    print(pos_x_pierna_der, pos_y_pierna_der)
-    print(pos_x_pierna_der + ancho_pierna, pos_y_pierna_der + alto_pierna,)
-    # pintar pie derecho de karel con un rectangulo
-    pie_derecho = cuadro.create_rectangle(pos_x_pierna_der,
-                                          pos_y_pierna_der,
-                                          pos_x_pierna_der - ancho_pierna,
-                                          pos_y_pierna_der + ancho_pie,
-                                          color="black",
-                                          outline="black")
+    # dibujar pierna derecha de karel con un rectangulo
+    pierna_derecha = pintar_pierna_derecha(cuadro,
+                                           pos_x_pierna_der,
+                                           pos_y_pierna_der,
+                                           ancho_pierna,
+                                           alto_pierna)
 
-    figuras = [
-        cuerpo_karel,
-        pantalla_karel,
-        floppy_karel,
-        pierna_izquierda,
-        pie_izquierdo,
-        pierna_derecha,
-        pie_derecho
-    ]
+    # dibujar pie derecho de karel con un rectangulo
+    pie_derecho = pintar_pie_derecho(cuadro,
+                                     pos_x_pierna_der,
+                                     pos_y_pierna_der,
+                                     ancho_pierna,
+                                     ancho_pie)
 
-    for forma in figuras:
-        # cuadro.set_fill_color(forma, cuadro.get_random_color())
-        print(forma)
-        # cuadro.set_outline_color(forma, cuadro.get_random_color())
+    # TODO: PARTE 5: Modificar elementos, cambio de color
+    # cambiar colores de las figuras
+    cuadro.set_fill_color(cuerpo_karel, cuadro.get_random_color())
+    cuadro.set_fill_color(pantalla_karel, cuadro.get_random_color())
+    cuadro.set_fill_color(floppy_karel, cuadro.get_random_color())
+    cuadro.set_fill_color(pierna_izquierda, cuadro.get_random_color())
+    cuadro.set_fill_color(pie_izquierdo, cuadro.get_random_color())
+    cuadro.set_fill_color(pierna_derecha, cuadro.get_random_color())
+    cuadro.set_fill_color(pie_derecho, cuadro.get_random_color())
 
     # cerrar el lienzo
     cuadro.mainloop()
