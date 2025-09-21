@@ -192,22 +192,22 @@ def main():
                                 ancho_pie,
                                 color_fig="negro")
 
-    # # TODO: PARTE 5: Modificar elementos, cambio de color
-    # # cambiar colores de las figuras
-    # retrato.establecer_color(cuerpo_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(pantalla_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(floppy_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(pierna_izquierda,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pie_izquierdo,
-    #                                  retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pierna_derecha,
-    #                                  retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pie_derecho,
-    #                                  retrato.obtener_color_aleatorio())
+    # TODO: PARTE 5: Modificar elementos, cambio de color
+    # cambiar colores de las figuras
+    retrato.establecer_color(cuerpo_karel,
+                             retrato.obtener_color_aleatorio())
+    retrato.establecer_color(pantalla_karel,
+                             retrato.obtener_color_aleatorio())
+    retrato.establecer_color(floppy_karel,
+                             retrato.obtener_color_aleatorio())
+    retrato.establecer_color(pierna_izquierda,
+                             retrato.obtener_color_aleatorio())
+    retrato.establecer_color_relleno(pie_izquierdo,
+                                     retrato.obtener_color_aleatorio())
+    retrato.establecer_color_relleno(pierna_derecha,
+                                     retrato.obtener_color_aleatorio())
+    retrato.establecer_color_relleno(pie_derecho,
+                                     retrato.obtener_color_aleatorio())
 
     # cerrar el lienzo
     retrato.mainloop()
