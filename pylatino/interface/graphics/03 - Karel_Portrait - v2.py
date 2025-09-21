@@ -38,6 +38,8 @@ ANCHO_MAX_X = 300
 ALTO_MAX_Y = 300
 
 
+# definicion de funciones especificas para pintar figuras
+
 def pintar_figura(lienzo,
                   pos_x,
                   pos_y,
@@ -45,7 +47,7 @@ def pintar_figura(lienzo,
                   alto,
                   color_fig="blanco",
                   contorno_fig="negro"):
-    """Dibuja una figura en cuadrada/rectangular en el lienzo.
+    """Dibuja una figura en cuadrada/rectangular en el lienzo. Puede usarse para dibujar el cuerpo, pantalla, floppy disk, piernas y pies de karel.
     """
     figura = lienzo.crear_rectangulo(pos_x,
                                      pos_y,
@@ -54,72 +56,6 @@ def pintar_figura(lienzo,
                                      color=color_fig,
                                      contorno=contorno_fig)
     return figura
-
-
-# definición de funciones para retratar a Karel por partes
-def pintar_cuerpo(lienzo, p_x, p_y, largo, alto):
-    """pintar_cuerpo dibuja el cuerpo de Karel en el lienzo.
-    """
-    # dibujar el cuerpo de Karel con un rectángulo
-    cuerpo = lienzo.crear_rectangulo(p_x,
-                                     p_y,
-                                     p_x + largo,
-                                     p_y + alto,
-                                     color="blanco",
-                                     contorno="negro")
-    return cuerpo
-
-
-def pintar_pantalla(lienzo, p_x, p_y, largo, alto):
-    """pintar_pantalla dibuja la pantalla de Karel en el lienzo.
-    """
-    # dibujar la pantalla de Karel con un rectángulo
-    pantalla = lienzo.crear_rectangulo(p_x - 5,
-                                       p_y - 5,
-                                       p_x + largo - 5,
-                                       p_y + alto - 5,
-                                       color="blanco",
-                                       contorno="negro")
-    return pantalla
-
-
-def pintar_floppy(lienzo, p_x, p_y, largo, alto):
-    """pintar_floppy dibuja el floppy de Karel en el lienzo.
-    """
-    # dibujar el floppy disk de Karel con un rectángulo
-    floppy = lienzo.crear_rectangulo(p_x + 10,
-                                     p_y + 70,
-                                     p_x + largo + 10,
-                                     p_y + alto + 70,
-                                     color="negro",
-                                     contorno="negro")
-    return floppy
-
-
-def pintar_pierna(lienzo, p_x, p_y, largo, alto):
-    """pintar_pierna dibuja la pierna de Karel en el lienzo.
-    """
-    # dibujar pierna de Karel con un rectángulo
-    pierna = lienzo.crear_rectangulo(p_x,
-                                     p_y,
-                                     p_x + largo,
-                                     p_y + alto,
-                                     color="negro",
-                                     contorno="negro")
-    return pierna
-
-
-def pintar_pie(lienzo, p_x, p_y, largo, alto):
-    """pintar_pie dibuja el pie de Karel en el lienzo.
-    """
-    # dibujar pie de Karel con un rectángulo
-    pierna = lienzo.crear_rectangulo(p_x,
-                                     p_y,
-                                     p_x + largo,
-                                     p_y + alto,
-                                     color="negro",
-                                     contorno="negro")
-    return pierna
 
 
 # definición de la funcion principal
