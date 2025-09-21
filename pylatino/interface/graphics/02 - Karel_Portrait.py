@@ -43,18 +43,14 @@ def pintar_figura(lienzo,
                   pos_y,
                   largo,
                   alto,
-                  dx_1=0,
-                  dy_1=0,
-                  dx_2=0,
-                  dy_2=0,
                   color_fig="blanco",
                   contorno_fig="negro"):
-    """pintar_figura dibuja una figura en el lienzo.
+    """Dibuja una figura en cuadrada/rectangular en el lienzo.
     """
-    figura = lienzo.crear_rectangulo(pos_x + dx_1,
-                                     pos_y + dy_1,
-                                     pos_x + dx_2 + largo,
-                                     pos_y + dy_2 + alto,
+    figura = lienzo.crear_rectangulo(pos_x,
+                                     pos_y,
+                                     pos_x + largo,
+                                     pos_y + alto,
                                      color=color_fig,
                                      contorno=contorno_fig)
     return figura
@@ -158,7 +154,7 @@ def main():
     # TODO: PARTE 4: Aplicar geometría (centrar elementos en el lienzo)
     # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
     cuerpo_karel = None
-    cuerpo_karel = pintar_cuerpo(retrato,
+    cuerpo_karel = pintar_figura(retrato,
                                  pos_cuerpo_x,
                                  pos_cuerpo_y,
                                  ancho_cuerpo,
@@ -166,36 +162,40 @@ def main():
 
     # Dimensiones de la pantalla
     ancho_pantalla = 40  # ancho de la pantalla
-    alto_pantalla = 55   # alto de la pantalla
+    alto_pantalla = 60   # alto de la pantalla
 
     # Calcular posición para centrar la pantalla en el cuerpo
-    pos_pantalla_x = pos_cuerpo_x + (ancho_cuerpo - ancho_pantalla) // 2
-    pos_pantalla_y = pos_cuerpo_y + 15  # Un poco debajo del borde superior
+    pos_pantalla_x = pos_cuerpo_x + (ancho_cuerpo - ancho_pantalla) // 2 - 5
+    pos_pantalla_y = pos_cuerpo_y + 10  # Un poco debajo del borde superior
 
     # dibujar la pantalla de Karel con un rectángulo blanco y borde negro
     pantalla_karel = None
-    pantalla_karel = pintar_pantalla(retrato,
-                                     pos_pantalla_x,
-                                     pos_pantalla_y,
-                                     ancho_pantalla,
-                                     alto_pantalla)
+    pantalla_karel = pintar_figura(retrato,
+                                   pos_pantalla_x,
+                                   pos_pantalla_y,
+                                   ancho_pantalla,
+                                   alto_pantalla)
 
     # dimensiones del floppy disk
     ancho_floppy = 35
     alto_floppy = 5
 
+    pos_floppy_x = pos_cuerpo_x + (ancho_cuerpo - ancho_floppy) // 2 + 5
+    pos_floppy_y = pos_cuerpo_y + alto_cuerpo - 25
+
     # dibujar el floppy disk de Karel con un rectángulo negro y borde gris
     floppy_karel = None
-    floppy_karel = pintar_floppy(retrato,
-                                 pos_pantalla_x,
-                                 pos_pantalla_y,
+    floppy_karel = pintar_figura(retrato,
+                                 pos_floppy_x,
+                                 pos_floppy_y,
                                  ancho_floppy,
-                                 alto_floppy)
+                                 alto_floppy,
+                                 color_fig="negro")
 
     # Dimensiones de las piernas y pies
     ancho_pierna = 10
     alto_pierna = 10
-    ancho_pie = 30
+    ancho_pie = 25
     alto_pie = 10
 
     # Calcular posiciones para la pierna izquierda
@@ -204,11 +204,12 @@ def main():
 
     # dibujar pierna izquierda de Karel con un rectángulo
     pierna_izquierda = None
-    pierna_izquierda = pintar_pierna(retrato,
+    pierna_izquierda = pintar_figura(retrato,
                                      pos_pierna_izq_x,
                                      pos_pierna_izq_y,
                                      ancho_pierna,
-                                     alto_pierna)
+                                     alto_pierna,
+                                     color_fig="negro")
 
     # calcular posicion para pie izquierdo
     pos_pie_izq_x = pos_pierna_izq_x
@@ -216,11 +217,12 @@ def main():
 
     # dibujar pie izquierdo de Karel con un rectángulo
     pie_izquierdo = None
-    pie_izquierdo = pintar_pie(retrato,
-                               pos_pie_izq_x,
-                               pos_pie_izq_y,
-                               ancho_pie,
-                               alto_pie)
+    pie_izquierdo = pintar_figura(retrato,
+                                  pos_pie_izq_x,
+                                  pos_pie_izq_y,
+                                  ancho_pie,
+                                  alto_pie,
+                                  color_fig="negro")
 
     # Calcular posiciones para la pierna derecha
     # Sale del lado izquierdo del cuerpo
@@ -229,11 +231,12 @@ def main():
 
     # dibujar pierna derecha de Karel con un rectángulo
     pierna_derecha = None
-    pierna_derecha = pintar_pierna(retrato,
+    pierna_derecha = pintar_figura(retrato,
                                    pos_pierna_der_x,
                                    pos_pierna_der_y,
                                    ancho_pierna,
-                                   alto_pierna)
+                                   alto_pierna,
+                                   color_fig="negro")
 
     # calcular posicion para pie derecho
     pos_pie_der_x = pos_pierna_der_x
@@ -241,28 +244,29 @@ def main():
 
     # dibujar pie derecho de Karel con un rectángulo
     pie_derecho = None
-    pie_derecho = pintar_pie(retrato,
-                             pos_pie_der_x,
-                             pos_pie_der_y,
-                             -ancho_pierna,
-                             ancho_pie)
+    pie_derecho = pintar_figura(retrato,
+                                pos_pie_der_x,
+                                pos_pie_der_y,
+                                -ancho_pierna,
+                                ancho_pie,
+                                color_fig="negro")
 
-    # # TODO: PARTE 5: Modificar elementos, cambio de color
-    # # cambiar colores de las figuras
-    # retrato.establecer_color(cuerpo_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(pantalla_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(floppy_karel,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color(pierna_izquierda,
-    #                          retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pie_izquierdo,
-    #                                  retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pierna_derecha,
-    #                                  retrato.obtener_color_aleatorio())
-    # retrato.establecer_color_relleno(pie_derecho,
-    #                                  retrato.obtener_color_aleatorio())
+    # # # TODO: PARTE 5: Modificar elementos, cambio de color
+    # # # cambiar colores de las figuras
+    # # retrato.establecer_color(cuerpo_karel,
+    # #                          retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color(pantalla_karel,
+    # #                          retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color(floppy_karel,
+    # #                          retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color(pierna_izquierda,
+    # #                          retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color_relleno(pie_izquierdo,
+    # #                                  retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color_relleno(pierna_derecha,
+    # #                                  retrato.obtener_color_aleatorio())
+    # # retrato.establecer_color_relleno(pie_derecho,
+    # #                                  retrato.obtener_color_aleatorio())
 
     # cerrar el lienzo
     retrato.mainloop()
