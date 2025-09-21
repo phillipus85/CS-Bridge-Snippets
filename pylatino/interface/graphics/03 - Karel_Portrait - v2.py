@@ -86,9 +86,20 @@ def main():
     # Ajustado para dejar espacio para las piernas
     pos_cuerpo_y = (ALTO_MAX_Y - alto_cuerpo - 40) // 2
 
-    # TODO: PARTE 3: Dibujar formas básicas en el lienzo
-    # TODO: PARTE 4: Aplicar geometría (centrar elementos en el lienzo)
     # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
+    # # alternativa sin funcion pintar_figura
+    # # definir color y contorno del cuerpo
+    # cuerpo_karel = retrato.crear_rectangulo(pos_cuerpo_x,
+    #                                         pos_cuerpo_y,
+    #                                         pos_cuerpo_x + ancho_cuerpo,
+    #                                         pos_cuerpo_y + alto_cuerpo,
+    #                                         color="blanco",
+    #                                         contorno="negro")
+
+    # TODO: PARTE 3: Dibujar formas básicas en el lienzo
+    # TODO: PARTE 4: Aplicar geometría (ubicar elementos en el lienzo)
+    # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
+    # usando la funcion pintar_figura
     cuerpo_karel = None
     cuerpo_karel = pintar_figura(retrato,
                                  pos_cuerpo_x,
