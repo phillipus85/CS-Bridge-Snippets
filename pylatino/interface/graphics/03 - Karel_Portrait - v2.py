@@ -100,7 +100,6 @@ def main():
     # TODO: PARTE 4: Aplicar geometría (ubicar elementos en el lienzo)
     # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
     # usando la funcion pintar_figura
-    cuerpo_karel = None
     cuerpo_karel = pintar_figura(retrato,
                                  pos_cuerpo_x,
                                  pos_cuerpo_y,
@@ -131,7 +130,6 @@ def main():
     pos_floppy_y = pos_cuerpo_y + alto_cuerpo - 25
 
     # dibujar el floppy disk de Karel con un rectángulo negro y borde gris
-    floppy_karel = None
     floppy_karel = pintar_figura(retrato,
                                  pos_floppy_x,
                                  pos_floppy_y,
@@ -150,7 +148,6 @@ def main():
     pos_pierna_izq_y = pos_cuerpo_y + alto_cuerpo
 
     # dibujar pierna izquierda de Karel con un rectángulo
-    pierna_izquierda = None
     pierna_izquierda = pintar_figura(retrato,
                                      pos_pierna_izq_x,
                                      pos_pierna_izq_y,
@@ -163,7 +160,6 @@ def main():
     pos_pie_izq_y = pos_pierna_izq_y + alto_pierna
 
     # dibujar pie izquierdo de Karel con un rectángulo
-    pie_izquierdo = None
     pie_izquierdo = pintar_figura(retrato,
                                   pos_pie_izq_x,
                                   pos_pie_izq_y,
@@ -177,7 +173,6 @@ def main():
     pos_pierna_der_y = pos_cuerpo_y + alto_cuerpo * 2 // 3
 
     # dibujar pierna derecha de Karel con un rectángulo
-    pierna_derecha = None
     pierna_derecha = pintar_figura(retrato,
                                    pos_pierna_der_x,
                                    pos_pierna_der_y,
@@ -190,7 +185,6 @@ def main():
     pos_pie_der_y = pos_pierna_der_y
 
     # dibujar pie derecho de Karel con un rectángulo
-    pie_derecho = None
     pie_derecho = pintar_figura(retrato,
                                 pos_pie_der_x,
                                 pos_pie_der_y,
