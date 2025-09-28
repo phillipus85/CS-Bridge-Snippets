@@ -47,6 +47,7 @@ def pintar_figura(lienzo,
                   contorno_fig="negro"):
     """Dibuja una figura en cuadrada/rectangular en el lienzo.
     """
+    # dibujar una parte del cuerpo de Karel con un rectángulo
     figura = lienzo.crear_rectangulo(pos_x,
                                      pos_y,
                                      pos_x + largo,

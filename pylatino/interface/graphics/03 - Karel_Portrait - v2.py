@@ -6,6 +6,9 @@ RESUMEN DEL TUTORIAL:
     Incluye:
         - PARTE 1: Crear un lienzo (Funcion Lienzo()).
         - PARTE 2: Planear el dibujo de karel (descomposicion, dibujar por partes, conectar/retomar funciones).
+
+         PARRTIR ACA!!!!
+
         - PARTE 3: Dibujar formas basicas de karel (rectangulos y cuadrados) en el lienzo (y crear_rectangulo()).
         - PARTE 4: Aplicar geometria (Centrar elementos en el lienzo).
         - PARTE 5: Modificar elementos, cambio de color (funcion establecer_color_relleno())
@@ -19,6 +22,8 @@ NOTAS:
     - retomar el concepto de despomposicion, dibujar por partes, conectar/retomar funciones.
     - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
     - El codigo esta comentado para facilitar la comprension de los conceptos.
+    # abstraccion
+    # crear una funcion para paralelogramos (cuadrados y rectangulos)
 """
 
 # importaciones necesarias
@@ -49,6 +54,7 @@ def pintar_figura(lienzo,
                   contorno_fig="negro"):
     """Dibuja una figura en cuadrada/rectangular en el lienzo. Puede usarse para dibujar el cuerpo, pantalla, floppy disk, piernas y pies de karel.
     """
+    # dibujar una parte del cuerpo de Karel con un rectángulo
     figura = lienzo.crear_rectangulo(pos_x,
                                      pos_y,
                                      pos_x + largo,
@@ -81,13 +87,12 @@ def main():
     ancho_cuerpo = 80  # ancho del cuerpo
     alto_cuerpo = 110  # alto del cuerpo (más alto que ancho)
 
-    # Calcular posición para centrar el cuerpo
+    # Calcular centro del cuerpo y dejar espacio para las piernas
     pos_cuerpo_x = (ANCHO_MAX_X - ancho_cuerpo) // 2
-    # Ajustado para dejar espacio para las piernas
     pos_cuerpo_y = (ALTO_MAX_Y - alto_cuerpo - 40) // 2
 
-    # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
-    # # alternativa sin funcion pintar_figura
+    # # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
+    # # # alternativa sin funcion pintar_figura
     # # definir color y contorno del cuerpo
     # cuerpo_karel = retrato.crear_rectangulo(pos_cuerpo_x,
     #                                         pos_cuerpo_y,
@@ -192,22 +197,22 @@ def main():
                                 ancho_pie,
                                 color_fig="negro")
 
-    # TODO: PARTE 5: Modificar elementos, cambio de color
-    # cambiar colores de las figuras
-    retrato.establecer_color(cuerpo_karel,
-                             retrato.obtener_color_aleatorio())
-    retrato.establecer_color(pantalla_karel,
-                             retrato.obtener_color_aleatorio())
-    retrato.establecer_color(floppy_karel,
-                             retrato.obtener_color_aleatorio())
-    retrato.establecer_color(pierna_izquierda,
-                             retrato.obtener_color_aleatorio())
-    retrato.establecer_color_relleno(pie_izquierdo,
-                                     retrato.obtener_color_aleatorio())
-    retrato.establecer_color_relleno(pierna_derecha,
-                                     retrato.obtener_color_aleatorio())
-    retrato.establecer_color_relleno(pie_derecho,
-                                     retrato.obtener_color_aleatorio())
+    # # TODO: PARTE 5: Modificar elementos, cambio de color
+    # # cambiar colores de las figuras
+    # retrato.establecer_color(cuerpo_karel,
+    #                          retrato.obtener_color_aleatorio())
+    # retrato.establecer_color(pantalla_karel,
+    #                          retrato.obtener_color_aleatorio())
+    # retrato.establecer_color(floppy_karel,
+    #                          retrato.obtener_color_aleatorio())
+    # retrato.establecer_color(pierna_izquierda,
+    #                          retrato.obtener_color_aleatorio())
+    # retrato.establecer_color_relleno(pie_izquierdo,
+    #                                  retrato.obtener_color_aleatorio())
+    # retrato.establecer_color_relleno(pierna_derecha,
+    #                                  retrato.obtener_color_aleatorio())
+    # retrato.establecer_color_relleno(pie_derecho,
+    #                                  retrato.obtener_color_aleatorio())
 
     # cerrar el lienzo
     retrato.mainloop()
