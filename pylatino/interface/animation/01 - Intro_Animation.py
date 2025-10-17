@@ -6,6 +6,8 @@ RESUMEN DEL TUTORIAL:
         - PARTE 1: Crear un lienzo (Función Lienzo()).
         - PARTE 2: Dibujar formas un círculo (función crear_ovalo()) para simular una pelota.
         - PARTE 3: Aplicar geometría (Centrar elementos en el lienzo).
+        PARTE 1, 2, 3 REPETIVIOO, YA ESTA LISTO EN OTRO TUTORIAL
+
         - PARTE 4: Modificar elementos, cambio de posición (función mover())
         - PARTE 5: Aplicar un bucle para crear la animación.
         - PARTE 6: Aplicar condiciones para detectar colisiones y rebotar.
