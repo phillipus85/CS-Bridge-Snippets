@@ -19,14 +19,10 @@ NOTAS:
     - retomar el concepto de despomposicion, dibujar por partes, conectar/retomar funciones.
     - Retratar a karel es es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
     - El codigo esta comentado para facilitar la comprension de los conceptos.
-    # abstraccion
-    # crear una funcion para paralelogramos (cuadrados y rectangulos)
 """
 
 # importaciones necesarias
 from stanfordpy.graphics import Lienzo
-# from src.graphics import Canvas as Lienzo
-# from stanfordpy.graphics import Canvas as Lienzo
 
 # IMPORTANTE: Si se ejecuta en un entorno diferente a la terminal de python
 # from graphics import Lienzo
@@ -35,20 +31,19 @@ from stanfordpy.graphics import Lienzo
 # definicion de funciones y variables especificas
 
 # dimeniones del lienzo
-# ANCHO y ALTO del lienzo
 ANCHO_MAX_X = 300
 ALTO_MAX_Y = 300
 
 
 # definicion de funciones especificas para pintar figuras
-# TODO: PARTE 3: Escribir funcion para dibujar formas basicas en el lienzo
 def pintar_figura(lienzo,
                   pos_x,
                   pos_y,
                   largo,
                   alto,
-                  color_fig="blanco",
-                  contorno_fig="negro"):
+                  color_fig,
+                  contorno_fig):
+    # TODO PARTE 3: Escribir funcion para dibujar formas basicas de karel.
     """Dibuja una figura en cuadrada/rectangular en el lienzo. Puede usarse para dibujar el cuerpo, pantalla, floppy disk, piernas y pies de karel.
     """
     # dibujar una parte del cuerpo de Karel con un rectángulo
@@ -98,16 +93,15 @@ def main():
     #                                         color="blanco",
     #                                         contorno="negro")
 
-    # TODO: PARTE 4: Aplicar geometría (ubicar elementos en el lienzo)
+    # TODO: PARTE 4: Aplicar geometria (Centrar primer elementos en el lienzo y posicionar otros con respecto a el).
     # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
-    # usando la funcion pintar_figura
     cuerpo_karel = pintar_figura(retrato,
                                  pos_cuerpo_x,
                                  pos_cuerpo_y,
                                  ancho_cuerpo,
                                  alto_cuerpo,
-                                 "blanco",
-                                 "negro")
+                                 color_fig="blanco",
+                                 contorno_fig="negro")
 
     # Dimensiones de la pantalla
     ancho_pantalla = 40  # ancho de la pantalla
@@ -123,7 +117,9 @@ def main():
                                    pos_pantalla_x,
                                    pos_pantalla_y,
                                    ancho_pantalla,
-                                   alto_pantalla)
+                                   alto_pantalla,
+                                   color_fig="blanco",
+                                   contorno_fig="negro")
 
     # dimensiones del floppy disk
     ancho_floppy = 35
@@ -172,7 +168,6 @@ def main():
                                   alto_pie,
                                   color_fig="negro",
                                   contorno_fig="negro")
-
 
     # Calcular posiciones para la pierna derecha
     # Sale del lado izquierdo del cuerpo
