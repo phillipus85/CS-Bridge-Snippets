@@ -41,7 +41,7 @@ ALTO_MAX_Y = 300
 
 
 # definicion de funciones especificas para pintar figuras
-
+# TODO: PARTE 3: Escribir funcion para dibujar formas basicas en el lienzo
 def pintar_figura(lienzo,
                   pos_x,
                   pos_y,
@@ -98,7 +98,6 @@ def main():
     #                                         color="blanco",
     #                                         contorno="negro")
 
-    # TODO: PARTE 3: Dibujar formas básicas en el lienzo
     # TODO: PARTE 4: Aplicar geometría (ubicar elementos en el lienzo)
     # dibujar el cuerpo de Karel con un rectángulo blanco y bordes negros
     # usando la funcion pintar_figura
@@ -106,7 +105,9 @@ def main():
                                  pos_cuerpo_x,
                                  pos_cuerpo_y,
                                  ancho_cuerpo,
-                                 alto_cuerpo)
+                                 alto_cuerpo,
+                                 "blanco",
+                                 "negro")
 
     # Dimensiones de la pantalla
     ancho_pantalla = 40  # ancho de la pantalla
@@ -137,7 +138,8 @@ def main():
                                  pos_floppy_y,
                                  ancho_floppy,
                                  alto_floppy,
-                                 color_fig="negro")
+                                 color_fig="negro",
+                                 contorno_fig="negro")
 
     # Dimensiones de las piernas y pies
     ancho_pierna = 10
@@ -155,7 +157,8 @@ def main():
                                      pos_pierna_izq_y,
                                      ancho_pierna,
                                      alto_pierna,
-                                     color_fig="negro")
+                                     color_fig="negro",
+                                     contorno_fig="negro")
 
     # calcular posicion para pie izquierdo
     pos_pie_izq_x = pos_pierna_izq_x
@@ -167,7 +170,9 @@ def main():
                                   pos_pie_izq_y,
                                   ancho_pie,
                                   alto_pie,
-                                  color_fig="negro")
+                                  color_fig="negro",
+                                  contorno_fig="negro")
+
 
     # Calcular posiciones para la pierna derecha
     # Sale del lado izquierdo del cuerpo
@@ -180,7 +185,8 @@ def main():
                                    pos_pierna_der_y,
                                    ancho_pierna,
                                    alto_pierna,
-                                   color_fig="negro")
+                                   color_fig="negro",
+                                   contorno_fig="negro")
 
     # calcular posicion para pie derecho
     pos_pie_der_x = pos_pierna_der_x
@@ -192,7 +198,8 @@ def main():
                                 pos_pie_der_y,
                                 -ancho_pierna,
                                 ancho_pie,
-                                color_fig="negro")
+                                color_fig="negro",
+                                contorno_fig="negro")
 
     # # TODO: PARTE 5: Modificar elementos, cambio de color
     # # cambiar colores de las figuras

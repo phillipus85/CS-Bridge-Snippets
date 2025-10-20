@@ -37,10 +37,10 @@ def main():
 
     # Diccionario simple: {titulo: autor}
     autores_por_titulo = {
-        "Rayuela": "Julio Cortázar",
-        "Ficciones": "Jorge Luis Borges",
-        "Aura": "Carlos Fuentes",
-        "Delirio": "Laura Restrepo",
+        "Rayuela": "Julio Cortázar",        # 0
+        "Ficciones": "Jorge Luis Borges",   # 1
+        "Aura": "Carlos Fuentes",           # 2
+        "Delirio": "Laura Restrepo",        # 3
     }
     print("* Diccionario (titulo: autor):")
     print("\tdict:", autores_por_titulo)
