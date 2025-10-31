@@ -41,14 +41,14 @@ RADIO_PELOTA = 40
 PAUSA = 1 / 60
 
 # La velocidad de la pelota en la dirección x.
-VELOCIDAD_PELOTA_X = 5
+VEL_PELOTA_X = -5
 
 # La velocidad de la pelota en la dirección y.
-VELOCIDAD_PELOTA_Y = 5
+VEL_PELOTA_Y = -5
 
 # dimeniones del lienzo
-MAX_CANVAS_X = 460
-MAX_CANVAS_Y = 500
+ANCHO_MAX_X = 500
+ALTO_MAX_Y = 800
 
 
 def main():
@@ -56,74 +56,80 @@ def main():
     """
     # TODO PARTE 1: Crear un lienzo.
     # crear el lienzo con dimensiones
-    arena = Lienzo(MAX_CANVAS_X, MAX_CANVAS_Y)
+    arena = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
     # TODO PARTE 2: Dibujar formas básicas (círculos).
     # posicionar la pelota en el centro del lienzo
-    _poss_ball_x = MAX_CANVAS_X // 2
-    _poss_ball_y = MAX_CANVAS_Y // 2
+    pos_pelota_x = ANCHO_MAX_X // 2
+    pos_pelota_y = ALTO_MAX_Y // 2
     # color de la pelota
-    _colour = "violet"
-    # _colour = arena.get_random_color()
+    color = "azul"
+
+    # color = arena.get_random_color()
     # crear la pelota con posicion, radio y color
     # IMPORTANTE: en local el color es con fill, en WEB IDE es una propiedad
     # TODO PARTE 3: Aplicar geometría (Centrar elementos en el lienzo).
-    pelota = arena.create_oval(_poss_ball_x,
-                               _poss_ball_y,
-                               _poss_ball_x + RADIO_PELOTA,
-                               _poss_ball_y + RADIO_PELOTA,
-                               # _colour)
-                               color=_colour)
+    pelota = arena.crear_ovalo(pos_pelota_x,
+                               pos_pelota_y,
+                               pos_pelota_x + RADIO_PELOTA,
+                               pos_pelota_y + RADIO_PELOTA,
+                               color=color)
     # condicion para continuar el juego
-    _playing = True
+    en_juego = True
 
     # definir la velocidad inicial de la pelota
-    _dx = VELOCIDAD_PELOTA_X
-    _dy = VELOCIDAD_PELOTA_Y
+    _dx = VEL_PELOTA_X
+    _dy = VEL_PELOTA_Y
     # ciclo de juego
     # TODO PARTE 5: Aplicar un bucle para crear la animación.
-    while _playing:
+    while en_juego:
         # invoco la funcion moverse del lienzo
-        arena.move(pelota, _dx, _dy)
+        arena.mover(pelota, _dx, _dy)
         # recupero la posicion de la pelota del lienzo
-        _tx = arena.get_left_x(pelota)
-        _ty = arena.get_top_y(pelota)
-        print(f"posicion x: {_tx}, posicion y: {_ty}")
-        # IMPORTANTE: en local los nombres de las funciones son diferentes
-        # _tx = arena.obtener_x_izq(pelota)
-        # _ty = arena.obtener_y_sup(pelota)
+        _px = arena.get_left_x(pelota)
+        _py = arena.get_top_y(pelota)
+        # print(f"posicion x: {_px}, posicion y: {_py}")
+
         # pausa entre fotogramas
         esperar(PAUSA)
+
         # condicion de colision
         # TODO PARTE 6: Aplicar condiciones para detectar colisiones y rebotar.
         # 1) si colisiona con el borde derecho
-        if _tx > MAX_CANVAS_X - RADIO_PELOTA:
+        if _px > ANCHO_MAX_X - RADIO_PELOTA:
             # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
             _dx = _dx * -1
-            # crash = True
 
         # 2) si colisiona con el borde inferior
-        if _ty > MAX_CANVAS_Y - RADIO_PELOTA:
+        if _py > ALTO_MAX_Y - RADIO_PELOTA:
             # ir hacia arriba, teniendo en cuenta el radio de la pelota
             _dy = _dy * -1
-            # crash = True
+            # condicion para terminar el juego, si toca el borde inferior
+            en_juego = False
 
         # 3) si colisiona con el borde izquierdo
-        if _tx < 0.0:
+        if _px < 0.0:
             # ir hacia la derecha
             _dx = _dx * -1
-            # crash = True
 
         # 4) si colisiona con el borde superior
-        if _ty < 0.0:
+        if _py < 0.0:
             # ir hacia abajo
             _dy = _dy * -1
-            # crash = True
+
         # actualizar el lienzo
         # IMPORTANTE: solo se necesita en local
         # lienzo.update()
-        # condicion para terminar el juego
-        # TODO PARTE 7: Terminar la animación y cerrar el lienzo.
-        # if crash:
+
+    # finalizar el juego
+    # TODO PARTE 7: Terminar la animación y cerrar el lienzo.
+    arena.crear_texto(ANCHO_MAX_X // 2,
+                      ALTO_MAX_Y // 2,
+                      "¡El Juego a Terminado!",
+                      fuente="Arial",
+                      tamano=24,
+                      color="rojo",
+                      ancla="center")
+    esperar(5)
     # cerrar el lienzo
     # lienzo.mainloop()
 
