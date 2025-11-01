@@ -1,4 +1,5 @@
-﻿from src.graphics import Canvas as Lienzo
+﻿# from stanford.graphics import Canvas as Lienzo
+from stanfordpy.graphics import Lienzo
 from random import random
 from time import sleep as esperar
 
@@ -41,7 +42,7 @@ VELOCIDAD_X_MIN = -3
 VELOCIDAD_X_MAX = 3
 
 # Cuanto tiempo, en segundos, se espera entre fotogramas.
-PAUSA = 1 / 30
+PAUSA = 1 / 60
 
 # Para Hito 3: Crear la paleta
 
@@ -70,7 +71,8 @@ def crear_grilla_ladrillo(lienzo, y_offset):
                                     y,
                                     x + ANCHO_LADRILLO,
                                     y + ALTURA_LADRILLO,
-                                    fill=color)
+                                    color=color,
+                                    contorno="black")
         # memoria.append(ladrillo)
 
 
@@ -81,7 +83,8 @@ def crear_pelota(lienzo):
                               cy,
                               cx + RADIO_PELOTA * 2,
                               cy + RADIO_PELOTA * 2,
-                              fill="black")
+                              color="black",
+                              contorno="black")
 
 
 def obtener_velocidad_x_aleatoria():
@@ -154,7 +157,8 @@ def crear_paleta(lienzo):
                                    y_inf - ALTURA_PALETA,
                                    cx + ANCHO_PALETA // 2,
                                    y_inf,
-                                   fill="grey")
+                                   color="grey",
+                                   contorno="black")
 
 
 def mover_paleta(lienzo, paleta):
@@ -168,7 +172,7 @@ def mover_paleta(lienzo, paleta):
 
 def encontrar_colisiones(lienzo, pelota):
     x_izq = lienzo.obtener_x_izq(pelota)
-    y_sup = lienzo.obtener_y_sup(pelota)p
+    y_sup = lienzo.obtener_y_sup(pelota)
     colisiones = lienzo.encontrar_superposiciones(x_izq,
                                                   y_sup,
                                                   x_izq + 2 * RADIO_PELOTA,
@@ -196,9 +200,8 @@ def informar_resultado(lienzo, ganado):
         mensaje = "Has perdido.\nJuegas otra vez?"
     w = lienzo.obtener_anchura_lienzo() // 2,
     h = lienzo.obtener_altura_lienzo() // 2
-    texto = lienzo.crear_texto(w, h, mensaje)
-    lienzo.establecer_fuente(texto, "Courier", 24)
-
+    texto = lienzo.crear_texto(w, h, mensaje, "Courier", 24, "center")
+    return texto
 # def pelota_en_juego(lienzo, pelota):
 
 
@@ -235,8 +238,9 @@ def main():
             if colisiones[0] == paleta:
                 vy = -1 * vy
         esperar(PAUSA)
-        lienzo.update()
-    informar_resultado(lienzo, ladrillos_restantes == 0)
+        # lienzo.update()
+    texto_final = informar_resultado(lienzo, ladrillos_restantes == 0)
+    print("Juego terminado.", texto_final)
     lienzo.mainloop()
 
 

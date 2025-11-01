@@ -64,6 +64,7 @@ def main():
     # TODO: PARTE 1: Crear el lienzo
     # Crear el lienzo
     retrato = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
+    retrato.crear_rectangulo()
 
     # TODO: PARTE 2: Planear el dibujo de Karel, recordar descomposición y funciones
     # Descomponer el dibujo en partes:
