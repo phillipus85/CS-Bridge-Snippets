@@ -3,29 +3,26 @@ Este tutorial es el código guía para los conceptos de animación de Pylatino 2
 
 RESUMEN DEL TUTORIAL:
     Este módulo es una introducción a los conceptos de animación de Stanford en Python e incluye:
-        - PARTE 1: Crear un lienzo (Función Lienzo()).
-        - PARTE 2: Dibujar formas un círculo (función crear_ovalo()) para simular una pelota.
-        - PARTE 3: Aplicar geometría (Centrar elementos en el lienzo).
-        PARTE 1, 2, 3 REPETIVIOO, YA ESTA LISTO EN OTRO TUTORIAL
-
-        - PARTE 4: Modificar elementos, cambio de posición (función mover())
-        - PARTE 5: Aplicar un bucle para crear la animación.
-        - PARTE 6: Aplicar condiciones para detectar colisiones y rebotar.
-        - PARTE 7: terminar la animación y cerrar el lienzo, seleccionar una pared al azar, resaltar con un color y si colisionan terminar el juego.
-
+        - PARTE 1: Crear un lienzo Y una pelota para animar.
+        - PARTE 2: Definir variables de juego.
+        - PARTE 3: Aplicar un ciclo para crear la animación.
+        - PARTE 4: Implementar detección de colisiones, rebote y como finalizar el juego.
+        - PARTE 5: Terminar la animación y cerrar el lienzo.
 NOTAS:
-    - Principios de dibujo y diseño a usar:
-        - Uso de formas
-        - Manejo de colores
-        - Composición
-        - Movimiento
+    - Principios de animacion y diseño a usar:
+        - Estirar y Comprimir
+        - Anticipación
+        - Puesta en Escena
+        - Acción Directa y Pose a Pose
+        - Acciones Complementarias y Superpuestas
+        - Ritmo
 
-    - Las partes del tutorial están relacionadas con los principios de dibujo y diseño:
-        PARTE 1, PARTE 2 y PARTE 3 están relacionadas con el uso de formas, manejo de colores y composición.
-        PARTE 4, PARTE 5 y PARTE 6 están relacionadas con el manejo de colores, composición y movimiento.
-
-    - Retratar a Karel es el ejercicio final para aplicar todos los conceptos aprendidos en las partes anteriores.
-    - El código está comentado para facilitar la comprensión de los conceptos.
+    - la relación entre las partes y los principios de animación son:
+        - PARTE 1: Crear un lienzo Y una pelota para animar. (Puesta en Escena)
+        - PARTE 2: Definir variables de juego. (Acción Directa y Pose a Pose)
+        - PARTE 3: Aplicar un ciclo para crear la animación. (Ritmo)
+        - PARTE 4: Implementar detección de colisiones, rebote y como finalizar el juego. (Estirar y Comprimir, Anticipación, Acciones Complementarias y Superpuestas)
+        - PARTE 5: Terminar la animación y cerrar el lienzo. (Puesta en Escena)
 """
 # from src.graphics import Canvas as Lienzo
 # from stanfordpy.graphics import Canvas as Lienzo
@@ -54,74 +51,73 @@ ALTO_MAX_Y = 800
 def main():
     """main ejecuta el programa principal
     """
-    # TODO PARTE 1: Crear un lienzo.
+    # TODO PARTE 1: Crear un lienzoy y pelota
     # crear el lienzo con dimensiones
     arena = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
-    # TODO PARTE 2: Dibujar formas básicas (círculos).
-    # posicionar la pelota en el centro del lienzo
+
+    # posicion de la pelota en el centro del lienzo
     pos_pelota_x = ANCHO_MAX_X // 2
     pos_pelota_y = ALTO_MAX_Y // 2
+
     # color de la pelota
     color = "azul"
 
-    # color = arena.get_random_color()
     # crear la pelota con posicion, radio y color
-    # IMPORTANTE: en local el color es con fill, en WEB IDE es una propiedad
-    # TODO PARTE 3: Aplicar geometría (Centrar elementos en el lienzo).
     pelota = arena.crear_ovalo(pos_pelota_x,
                                pos_pelota_y,
                                pos_pelota_x + RADIO_PELOTA,
                                pos_pelota_y + RADIO_PELOTA,
                                color=color)
+
+    # TODO PARTE 2: definir variables de juegoq
     # condicion para continuar el juego
     en_juego = True
 
     # definir la velocidad inicial de la pelota
-    _dx = VEL_PELOTA_X
-    _dy = VEL_PELOTA_Y
+    vel_x = VEL_PELOTA_X
+    vel_y = VEL_PELOTA_Y
+
     # ciclo de juego
-    # TODO PARTE 5: Aplicar un bucle para crear la animación.
+    # TODO PARTE 3: Aplicar un ciclo para crear la animación.
     while en_juego:
         # invoco la funcion moverse del lienzo
-        arena.mover(pelota, _dx, _dy)
+        arena.mover(pelota, vel_x, vel_y)
+
         # recupero la posicion de la pelota del lienzo
-        _px = arena.get_left_x(pelota)
-        _py = arena.get_top_y(pelota)
-        # print(f"posicion x: {_px}, posicion y: {_py}")
+        pos_x = arena.obtener_x_izquierda(pelota)
+        pos_y = arena.obtener_y_superior(pelota)
+        # print(f"posicion x: {pos_x}, posicion y: {pos_y}")
 
         # pausa entre fotogramas
         esperar(PAUSA)
 
-        # condicion de colision
-        # TODO PARTE 6: Aplicar condiciones para detectar colisiones y rebotar.
-        # 1) si colisiona con el borde derecho
-        if _px > ANCHO_MAX_X - RADIO_PELOTA:
-            # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
-            _dx = _dx * -1
+        # condiciones de colision
+        # TODO PARTE 4: implementar detectar colisiones y rebotar.
 
-        # 2) si colisiona con el borde inferior
-        if _py > ALTO_MAX_Y - RADIO_PELOTA:
+        # 1) si choca con el borde derecho
+        if pos_x > ANCHO_MAX_X - RADIO_PELOTA:
+            # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
+            vel_x = vel_x * -1
+
+        # 2) si choca con el borde inferior
+        if pos_y > ALTO_MAX_Y - RADIO_PELOTA:
             # ir hacia arriba, teniendo en cuenta el radio de la pelota
-            _dy = _dy * -1
+            vel_y = vel_y * -1
             # condicion para terminar el juego, si toca el borde inferior
             en_juego = False
 
-        # 3) si colisiona con el borde izquierdo
-        if _px < 0.0:
+        # 3) si choca con el borde izquierdo
+        if pos_x < 0.0:
             # ir hacia la derecha
-            _dx = _dx * -1
+            vel_x = vel_x * -1
 
-        # 4) si colisiona con el borde superior
-        if _py < 0.0:
+        # 4) si choca con el borde superior
+        if pos_y < 0.0:
             # ir hacia abajo
-            _dy = _dy * -1
-
-        # actualizar el lienzo
-        # IMPORTANTE: solo se necesita en local
-        # lienzo.update()
+            vel_y = vel_y * -1
 
     # finalizar el juego
-    # TODO PARTE 7: Terminar la animación y cerrar el lienzo.
+    # TODO PARTE 5: Terminar la animación y cerrar el lienzo.
     arena.crear_texto(ANCHO_MAX_X // 2,
                       ALTO_MAX_Y // 2,
                       "¡El Juego a Terminado!",
