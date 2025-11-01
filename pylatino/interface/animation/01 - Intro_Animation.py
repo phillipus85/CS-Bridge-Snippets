@@ -32,8 +32,8 @@ from stanfordpy.graphics import Lienzo
 from time import sleep as esperar
 
 # dimeniones del lienzo
-ANCHO_MAX_X = 500
-ALTO_MAX_Y = 800
+ANCHO_MAX_X = 300
+ALTO_MAX_Y = 500
 
 # Radio de la pelota.
 RADIO_PELOTA = 40
@@ -104,7 +104,7 @@ def main():
             # ir hacia arriba, teniendo en cuenta el radio de la pelota
             vel_pelota_y = vel_pelota_y * -1
             # condicion para terminar el juego, si toca el borde inferior
-            en_juego = False
+            # en_juego = False
 
         # 3) si choca con el borde izquierdo
         if pos_x < 0.0:
