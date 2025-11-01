@@ -31,21 +31,21 @@ from stanfordpy.graphics import Lienzo
 # from graphics import Lienzo
 from time import sleep as esperar
 
-# Radio de la pelota.
-RADIO_PELOTA = 40
-
-# Pausa entre los fotogramas, en segundos.
-PAUSA = 1 / 60
-
-# La velocidad de la pelota en la dirección x.
-VEL_PELOTA_X = -5
-
-# La velocidad de la pelota en la dirección y.
-VEL_PELOTA_Y = -5
-
 # dimeniones del lienzo
 ANCHO_MAX_X = 500
 ALTO_MAX_Y = 800
+
+# Radio de la pelota.
+RADIO_PELOTA = 40
+
+# La velocidad inicial de los objetos en la dirección x.
+VEL_INICIAL_X = 5
+
+# La velocidad inicial de los objetos en la dirección y.
+VEL_INICIAL_Y = 5
+
+# Pausa entre los fotogramas, contado en segundos.
+PAUSA = 1 / 60
 
 
 def main():
@@ -74,14 +74,14 @@ def main():
     en_juego = True
 
     # definir la velocidad inicial de la pelota
-    vel_x = VEL_PELOTA_X
-    vel_y = VEL_PELOTA_Y
+    vel_pelota_x = VEL_INICIAL_X
+    vel_pelota_y = VEL_INICIAL_Y
 
     # ciclo de juego
     # TODO PARTE 3: Aplicar un ciclo para crear la animación.
     while en_juego:
         # invoco la funcion moverse del lienzo
-        arena.mover(pelota, vel_x, vel_y)
+        arena.mover(pelota, vel_pelota_x, vel_pelota_y)
 
         # recupero la posicion de la pelota del lienzo
         pos_x = arena.obtener_x_izquierda(pelota)
@@ -97,24 +97,24 @@ def main():
         # 1) si choca con el borde derecho
         if pos_x > ANCHO_MAX_X - RADIO_PELOTA:
             # ir hacia la izquierda, teniendo en cuenta el radio de la pelota
-            vel_x = vel_x * -1
+            vel_pelota_x = vel_pelota_x * -1
 
         # 2) si choca con el borde inferior
         if pos_y > ALTO_MAX_Y - RADIO_PELOTA:
             # ir hacia arriba, teniendo en cuenta el radio de la pelota
-            vel_y = vel_y * -1
+            vel_pelota_y = vel_pelota_y * -1
             # condicion para terminar el juego, si toca el borde inferior
             en_juego = False
 
         # 3) si choca con el borde izquierdo
         if pos_x < 0.0:
             # ir hacia la derecha
-            vel_x = vel_x * -1
+            vel_pelota_x = vel_pelota_x * -1
 
         # 4) si choca con el borde superior
         if pos_y < 0.0:
             # ir hacia abajo
-            vel_y = vel_y * -1
+            vel_pelota_y = vel_pelota_y * -1
 
     # finalizar el juego
     # TODO PARTE 5: Terminar la animación y cerrar el lienzo.
