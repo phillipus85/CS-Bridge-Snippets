@@ -27,7 +27,7 @@ def main():
                               pos_y_titulo,
                               "HORA DE PROGRAMAR: Geométrico!",
                               fuente="consolas",
-                              color="rojo",
+                              color="verde",
                               tamano=24,
                               ancla="nw",)
 
