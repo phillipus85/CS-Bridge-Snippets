@@ -8,7 +8,7 @@ ANCHO_LIENZO = 550
 ALTO_LIENZO = 550
 
 DIAMETRO_CIRCULO = 160
-# usar radio del círculo
+# usar radio del círculo para calcular los otros parametros geometricos
 LADO_CUADRADO = (2)**(1 / 2) * (DIAMETRO_CIRCULO // 2)
 HIPO_TRIANGULO = (3)**(1 / 2) * (DIAMETRO_CIRCULO // 2)
 ALTO_TRIANGULO = (3)**(1 / 2) / 2 * HIPO_TRIANGULO
@@ -30,7 +30,6 @@ def main():
                               color="rojo",
                               tamano=24,
                               ancla="nw",)
-    #   jugar con el tamanho y el ancla=["N","S","NE", ...]
 
     # posición del círculo
     pos_x_circulo = (ANCHO_LIENZO - DIAMETRO_CIRCULO) // 2
