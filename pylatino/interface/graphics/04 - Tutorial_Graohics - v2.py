@@ -10,9 +10,9 @@ ALTO_LIENZO = 550
 DIAMETRO_CIRCULO = 160
 # usar radio del círculo para calcular los otros parametros geometricos
 LADO_CUADRADO = (2)**(1 / 2) * (DIAMETRO_CIRCULO // 2)
-HIPO_TRIANGULO = (3)**(1 / 2) * (DIAMETRO_CIRCULO // 2)
-ALTO_TRIANGULO = (3)**(1 / 2) / 2 * HIPO_TRIANGULO
-BASE_TRIANGULO = HIPO_TRIANGULO / 2
+HIPO_TRIANGULO_1 = (3)**(1 / 2) * (DIAMETRO_CIRCULO // 2)
+ALTO_TRIANGULO_2 = (3)**(1 / 2) / 2 * HIPO_TRIANGULO_1
+BASE_TRIANGULO_2 = HIPO_TRIANGULO_1 / 2
 
 
 def main():
@@ -58,10 +58,10 @@ def main():
     # crear el triangulo/poligono de 3 lados inscrito
     pos_x_punto_a_triangulo = ANCHO_LIENZO // 2
     pos_y_punto_a_triangulo = (ALTO_LIENZO - DIAMETRO_CIRCULO) // 2
-    pos_x_punto_b_triangulo = ANCHO_LIENZO // 2 + BASE_TRIANGULO
-    pos_y_punto_b_triangulo = (ALTO_LIENZO - DIAMETRO_CIRCULO) // 2 + ALTO_TRIANGULO
-    pos_x_punto_c_triangulo = ANCHO_LIENZO // 2 - BASE_TRIANGULO
-    pos_y_punto_c_triangulo = (ALTO_LIENZO - DIAMETRO_CIRCULO) // 2 + ALTO_TRIANGULO
+    pos_x_punto_b_triangulo = ANCHO_LIENZO // 2 + BASE_TRIANGULO_2
+    pos_y_punto_b_triangulo = (ALTO_LIENZO - DIAMETRO_CIRCULO) // 2 + ALTO_TRIANGULO_2
+    pos_x_punto_c_triangulo = ANCHO_LIENZO // 2 - BASE_TRIANGULO_2
+    pos_y_punto_c_triangulo = (ALTO_LIENZO - DIAMETRO_CIRCULO) // 2 + ALTO_TRIANGULO_2
 
     print(pos_x_punto_a_triangulo, pos_y_punto_a_triangulo)
     print(pos_x_punto_b_triangulo, pos_y_punto_b_triangulo)
@@ -75,7 +75,7 @@ def main():
 
     esperar(1)
     # cerrar el lienzo
-    # hoja.mainloop()
+    hoja.mainloop()
 
 if __name__ == '__main__':
     main()
