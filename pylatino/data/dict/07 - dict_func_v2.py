@@ -31,6 +31,9 @@ def main():
     }
     print("* Diccionario (titulo: autor):")
     print("\tdict:", autores_por_titulo)
+    print("\tTipo:", type(autores_por_titulo))
+    print("\tCantidad de elementos:", len(autores_por_titulo))
+    print("\tAcceso por llave (Rayuela):", autores_por_titulo["Rayuela"])
 
     # TODO PARTE 2: propiedades del diccionario: keys, values, items
     print("\n--- PARTE 2: Acceso y modificación directa ---")
@@ -57,10 +60,10 @@ def main():
     print("\n* Modificando los títulos a mayúsculas:")
     for titulo in autores_por_titulo:
         print("\tTítulo (sinónimo):", titulo)
-        libro = autores_por_titulo[titulo]
-        print("\tLibro obtenido:", libro)
-        autores_por_titulo[titulo] = libro.upper()
-        print("\tLibro modificado:", autores_por_titulo[titulo])
+        autor = autores_por_titulo[titulo]
+        print("\tAutor obtenido:", autor)
+        autores_por_titulo[titulo] = autor.upper()
+        print("\tAutor modificado:", autores_por_titulo[titulo])
 
     print("\nAhora los autores:", autores_por_titulo)
 
