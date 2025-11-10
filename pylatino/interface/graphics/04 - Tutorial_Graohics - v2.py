@@ -75,7 +75,7 @@ def main():
 
     esperar(1)
     # cerrar el lienzo
-    hoja.mainloop()
+    # hoja.mainloop()
 
 if __name__ == '__main__':
     main()
