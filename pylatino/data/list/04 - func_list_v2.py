@@ -1,5 +1,5 @@
 ﻿"""
-Este modulo es el codigo guia para los recorridos de lista de pylatino 2025.
+Ejemplo guia para los recorridos de lista para pylatino 2025.
 
 RESUMEN DEL MÓDULO
     Este módulo es una introducción a las listas en Python e incluye:
@@ -7,6 +7,7 @@ RESUMEN DEL MÓDULO
         - PARTE 2: Relacionar con otros comandos python.
         - PARTE 3: Recorrer elementos de una lista.
         - PARTE 4: Funciones con listas.
+
 NOTAS:
     - No hay elementos duplicados en una lista.
     - Las listas son mutables, lo que significa que se pueden modificar después de su creación.

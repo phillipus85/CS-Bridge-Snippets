@@ -1,5 +1,5 @@
 ﻿"""
-Este tutorial es el código guía para los conceptos de animación de Pylatino 2025.
+Código guía para los conceptos de animación en Pylatino 2025.
 
 RESUMEN DEL TUTORIAL:
     Este módulo es una introducción a los conceptos de animación de Stanford en Python e incluye:

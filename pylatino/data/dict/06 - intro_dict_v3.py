@@ -1,5 +1,5 @@
 ﻿"""
-Este modulo es el codigo guia para los conceptos de diccionario de pylatino 2025.
+Ejemplo guia para los conceptos fundmentales de diccionario para pylatino 2025.
 
 RESUMEN DEL MÓDULO
     Este módulo introduce los diccionarios en Python e incluye:

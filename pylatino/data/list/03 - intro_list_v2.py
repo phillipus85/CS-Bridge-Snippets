@@ -1,5 +1,5 @@
 ﻿"""
-Este modulo es el codigo guia para los conceptos de lista de pylatino 2025.
+Ejemplo guia para los conceptos basicos de lista para pylatino 2025.
 
 RESUMEN DEL MÓDULO
     Este módulo es una introducción a las listas en Python e incluye:
