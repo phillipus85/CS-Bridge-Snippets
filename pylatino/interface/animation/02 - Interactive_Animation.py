@@ -40,7 +40,7 @@ ALTO_MAX_Y = 500
 DIAMETRO_PELOTA = 40
 
 # dimensiones de la paleta
-LARGO_PALETA = 60
+ANCHO_PALETA = 60
 ALTO_PALETA = 20
 
 # La velocidad inicial de los objetos en la dirección x.
@@ -138,6 +138,24 @@ def mover_objeto(lienzo: Lienzo, objeto: str, dx: int, dy: int) -> None:
     lienzo.moverse(objeto, dx, dy)
 
 
+def mover_paleta(lienzo: Lienzo, paleta: str) -> None:
+    """mover_paleta() mueve la paleta en el lienzo.
+
+    Args:
+        lienzo (Lienzo): es el espacio de dibujo interactivo.
+        objeto (Rectangulo): es el objeto a mover.
+    """
+    # obtener la posicion del mouse en x
+    x = lienzo.obtener_mouse_x()
+    # limitar el movimiento de la paleta dentro del lienzo
+    x = max(ANCHO_PALETA // 2, x)
+    x = min(lienzo.obtener_anchura_lienzo() - ANCHO_PALETA // 2, x)
+    # solo se mueve horizontalmente en x
+    lienzo.mover_hacia(paleta,
+                       x - ANCHO_PALETA // 2,
+                       lienzo.obtener_y_sup(paleta))
+
+
 def verificar_colisiones_arena(lienzo: Lienzo,
                                objeto: str,
                                pos_x: float,
@@ -199,7 +217,6 @@ def verificar_colisiones_objetos(lienzo: Lienzo, objeto: str) -> list:
     return colisiones
 
 
-
 def main():
     """main ejecuta el programa principal
     """
@@ -208,8 +225,8 @@ def main():
     arena = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
 
     # posicion de la disco en el centro del lienzo
-    p_disco_x = ANCHO_MAX_X // 2
-    p_disco_y = ALTO_MAX_Y // 2
+    px_disco = ANCHO_MAX_X // 2
+    py_disco = ALTO_MAX_Y // 2
 
     # color de la disco
     color_disco = "azul"
@@ -218,83 +235,94 @@ def main():
 
     # crear la disco con posicion, radio y color
     disco = crear_pelota(arena,
-                          p_disco_x,
-                          p_disco_y,
-                          DIAMETRO_PELOTA,
-                          color_disco,
-                          contorno)
+                         px_disco,
+                         py_disco,
+                         DIAMETRO_PELOTA,
+                         color_disco,
+                         contorno)
 
     # TODO PARTE 2: definir variables de juegoq
     # condicion para continuar el juego
     en_juego = True
 
     # definir la velocidad inicial de la disco
-    v_disco_x = VEL_INICIAL_X
-    v_disco_y = VEL_INICIAL_Y
+    vx_disco = VEL_INICIAL_X
+    vy_disco = VEL_INICIAL_Y
 
     # posicion inicial de la paleta uno
-    p_pala_a_x = (ANCHO_MAX_X - LARGO_PALETA) // 2
-    p_pala_a_y = ALTO_MAX_Y - ALTO_PALETA - 10
+    px_pala_a = (ANCHO_MAX_X - ANCHO_PALETA) // 2
+    py_pala_a = ALTO_MAX_Y - ALTO_PALETA - 10
 
     # crear la paleta uno
     pala_a = crear_paleta(arena,
-                          p_pala_a_x,
-                          p_pala_a_y,
-                          LARGO_PALETA,
+                          px_pala_a,
+                          py_pala_a,
+                          ANCHO_PALETA,
                           ALTO_PALETA,
                           color_fig="negro",
                           contorno_fig="celeste")
 
     # posicion inicial de la paleta dos
-    p_pala_b_x = (ANCHO_MAX_X - LARGO_PALETA) // 2
-    p_pala_b_y = 10
+    px_pala_b = (ANCHO_MAX_X - ANCHO_PALETA) // 2
+    py_pala_b = 10
     # crear la paleta dos
     pala_b = crear_paleta(arena,
-                          p_pala_b_x,
-                          p_pala_b_y,
-                          LARGO_PALETA,
+                          px_pala_b,
+                          py_pala_b,
+                          ANCHO_PALETA,
                           ALTO_PALETA,
                           color_fig="negro",
                           contorno_fig="rojo")
 
-    v_pala_b_x = 3
-    v_pala_b_y = 0
+    vx_pala_b = 3
+    vy_pala_b = 0
 
     # ciclo de juego
     # TODO PARTE 3: Aplicar un ciclo para crear la animación.
     while en_juego:
         # invoco la funcion moverse del lienzo
-        mover_objeto(arena, disco, v_disco_x, v_disco_y)
+        mover_objeto(arena, disco, vx_disco, vy_disco)
 
         # recupero la posicion de la disco del lienzo
-        p_disco_x, p_disco_y = obtener_posicion_objeto(arena,
-                                                       disco)
+        px_disco, py_disco = obtener_posicion_objeto(arena, disco)
 
         # condiciones de colision
         # TODO PARTE 4: implementar detectar colisiones y rebotar.
-        v_disco_x, v_disco_y, en_juego = verificar_colisiones_arena(arena,
-                                                                    disco,
-                                                                    p_disco_x,
-                                                                    p_disco_y,
-                                                                    v_disco_x,
-                                                                    v_disco_y,
-                                                                    en_juego)
+        vx_disco, vy_disco, en_juego = verificar_colisiones_arena(arena,
+                                                                  disco,
+                                                                  px_disco,
+                                                                  py_disco,
+                                                                  vx_disco,
+                                                                  vy_disco,
+                                                                  en_juego)
 
         # mover la paleta dos automaticamente
-        mover_objeto(arena, pala_b, v_pala_b_x, v_pala_b_y)
+        mover_objeto(arena, pala_b, vx_pala_b, vy_pala_b)
 
         # obtener la posicion de la paleta dos
-        p_pala_b_x, p_pala_b_y = obtener_posicion_objeto(arena,
-                                                         pala_b)
+        px_pala_b, py_pala_b = obtener_posicion_objeto(arena,
+                                                       pala_b)
 
         # verificar colision de la paleta dos con los bordes
-        v_pala_b_x, v_pala_b_y, _ = verificar_colisiones_arena(arena,
-                                                               pala_b,
-                                                               p_pala_b_x,
-                                                               p_pala_b_y,
-                                                               v_pala_b_x,
-                                                               v_pala_b_y,
-                                                               True)
+        vx_pala_b, vy_pala_b, _ = verificar_colisiones_arena(arena,
+                                                             pala_b,
+                                                             px_pala_b,
+                                                             py_pala_b,
+                                                             vx_pala_b,
+                                                             vy_pala_b,
+                                                             True)
+
+        # mover la paleta uno con el mouse
+        mover_paleta(arena, pala_a)
+
+        # detectar colisiones de la disco con las paletas
+        colisiones = verificar_colisiones_objetos(arena, disco)
+        print(f"Colisiones: {colisiones}")
+
+        if len(colisiones) > 1:
+            vy_disco = -1 * vy_disco
+            if colisiones[0] == pala_a or colisiones[0] == pala_b:
+                vy_disco = -1 * vy_disco
 
         # pausa entre fotogramas
         esperar(PAUSA)
