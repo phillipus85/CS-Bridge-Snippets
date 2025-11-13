@@ -68,6 +68,7 @@ def main():
                                pos_pelota_x + RADIO_PELOTA,
                                pos_pelota_y + RADIO_PELOTA,
                                color=color)
+    print(type(pelota))
 
     # TODO PARTE 2: definir variables de juegoq
     # condicion para continuar el juego
