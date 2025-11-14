@@ -2,12 +2,16 @@
 Este tutorial es el código guía para los conceptos de animación de Pylatino 2025.
 
 RESUMEN DEL TUTORIAL:
-    Este módulo es una introducción a los conceptos de animación de Stanford en Python e incluye:
-        - PARTE 1: Escribir funcion para crear la pelota y las paletas.
-        - PARTE 2: Escribir funcion para mover la pelota y las paletas.
-        - PARTE 3: Crear funcion para detectar colisiones y rebotar.
-        - PARTE 4: Escribir funcion para obtener la posición de los objetos.
-        - PARTE 5: Implementar como finalizar el juego.
+    Codigo guía para crear una animación interactiva simple en Python usando el módulo StanfordPy
+        - PARTE 1: Escribir las funciones para crear objetos (pelota y paletas).
+        - PARTE 2: Escribir la función para obtener la posición de los objetos.
+        - PARTE 3: Escribir las funciones para mover los objetos.
+        - PARTE 4: Escribir la función para detectar colisiones y rebotar con los bordes.
+        - PARTE 5: Escribir la función detectar colisiones entre objetos (pelota y paletas).
+        - PARTE 6: Controlar la paleta con el mouse.
+        - PARTE 7: Implementar el ciclo principal del juego
+        - PARTE 8: Mover la paleta enemiga automáticamente.
+        - PARTE 9: Implementar como finalizar el juego.
 
 NOTAS:
     - Principios de animacion y diseño a usar:
@@ -44,15 +48,20 @@ ANCHO_PALETA = 60
 ALTO_PALETA = 20
 
 # La velocidad inicial de los objetos en la dirección x.
-VEL_INICIAL_X = 5
+VEL_INICIAL_X = 4
 
 # La velocidad inicial de los objetos en la dirección y.
-VEL_INICIAL_Y = 5
+VEL_INICIAL_Y = 4
 
 # Pausa entre los fotogramas, contado en segundos.
 PAUSA = 1 / 60
 
 
+######################################################
+# FUNCIONES PARA CREAR OBJETOS
+######################################################
+
+# TODO PARTE 1: Funciones para crear un el disco y las palas de juego.
 def crear_pelota(lienzo: Lienzo,
                  pos_x: int,
                  pos_y: int,
@@ -67,6 +76,7 @@ def crear_pelota(lienzo: Lienzo,
         pos_y (int): La posición y inicial de la pelota.
         radio (int): El radio de la pelota.
         color_fig (str): El color de la pelota.
+        contorno_fig (str): El color del contorno de la pelota.
 
     Returns:
         objeto_pelota (int): El objeto pelota creado en el lienzo.
@@ -110,6 +120,12 @@ def crear_paleta(lienzo: Lienzo,
     return paleta
 
 
+######################################################
+# FUNCIONES PARA OBTENER LA POSICION DE LOS OBJETOS
+######################################################
+
+# TODO PARTE 2: Funciones para obtener la posición de los objetos en el lienzo.
+
 def obtener_posicion_objeto(lienzo: Lienzo, objeto: str) -> tuple:
     """obtener_posicion obtiene la posición (x, y) del objeto en el lienzo.
 
@@ -126,18 +142,24 @@ def obtener_posicion_objeto(lienzo: Lienzo, objeto: str) -> tuple:
     return (x, y)
 
 
-def mover_objeto(lienzo: Lienzo, objeto: str, dx: int, dy: int) -> None:
+######################################################
+# FUNCIONES PARA MOVER OBJETOS
+######################################################
+
+# TODO PARTE 3: Funciones para mover los objetos en el lienzo.
+def mover_objeto(lienzo: Lienzo, objeto: str, vel_x: int, vel_y: int) -> None:
     """mover_objeto() mueve el objeto en el lienzo.
 
     Args:
         lienzo (Lienzo): es el espacio de dibujo interactivo.
         objeto (Ovalo): es el objeto a mover.
-        dx (int): es el desplazamiento en x.
-        dy (int): es el desplazamiento en y.
+        vel_x (int): es el desplazamiento en x.
+        vel_y (int): es el desplazamiento en y.
     """
-    lienzo.moverse(objeto, dx, dy)
+    lienzo.moverse(objeto, vel_x, vel_y)
 
 
+# TODO PARTE 6: Funciones para mover la paleta con el mouse.
 def mover_paleta(lienzo: Lienzo, paleta: str) -> None:
     """mover_paleta() mueve la paleta en el lienzo.
 
@@ -155,6 +177,12 @@ def mover_paleta(lienzo: Lienzo, paleta: str) -> None:
                        x - ANCHO_PALETA // 2,
                        lienzo.obtener_y_sup(paleta))
 
+
+######################################################
+# FUNCIONES PARA DETECTAR COLISIONES
+######################################################
+
+# TODO PARTE 4: Funciones para detectar colisiones con los bordes del lienzo.
 
 def verificar_colisiones_arena(lienzo: Lienzo,
                                objeto: str,
@@ -189,9 +217,9 @@ def verificar_colisiones_arena(lienzo: Lienzo,
     # 2) si choca con el borde inferior
     if pos_y > alto_lienzo - alto_objeto:
         vel_y = vel_y * -1
-        vel_y = 0
-        vel_x = 0
-        activo = False
+        # vel_y = 0
+        # vel_x = 0
+        # activo = False
 
     # 3) si choca con el borde izquierdo
     if pos_x < 0.0:
@@ -204,15 +232,29 @@ def verificar_colisiones_arena(lienzo: Lienzo,
     return (vel_x, vel_y, activo)
 
 
-def verificar_colisiones_objetos(lienzo: Lienzo, objeto: str) -> list:
+# TODO PARTE 5: Funciones para detectar colisiones entre objetos.
+def verificar_colisiones_objeto(lienzo: Lienzo, objeto: str) -> list:
+    """verificar_colisiones_objeto verifica las colisiones del objeto con otros objetos en el lienzo.
+
+    Args:
+        lienzo (Lienzo): es el espacio de dibujo interactivo.
+        objeto (str): es el objeto a verificar colisiones.
+
+    Returns:
+        list: una lista con los IDs de los objetos que colisionan con el objeto dado.
+    """
+    # obtener las coordenadas del objeto para verificar colisiones (x1, y1)
     x_izq = lienzo.obtener_x_izq(objeto)
     y_sup = lienzo.obtener_y_sup(objeto)
+    # obtener dimensiones del objeto para verificar colisiones (x2, y2)
     ancho = lienzo.obtener_ancho(objeto)
     alto = lienzo.obtener_altura(objeto)
+    # encontrar colisiones con otros objetos en el lienzo
     colisiones = lienzo.encontrar_superposiciones(x_izq,
                                                   y_sup,
                                                   x_izq + ancho,
                                                   y_sup + alto)
+    # convertir el resultado a una lista
     colisiones = list(colisiones)
     return colisiones
 
@@ -220,7 +262,6 @@ def verificar_colisiones_objetos(lienzo: Lienzo, objeto: str) -> list:
 def main():
     """main ejecuta el programa principal
     """
-    # TODO PARTE 1: Crear un lienzo y disco
     # crear el lienzo con dimensiones
     arena = Lienzo(ANCHO_MAX_X, ALTO_MAX_Y)
 
@@ -241,7 +282,6 @@ def main():
                          color_disco,
                          contorno)
 
-    # TODO PARTE 2: definir variables de juegoq
     # condicion para continuar el juego
     en_juego = True
 
@@ -274,11 +314,17 @@ def main():
                           color_fig="negro",
                           contorno_fig="rojo")
 
+    # definir la velocidad inicial de la paleta dos
     vx_pala_b = 3
     vy_pala_b = 0
 
+    # imprimir objetos creados
+    print(f"Disco ID: {disco}")
+    print(f"Paleta A (Azul) ID: {pala_a}")
+    print(f"Paleta B (Rojo) ID: {pala_b}")
+
+    # TODO PARTE 7: Implementar el ciclo principal del juego
     # ciclo de juego
-    # TODO PARTE 3: Aplicar un ciclo para crear la animación.
     while en_juego:
         # invoco la funcion moverse del lienzo
         mover_objeto(arena, disco, vx_disco, vy_disco)
@@ -287,7 +333,6 @@ def main():
         px_disco, py_disco = obtener_posicion_objeto(arena, disco)
 
         # condiciones de colision
-        # TODO PARTE 4: implementar detectar colisiones y rebotar.
         vx_disco, vy_disco, en_juego = verificar_colisiones_arena(arena,
                                                                   disco,
                                                                   px_disco,
@@ -296,6 +341,7 @@ def main():
                                                                   vy_disco,
                                                                   en_juego)
 
+        # TODO PARTE 8: Mover la paleta enemiga automáticamente.
         # mover la paleta dos automaticamente
         mover_objeto(arena, pala_b, vx_pala_b, vy_pala_b)
 
@@ -316,10 +362,11 @@ def main():
         mover_paleta(arena, pala_a)
 
         # detectar colisiones de la disco con las paletas
-        colisiones = verificar_colisiones_objetos(arena, disco)
-        print(f"Colisiones: {colisiones}")
+        colisiones = verificar_colisiones_objeto(arena, disco)
+        # print(f"Colisiones: {colisiones}")
 
         if len(colisiones) > 1:
+            print(f"Colision detectada: {colisiones}")
             vy_disco = -1 * vy_disco
             if colisiones[0] == pala_a or colisiones[0] == pala_b:
                 vy_disco = -1 * vy_disco
@@ -327,11 +374,11 @@ def main():
         # pausa entre fotogramas
         esperar(PAUSA)
 
+    # TODO PARTE 9: Implementar como finalizar el juego.
     # finalizar el juego
-    # TODO PARTE 5: Terminar la animación y cerrar el lienzo.
     arena.crear_texto(ANCHO_MAX_X // 2,
                       ALTO_MAX_Y // 2,
-                      "¡El Juego a Terminado!",
+                      "¡Fin del Juego!",
                       fuente="Arial",
                       tamano=24,
                       color="rojo",
