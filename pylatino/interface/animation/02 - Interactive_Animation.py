@@ -23,11 +23,15 @@ NOTAS:
         - Ritmo
 
     - la relación entre las partes y los principios de animación son:
-        - PARTE 1: Crear un lienzo Y una pelota para animar. (Puesta en Escena)
-        - PARTE 2: Definir variables de juego. (Acción Directa y Pose a Pose)
-        - PARTE 3: Aplicar un ciclo para crear la animación. (Ritmo)
-        - PARTE 4: Implementar detección de colisiones, rebote y como finalizar el juego. (Estirar y Comprimir, Anticipación, Acciones Complementarias y Superpuestas)
-        - PARTE 5: Terminar la animación y cerrar el lienzo. (Puesta en Escena)
+        - PARTE 1 – Puesta en Escena: Crear los objetos define quién aparece y cómo inicia la escena.
+        - PARTE 2 – Acción Directa y Pose a Pose: Mover los objetos controla su desplazamiento cuadro a cuadro.
+        - PARTE 3 – Puesta en Escena: Obtener posiciones permite ubicar correctamente cada elemento en escena.
+        - PARTE 4 – Estirar/Comprimir + Anticipación: Detectar bordes y rebotar simula deformación y prepara visualmente el cambio de dirección.
+        - PARTE 5 – Acciones Complementarias y Superpuestas: Las colisiones entre objetos coordinan reacciones simultáneas.
+        - PARTE 6 – Puesta en Escena: Terminar el juego cierra la narrativa visual con un mensaje claro.
+        - PARTE 7 – Acción Directa + Ritmo: Controlar la paleta con el mouse introduce movimiento fluido guiado por el usuario.
+        - PARTE 8 – Ritmo + Acciones Complementarias: La paleta automática agrega un movimiento repetitivo que interactúa con la pelota.
+        - PARTE 9 – Ritmo: El ciclo del juego mantiene la animación viva con un ritmo constante de actualización.
 """
 # from src.graphics import Canvas as Lienzo
 # from stanfordpy.graphics import Canvas as Lienzo
