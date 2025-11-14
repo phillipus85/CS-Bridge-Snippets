@@ -365,6 +365,7 @@ def main():
         colisiones = verificar_colisiones_objeto(arena, disco)
         # print(f"Colisiones: {colisiones}")
 
+        # procesar colisiones
         if len(colisiones) > 1:
             print(f"Colision detectada: {colisiones}")
             vy_disco = -1 * vy_disco
