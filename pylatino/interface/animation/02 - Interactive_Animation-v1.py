@@ -23,15 +23,15 @@ NOTAS:
         - Ritmo
 
     - la relación entre las partes y los principios de animación son:
-        - PARTE 1 – Puesta en Escena: Crear los objetos define quién aparece y cómo inicia la escena.
-        - PARTE 2 – Acción Directa y Pose a Pose: Mover los objetos controla su desplazamiento cuadro a cuadro.
-        - PARTE 3 – Puesta en Escena: Obtener posiciones permite ubicar correctamente cada elemento en escena.
-        - PARTE 4 – Estirar/Comprimir + Anticipación: Detectar bordes y rebotar simula deformación y prepara visualmente el cambio de dirección.
-        - PARTE 5 – Acciones Complementarias y Superpuestas: Las colisiones entre objetos coordinan reacciones simultáneas.
-        - PARTE 6 – Puesta en Escena: Terminar el juego cierra la narrativa visual con un mensaje claro.
-        - PARTE 7 – Acción Directa + Ritmo: Controlar la paleta con el mouse introduce movimiento fluido guiado por el usuario.
-        - PARTE 8 – Ritmo + Acciones Complementarias: La paleta automática agrega un movimiento repetitivo que interactúa con la pelota.
-        - PARTE 9 – Ritmo: El ciclo del juego mantiene la animación viva con un ritmo constante de actualización.
+        1. Crear objetos -> Puesta en Escena
+        2. Obtener posición -> Puesta en Escena
+        3. Mover objetos -> Acción Directa y Pose a Pose
+        4. Rebotar en bordes -> Estirar/Comprimir + Anticipación
+        5. Colisiones entre objetos -> Acciones Complementarias/Superpuestas
+        6. Paleta con mouse -> Acción Directa + Ritmo
+        7. Ciclo del juego -> Ritmo
+        8. Paleta enemiga -> Ritmo + Acciones Complementarias
+        9. Final del juego -> Puesta en Escena
 """
 # from src.graphics import Canvas as Lienzo
 # from stanfordpy.graphics import Canvas as Lienzo
@@ -52,10 +52,10 @@ ANCHO_PALETA = 60
 ALTO_PALETA = 20
 
 # La velocidad inicial de los objetos en la dirección x.
-VEL_INICIAL_X = 4
+VEL_INICIAL_X = 5
 
 # La velocidad inicial de los objetos en la dirección y.
-VEL_INICIAL_Y = 4
+VEL_INICIAL_Y = 5
 
 # Pausa entre los fotogramas, contado en segundos.
 PAUSA = 1 / 60
@@ -193,8 +193,7 @@ def verificar_colisiones_arena(lienzo: Lienzo,
                                pos_x: float,
                                pos_y: float,
                                vel_x: int,
-                               vel_y: int,
-                               activo: bool) -> tuple:
+                               vel_y: int) -> tuple:
     """verificar_colisiones_arena() verifica la colisión con los extremos del lienzo.
 
     Args:
@@ -204,7 +203,6 @@ def verificar_colisiones_arena(lienzo: Lienzo,
         pos_y (float): posición y del objeto.
         vel_x (int): desplazamiento en x.
         vel_y (int): desplazamiento en y.
-        activo (bool): indica si el objeto está activo.
 
     Returns:
         tuple: una tupla con las nuevas velocidades y el estado activo del objeto (vel_x, vel_y, activo).
@@ -213,6 +211,7 @@ def verificar_colisiones_arena(lienzo: Lienzo,
     alto_lienzo = lienzo.obtener_altura_lienzo()
     largo_objeto = lienzo.obtener_ancho(objeto)
     alto_objeto = lienzo.obtener_altura(objeto)
+    activo = True
 
     # 1) si choca con el borde derecho
     if pos_x > ancho_lienzo - largo_objeto:
@@ -232,6 +231,9 @@ def verificar_colisiones_arena(lienzo: Lienzo,
     # 4) si choca con el borde superior
     if pos_y < 0.0:
         vel_y = vel_y * -1
+        # vel_y = 0
+        # vel_x = 0
+        # activo = False
 
     return (vel_x, vel_y, activo)
 
@@ -319,13 +321,13 @@ def main():
                           contorno_fig="rojo")
 
     # definir la velocidad inicial de la paleta dos
-    vx_pala_b = 3
+    vx_pala_b = 3.0
     vy_pala_b = 0
 
-    # imprimir objetos creados
-    print(f"Disco ID: {disco}")
-    print(f"Paleta A (Azul) ID: {pala_a}")
-    print(f"Paleta B (Rojo) ID: {pala_b}")
+    # # imprimir objetos creados
+    # print(f"Disco ID: {disco}")
+    # print(f"Paleta A (Azul) ID: {pala_a}")
+    # print(f"Paleta B (Rojo) ID: {pala_b}")
 
     # TODO PARTE 7: Implementar el ciclo principal del juego
     # ciclo de juego
@@ -342,8 +344,15 @@ def main():
                                                                   px_disco,
                                                                   py_disco,
                                                                   vx_disco,
-                                                                  vy_disco,
-                                                                  en_juego)
+                                                                  vy_disco)
+
+        # cambiar la velocidad de la paleta en el sentido de la disco
+        # si la disco esta a la derecha de la paleta
+        if px_disco + DIAMETRO_PELOTA // 2 > px_pala_b + ANCHO_PALETA // 2:
+            vx_pala_b = abs(vx_pala_b)
+        # si la disco esta a la izquierda de la paleta
+        elif px_disco + DIAMETRO_PELOTA // 2 < px_pala_b + ANCHO_PALETA // 2:
+            vx_pala_b = abs(vx_pala_b) * -1
 
         # TODO PARTE 8: Mover la paleta enemiga automáticamente.
         # mover la paleta dos automaticamente
@@ -359,8 +368,7 @@ def main():
                                                              px_pala_b,
                                                              py_pala_b,
                                                              vx_pala_b,
-                                                             vy_pala_b,
-                                                             True)
+                                                             vy_pala_b)
 
         # mover la paleta uno con el mouse
         mover_paleta(arena, pala_a)
@@ -371,7 +379,7 @@ def main():
 
         # procesar colisiones
         if len(colisiones) > 1:
-            print(f"Colision detectada: {colisiones}")
+            # print(f"Colision detectada: {colisiones}")
             vy_disco = -1 * vy_disco
             if colisiones[0] == pala_a or colisiones[0] == pala_b:
                 vy_disco = -1 * vy_disco
