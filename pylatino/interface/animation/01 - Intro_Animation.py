@@ -70,7 +70,7 @@ def main():
                                color=color)
     print(type(pelota))
 
-    # TODO PARTE 2: definir variables de juegoq
+    # TODO PARTE 2: definir variables de juego
     # condicion para continuar el juego
     en_juego = True
 
