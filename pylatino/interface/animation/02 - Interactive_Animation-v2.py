@@ -8,9 +8,9 @@ RESUMEN DEL TUTORIAL:
         - PARTE 3: Escribir las funciones para mover los objetos.
         - PARTE 4: Escribir la función para detectar colisiones y rebotar con los bordes.
         - PARTE 5: Escribir la función detectar colisiones entre objetos (pelota y paletas).
-        - PARTE 6: Controlar la paleta con el mouse.
+        - PARTE 6: Controlar la pala con el mouse.
         - PARTE 7: Implementar el ciclo principal del juego
-        - PARTE 8: Mover la paleta enemiga automáticamente.
+        - PARTE 8: Mover la pala enemiga automáticamente.
         - PARTE 9: Implementar como finalizar el juego.
 
 NOTAS:
@@ -45,11 +45,11 @@ ANCHO_MAX_X = 300
 ALTO_MAX_Y = 500
 
 # Radio de la pelota.
-DIAMETRO_PELOTA = 40
+DIAMETRO_DISCO = 40
 
-# dimensiones de la paleta
-ANCHO_PALETA = 60
-ALTO_PALETA = 20
+# dimensiones de la pala
+ANCHO_PALA = 60
+ALTO_PALA = 20
 
 # La velocidad inicial de los objetos en la dirección x.
 VEL_INICIAL_X = 5
@@ -90,27 +90,27 @@ def crear_disco(lienzo, pos_x, pos_y, diametro, color_fig, contorno_fig):
 
 
 def crear_pala(lienzo, pos_x, pos_y, largo, alto, color_fig, contorno_fig):
-    """crear_pala crea una paleta en el lienzo dado.
+    """crear_pala crea una pala en el lienzo dado.
 
     Args:
-        lienzo (Lienzo): El lienzo donde se crea la paleta.
-        pos_x (int): La posición x inicial de la paleta.
-        pos_y (int): La posición y inicial de la paleta.
-        largo (int): El largo de la paleta.
-        alto (int): El alto de la paleta.
-        color_fig (str): El color de la paleta.
-        contorno_fig (str): El color del contorno de la paleta.
+        lienzo (Lienzo): El lienzo donde se crea la pala.
+        pos_x (int): La posición x inicial de la pala.
+        pos_y (int): La posición y inicial de la pala.
+        largo (int): El largo de la pala.
+        alto (int): El alto de la pala.
+        color_fig (str): El color de la pala.
+        contorno_fig (str): El color del contorno de la pala.
 
     Returns:
-        objeto_paleta (int): El objeto paleta creado en el lienzo.
+        objeto_paleta (int): El objeto pala creado en el lienzo.
     """
-    paleta = lienzo.crear_rectangulo(pos_x,
-                                     pos_y,
-                                     pos_x + largo,
-                                     pos_y + alto,
-                                     color=color_fig,
-                                     contorno=contorno_fig)
-    return paleta
+    pala = lienzo.crear_rectangulo(pos_x,
+                                   pos_y,
+                                   pos_x + largo,
+                                   pos_y + alto,
+                                   color=color_fig,
+                                   contorno=contorno_fig)
+    return pala
 
 
 ######################################################
@@ -152,9 +152,9 @@ def mover_objeto(lienzo, objeto, vel_x, vel_y):
     lienzo.moverse(objeto, vel_x, vel_y)
 
 
-# TODO PARTE 6: Funciones para mover la paleta con el mouse.
-def mover_paleta(lienzo, paleta):
-    """mover_paleta() mueve la paleta horizontalmente en el lienzo.
+# TODO PARTE 6: Funciones para mover la pala con el mouse.
+def mover_pala(lienzo, pala):
+    """mover_pala() mueve la pala horizontalmente en el lienzo.
 
     Args:
         lienzo (Lienzo): es el espacio de dibujo interactivo.
@@ -162,13 +162,13 @@ def mover_paleta(lienzo, paleta):
     """
     # obtener la posicion del mouse en x
     x = lienzo.obtener_mouse_x()
-    # limitar el movimiento de la paleta dentro del lienzo
-    x = max(ANCHO_PALETA // 2, x)
-    x = min(lienzo.obtener_anchura_lienzo() - ANCHO_PALETA // 2, x)
+    # limitar el movimiento de la pala dentro del lienzo
+    x = max(ANCHO_PALA // 2, x)
+    x = min(lienzo.obtener_anchura_lienzo() - ANCHO_PALA // 2, x)
     # solo se mueve horizontalmente en x
-    lienzo.mover_hacia(paleta,
-                       x - ANCHO_PALETA // 2,
-                       lienzo.obtener_y_superior(paleta))
+    lienzo.mover_hacia(pala,
+                       x - ANCHO_PALA // 2,
+                       lienzo.obtener_y_superior(pala))
 
 
 ######################################################
@@ -182,7 +182,7 @@ def verificar_colisiones_arena(lienzo, objeto, pos_x, pos_y, vel_x, vel_y):
 
     Args:
         lienzo (Lienzo): es el espacio de dibujo interactivo.
-        objeto (Ovalo): es el objeto a mover.
+        objeto (Ovalo, Rectangulo): es el objeto a mover.
         pos_x (float): posición x del objeto.
         pos_y (float): posición y del objeto.
         vel_x (int): desplazamiento en x.
@@ -206,7 +206,7 @@ def verificar_colisiones_arena(lienzo, objeto, pos_x, pos_y, vel_x, vel_y):
         vel_y = vel_y * -1
         # vel_y = 0
         # vel_x = 0
-        # activo = False
+        activo = False
 
     # 3) si choca con el borde izquierdo
     if pos_x < 0.0:
@@ -217,7 +217,7 @@ def verificar_colisiones_arena(lienzo, objeto, pos_x, pos_y, vel_x, vel_y):
         vel_y = vel_y * -1
         # vel_y = 0
         # vel_x = 0
-        # activo = False
+        activo = False
 
     return (vel_x, vel_y, activo)
 
@@ -268,51 +268,51 @@ def main():
     disco = crear_disco(arena,
                         px_disco,
                         py_disco,
-                        DIAMETRO_PELOTA,
+                        DIAMETRO_DISCO,
                         color_disco,
                         contorno)
-
-    # condicion para continuar el juego
-    en_juego = True
 
     # definir la velocidad inicial de la disco
     vx_disco = VEL_INICIAL_X
     vy_disco = VEL_INICIAL_Y
 
-    # posicion inicial de la paleta uno
-    px_pala_a = (ANCHO_MAX_X - ANCHO_PALETA) // 2
-    py_pala_a = ALTO_MAX_Y - ALTO_PALETA - 10
+    # posicion inicial de la pala uno
+    px_pala_a = (ANCHO_MAX_X - ANCHO_PALA) // 2
+    py_pala_a = ALTO_MAX_Y - ALTO_PALA - 10
 
-    # crear la paleta uno, del usuario
+    # crear la pala uno, del usuario
     pala_a = crear_pala(arena,
                         px_pala_a,
                         py_pala_a,
-                        ANCHO_PALETA,
-                        ALTO_PALETA,
+                        ANCHO_PALA,
+                        ALTO_PALA,
                         color_fig="negro",
                         contorno_fig="celeste")
 
-    # posicion inicial de la paleta dos
-    px_pala_b = (ANCHO_MAX_X - ANCHO_PALETA) // 2
+    # posicion inicial de la pala dos
+    px_pala_b = (ANCHO_MAX_X - ANCHO_PALA) // 2
     py_pala_b = 10
 
-    # crear la paleta dos, del enemigo
+    # crear la pala dos, del enemigo
     pala_b = crear_pala(arena,
                         px_pala_b,
                         py_pala_b,
-                        ANCHO_PALETA,
-                        ALTO_PALETA,
+                        ANCHO_PALA,
+                        ALTO_PALA,
                         color_fig="negro",
                         contorno_fig="rojo")
 
-    # definir la velocidad inicial de la paleta dos
-    vx_pala_b = 4.5
+    # definir la velocidad inicial de la pala dos
+    vx_pala_b = 2.3
     vy_pala_b = 0
 
     # # imprimir objetos creados
     # print(f"Disco ID: {disco}")
     # print(f"Paleta A (Azul) ID: {pala_a}")
     # print(f"Paleta B (Rojo) ID: {pala_b}")
+
+    # condicion para continuar el juego
+    en_juego = True
 
     # TODO PARTE 7: Implementar el ciclo principal del juego
     # ciclo de juego
@@ -331,23 +331,23 @@ def main():
                                                                   vx_disco,
                                                                   vy_disco)
 
-        # cambiar la velocidad de la paleta en el sentido de la disco
-        # si la disco esta a la derecha de la paleta
-        if px_disco + DIAMETRO_PELOTA > px_pala_b + ANCHO_PALETA:
+        # cambiar la velocidad de la pala en el sentido de la disco
+        # si la disco esta a la derecha de la pala
+        if (px_disco + DIAMETRO_DISCO) // 2 > (px_pala_b + ANCHO_PALA) // 2:
             vx_pala_b = abs(vx_pala_b)
-        # si la disco esta a la izquierda de la paleta
-        elif px_disco + DIAMETRO_PELOTA < px_pala_b + ANCHO_PALETA:
+        # si la disco esta a la izquierda de la pala
+        elif (px_disco + DIAMETRO_DISCO) // 2 < (px_pala_b + ANCHO_PALA) // 2:
             vx_pala_b = abs(vx_pala_b) * -1
 
-        # TODO PARTE 8: Mover la paleta enemiga automáticamente.
-        # mover la paleta dos automaticamente
+        # TODO PARTE 8: Mover la pala enemiga automáticamente.
+        # mover la pala dos automaticamente
         mover_objeto(arena, pala_b, vx_pala_b, vy_pala_b)
 
-        # obtener la posicion de la paleta dos
+        # obtener la posicion de la pala dos
         px_pala_b, py_pala_b = obtener_posicion_objeto(arena,
                                                        pala_b)
 
-        # verificar colision de la paleta dos con los bordes
+        # verificar colision de la pala dos con los bordes
         vx_pala_b, vy_pala_b, _ = verificar_colisiones_arena(arena,
                                                              pala_b,
                                                              px_pala_b,
@@ -355,8 +355,8 @@ def main():
                                                              vx_pala_b,
                                                              vy_pala_b)
 
-        # mover la paleta uno con el mouse
-        mover_paleta(arena, pala_a)
+        # mover la pala uno con el mouse
+        mover_pala(arena, pala_a)
 
         # detectar colisiones de la disco con las paletas
         colisiones = verificar_colisiones_objeto(arena, disco)
