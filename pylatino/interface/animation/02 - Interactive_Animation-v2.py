@@ -176,7 +176,6 @@ def mover_pala(lienzo, pala):
 ######################################################
 
 # TODO PARTE 4: Funciones para detectar colisiones con los bordes del lienzo.
-
 def verificar_colisiones_arena(lienzo, objeto, pos_x, pos_y, vel_x, vel_y):
     """verificar_colisiones_arena() verifica la colisión con los extremos del lienzo, cambiando la dirección de las velocidades horizontal y vertical (x, y) si es necesario.
 
