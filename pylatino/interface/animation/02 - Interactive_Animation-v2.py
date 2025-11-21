@@ -245,7 +245,7 @@ def verificar_colisiones_objeto(lienzo, objeto):
                                                   x_izq + ancho,
                                                   y_sup + alto)
     # convertir el resultado a una lista
-    colisiones = list(colisiones)
+    # colisiones = list(colisiones)
     return colisiones
 
 
@@ -323,21 +323,13 @@ def main():
         # recupero la posicion de la disco del lienzo
         px_disco, py_disco = obtener_posicion_objeto(arena, disco)
 
-        # condiciones de colision
+        # condiciones de colision y fin de juego
         vx_disco, vy_disco, en_juego = verificar_colisiones_arena(arena,
                                                                   disco,
                                                                   px_disco,
                                                                   py_disco,
                                                                   vx_disco,
                                                                   vy_disco)
-
-        # cambiar la velocidad de la pala en el sentido de la disco
-        # si la disco esta a la derecha de la pala
-        if (px_disco + DIAMETRO_DISCO) // 2 > (px_pala_b + ANCHO_PALA) // 2:
-            vx_pala_b = abs(vx_pala_b)
-        # si la disco esta a la izquierda de la pala
-        elif (px_disco + DIAMETRO_DISCO) // 2 < (px_pala_b + ANCHO_PALA) // 2:
-            vx_pala_b = abs(vx_pala_b) * -1
 
         # TODO PARTE 8: Mover la pala enemiga automáticamente.
         # mover la pala dos automaticamente
@@ -355,6 +347,14 @@ def main():
                                                              vx_pala_b,
                                                              vy_pala_b)
 
+        # cambiar la velocidad de la pala en el sentido de la disco
+        # si la disco esta a la derecha de la pala
+        if (px_disco + DIAMETRO_DISCO) // 2 > (px_pala_b + ANCHO_PALA) // 2:
+            vx_pala_b = abs(vx_pala_b)
+        # si la disco esta a la izquierda de la pala
+        elif (px_disco + DIAMETRO_DISCO) // 2 < (px_pala_b + ANCHO_PALA) // 2:
+            vx_pala_b = abs(vx_pala_b) * -1
+
         # mover la pala uno con el mouse
         mover_pala(arena, pala_a)
 
@@ -365,9 +365,9 @@ def main():
         # procesar colisiones
         if len(colisiones) > 1:
             # print(f"Colision detectada: {colisiones}")
-            vy_disco = -1 * vy_disco
-            if colisiones[0] == pala_a or colisiones[0] == pala_b:
-                vy_disco = -1 * vy_disco
+            # vy_disco = -1 * vy_disco
+            if colisiones[1] == pala_a or colisiones[1] == pala_b:
+                vy_disco = vy_disco * -1
 
         # pausa entre fotogramas
         esperar(PAUSA)
@@ -382,8 +382,6 @@ def main():
                       color="rojo",
                       ancla="center")
     esperar(5)
-    # cerrar el lienzo
-    # lienzo.mainloop()
 
 
 if __name__ == '__main__':
