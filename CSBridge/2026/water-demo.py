@@ -79,11 +79,11 @@ def main():
     lienzo.establecer_color_relleno(rect, "#494972")
 
     # CAMBIO: Usar crear_imagen en lugar de crear_imagen_con_tamano porque el thinker se recetea
-    path_to_image = str(pathlib.Path(__file__).parent / "assets" / "fondo.gif")
-    fondo = lienzo.crear_imagen(0, 0, path_to_image)
+    path_to_image = str(pathlib.Path(__file__).parent / "assets" / "fondo.png")
+    fondo = lienzo.crear_imagen(3, 0, path_to_image)
 
     # 2. EL BALDE COMO IMAGEN REAL
-    path_to_bucket = str(pathlib.Path(__file__).parent / "assets" / "balde.gif")
+    path_to_bucket = str(pathlib.Path(__file__).parent / "assets" / "balde.png")
     balde = lienzo.crear_imagen(260, 530, path_to_bucket)
 
     # Marcos de barras de interfaz
